@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Code2, Zap, Target, ArrowRight, Sparkles } from 'lucide-react';
+import { Code2, Zap, Target, ArrowRight, Sparkles, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
 
 const About: React.FC = () => {
@@ -85,6 +85,15 @@ const About: React.FC = () => {
                 <Button to="/contact" variant="outline">
                   Laten we praten
                 </Button>
+                <a 
+                  href="https://wa.me/31645998932" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
+                >
+                  <MessageCircle size={18} />
+                  WhatsApp
+                </a>
               </div>
             </div>
           </div>

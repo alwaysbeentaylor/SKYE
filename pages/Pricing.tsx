@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Check, Info } from 'lucide-react';
+import { Check, Info, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
 
 const Pricing: React.FC = () => {
@@ -128,7 +128,18 @@ const Pricing: React.FC = () => {
               </ul>
             </div>
             
-            <Button to="/contact" variant="accent" className="w-full justify-center mb-6">Plan Gesprek</Button>
+            <div className="space-y-3 mb-6">
+              <Button to="/contact" variant="accent" className="w-full justify-center">Plan Gesprek</Button>
+              <a 
+                href="https://wa.me/31645998932" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
+              >
+                <MessageCircle size={18} />
+                WhatsApp
+              </a>
+            </div>
 
             <div className="pt-6 border-t border-slate-100 dark:border-white/10 text-center">
               <p className="text-xs text-slate-500">

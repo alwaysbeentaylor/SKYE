@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { ChevronDown, ChevronUp, HelpCircle, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
 
 const faqData = [
@@ -79,7 +79,18 @@ const FAQ: React.FC = () => {
 
         <div className="mt-12 text-center">
           <p className="text-slate-600 dark:text-slate-400 mb-4">Staat je vraag er niet tussen?</p>
-          <Button to="/contact" variant="secondary">Stuur Hope een bericht</Button>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button to="/contact" variant="secondary">Stuur Hope een bericht</Button>
+            <a 
+              href="https://wa.me/31645998932" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
+            >
+              <MessageCircle size={18} />
+              WhatsApp
+            </a>
+          </div>
         </div>
       </section>
     </div>

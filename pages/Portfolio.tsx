@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Maximize2, MessageCircle } from 'lucide-react';
+import Button from '../components/Button';
 
 interface PortfolioItem {
   id: string;
@@ -16,39 +17,12 @@ interface PortfolioItem {
 const portfolioData: PortfolioItem[] = [
   {
     id: '1',
-    title: 'Financieel Adviesbureau',
-    category: 'Zakelijk',
-    thumbnail: 'https://picsum.photos/seed/finance/600/400',
-    challenge: 'Oude website was traag en straalde geen vertrouwen uit.',
-    result: 'Een strakke, snelle corporate site die professionaliteit ademt. Klanten nemen nu serieus contact op.',
-    tech: ['Basis Pakket', 'Next.js']
-  },
-  {
-    id: '2',
-    title: 'Lokale Retailer',
-    category: 'E-commerce',
-    thumbnail: 'https://picsum.photos/seed/retail/600/400',
-    challenge: 'Wilde producten online tonen maar geen ingewikkelde shop beheren.',
-    result: 'Hybride site met etalage-functie. Klanten komen nu voorbereid naar de winkel.',
-    tech: ['Groei Pakket', 'CMS Integratie']
-  },
-  {
-    id: '3',
-    title: 'Coaching Praktijk',
-    category: 'Dienstverlening',
-    thumbnail: 'https://picsum.photos/seed/coach/600/400',
-    challenge: 'Veel tijd kwijt aan afspraken inplannen via de mail.',
-    result: 'Website met geïntegreerde booking tool. Bespaart 5 uur administratie per week.',
-    tech: ['Groei Pakket', 'Automation']
-  },
-  {
-    id: '4',
     title: 'Vitafer Gold',
     category: 'Zakelijk',
     thumbnail: `https://image.thum.io/get/width/600/crop/600/https://vitafer-gold.nl`,
-    challenge: 'Professionele online presentatie voor goudhandel bedrijf.',
-    result: 'Moderne, vertrouwenwekkende website die de kwaliteit van het bedrijf weerspiegelt.',
-    tech: ['Custom Design', 'Responsive'],
+    challenge: 'Professionele online presentatie voor premium supplementen bedrijf.',
+    result: 'Moderne, vertrouwenwekkende e-commerce website die de kwaliteit van het product perfect weergeeft.',
+    tech: ['E-commerce', 'Custom Design', 'Responsive'],
     slides: [
       `https://image.thum.io/get/width/1920/https://vitafer-gold.nl`,
       `https://image.thum.io/get/width/1920/https://vitafer-gold.nl`,
@@ -56,13 +30,13 @@ const portfolioData: PortfolioItem[] = [
     ]
   },
   {
-    id: '5',
+    id: '2',
     title: 'Luxe Estate',
     category: 'Zakelijk',
     thumbnail: `https://image.thum.io/get/width/600/crop/600/https://luxestate-flax.vercel.app`,
-    challenge: 'Luxueuze vastgoed website met premium uitstraling.',
+    challenge: 'Luxueuze vastgoed website met premium uitstraling voor exclusief vastgoed.',
     result: 'Elegante, high-end website die de exclusiviteit van het vastgoed perfect weergeeft.',
-    tech: ['Premium Design', 'Modern UI'],
+    tech: ['Premium Design', 'Modern UI', 'Real Estate'],
     slides: [
       `https://image.thum.io/get/width/1920/https://luxestate-flax.vercel.app`,
       `https://image.thum.io/get/width/1920/https://luxestate-flax.vercel.app`,
@@ -188,6 +162,26 @@ const Portfolio: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* WhatsApp CTA */}
+        <div className="mt-16 text-center">
+          <div className="glass-panel bg-white dark:bg-darkCard/50 rounded-2xl p-8 border border-slate-100 dark:border-white/10 max-w-2xl mx-auto">
+            <h3 className="font-display font-bold text-2xl text-navy dark:text-white mb-4">Interesse in zo'n resultaat?</h3>
+            <p className="text-slate-600 dark:text-slate-300 mb-6">Laten we praten over wat ik voor jou kan betekenen.</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button to="/contact" variant="primary">Neem contact op</Button>
+              <a 
+                href="https://wa.me/31645998932" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
+              >
+                <MessageCircle size={18} />
+                WhatsApp
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 

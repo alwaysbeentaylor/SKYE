@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { LayoutTemplate, Server, Database, Workflow, BarChart2, Code } from 'lucide-react';
+import { LayoutTemplate, Server, Database, Workflow, BarChart2, Code, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
 import { useApp } from '../context/AppContext';
 
@@ -102,9 +102,18 @@ const Services: React.FC = () => {
         <div className="bg-gradient-to-br from-white to-slate-100 dark:from-darkCard dark:to-slate-900 p-10 rounded-3xl shadow-2xl border border-slate-200 dark:border-white/10">
           <h2 className="font-display font-bold text-3xl text-navy dark:text-white mb-4">Geen technische kopzorgen meer?</h2>
           <p className="text-slate-600 dark:text-slate-400 mb-8 text-lg">Kies het pakket dat bij je past en laat mij het regelen.</p>
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <Button to="/pricing" variant="primary">Bekijk Prijzen</Button>
             <Button to="/contact" variant="outline">Stuur een bericht</Button>
+            <a 
+              href="https://wa.me/31645998932" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
+            >
+              <MessageCircle size={18} />
+              WhatsApp
+            </a>
           </div>
         </div>
       </section>

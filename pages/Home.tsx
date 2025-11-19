@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Clock, Zap, ShieldCheck, CreditCard, MousePointer } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock, Zap, ShieldCheck, CreditCard, MousePointer, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
 import { useApp } from '../context/AppContext';
 
@@ -43,6 +43,15 @@ const Home: React.FC = () => {
             <Button to="/contact" variant="secondary" className="px-8 py-4 text-lg dark:bg-white/5 dark:hover:bg-white/10 border border-white/10">
               Plan een gesprek
             </Button>
+            <a 
+              href="https://wa.me/31645998932" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
+            >
+              <MessageCircle size={20} />
+              WhatsApp
+            </a>
           </div>
         </div>
       </section>
