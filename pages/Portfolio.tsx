@@ -1,13 +1,24 @@
 
 import React, { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 
-const portfolioData = [
+interface PortfolioItem {
+  id: string;
+  title: string;
+  category: string;
+  thumbnail: string;
+  challenge: string;
+  result: string;
+  tech: string[];
+  slides?: string[]; // Multiple screenshots for slideshow
+}
+
+const portfolioData: PortfolioItem[] = [
   {
     id: '1',
     title: 'Financieel Adviesbureau',
     category: 'Zakelijk',
-    image: 'https://picsum.photos/seed/finance/600/400',
+    thumbnail: 'https://picsum.photos/seed/finance/600/400',
     challenge: 'Oude website was traag en straalde geen vertrouwen uit.',
     result: 'Een strakke, snelle corporate site die professionaliteit ademt. Klanten nemen nu serieus contact op.',
     tech: ['Basis Pakket', 'Next.js']
@@ -16,7 +27,7 @@ const portfolioData = [
     id: '2',
     title: 'Lokale Retailer',
     category: 'E-commerce',
-    image: 'https://picsum.photos/seed/retail/600/400',
+    thumbnail: 'https://picsum.photos/seed/retail/600/400',
     challenge: 'Wilde producten online tonen maar geen ingewikkelde shop beheren.',
     result: 'Hybride site met etalage-functie. Klanten komen nu voorbereid naar de winkel.',
     tech: ['Groei Pakket', 'CMS Integratie']
@@ -25,20 +36,72 @@ const portfolioData = [
     id: '3',
     title: 'Coaching Praktijk',
     category: 'Dienstverlening',
-    image: 'https://picsum.photos/seed/coach/600/400',
+    thumbnail: 'https://picsum.photos/seed/coach/600/400',
     challenge: 'Veel tijd kwijt aan afspraken inplannen via de mail.',
     result: 'Website met geïntegreerde booking tool. Bespaart 5 uur administratie per week.',
     tech: ['Groei Pakket', 'Automation']
+  },
+  {
+    id: '4',
+    title: 'Vitafer Gold',
+    category: 'Zakelijk',
+    thumbnail: `https://image.thum.io/get/width/600/crop/600/https://vitafer-gold.nl`,
+    challenge: 'Professionele online presentatie voor goudhandel bedrijf.',
+    result: 'Moderne, vertrouwenwekkende website die de kwaliteit van het bedrijf weerspiegelt.',
+    tech: ['Custom Design', 'Responsive'],
+    slides: [
+      `https://image.thum.io/get/width/1920/https://vitafer-gold.nl`,
+      `https://image.thum.io/get/width/1920/https://vitafer-gold.nl`,
+      `https://image.thum.io/get/width/375/https://vitafer-gold.nl`
+    ]
+  },
+  {
+    id: '5',
+    title: 'Luxe Estate',
+    category: 'Zakelijk',
+    thumbnail: `https://image.thum.io/get/width/600/crop/600/https://luxestate-flax.vercel.app`,
+    challenge: 'Luxueuze vastgoed website met premium uitstraling.',
+    result: 'Elegante, high-end website die de exclusiviteit van het vastgoed perfect weergeeft.',
+    tech: ['Premium Design', 'Modern UI'],
+    slides: [
+      `https://image.thum.io/get/width/1920/https://luxestate-flax.vercel.app`,
+      `https://image.thum.io/get/width/1920/https://luxestate-flax.vercel.app`,
+      `https://image.thum.io/get/width/375/https://luxestate-flax.vercel.app`
+    ]
   }
 ];
 
 const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState('Alles');
+  const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const categories = ['Alles', 'Zakelijk', 'E-commerce', 'Dienstverlening'];
 
   const filteredItems = filter === 'Alles' 
     ? portfolioData 
     : portfolioData.filter(item => item.category === filter);
+
+  const openModal = (item: PortfolioItem) => {
+    setSelectedItem(item);
+    setCurrentSlide(0);
+  };
+
+  const closeModal = () => {
+    setSelectedItem(null);
+    setCurrentSlide(0);
+  };
+
+  const nextSlide = () => {
+    if (selectedItem?.slides) {
+      setCurrentSlide((prev) => (prev + 1) % selectedItem.slides.length);
+    }
+  };
+
+  const prevSlide = () => {
+    if (selectedItem?.slides) {
+      setCurrentSlide((prev) => (prev - 1 + selectedItem.slides.length) % selectedItem.slides.length);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg pb-20 transition-colors duration-300">
@@ -72,16 +135,31 @@ const Portfolio: React.FC = () => {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItems.map((item) => (
-            <div key={item.id} className="glass-panel bg-white dark:bg-darkCard rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group border border-slate-100 dark:border-white/10">
+            <div 
+              key={item.id} 
+              className="glass-panel bg-white dark:bg-darkCard rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group border border-slate-100 dark:border-white/10 cursor-pointer"
+              onClick={() => item.slides && openModal(item)}
+            >
               <div className="relative h-56 overflow-hidden">
                 <img 
-                  src={item.image} 
+                  src={item.thumbnail} 
                   alt={item.title} 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    // Fallback to placeholder if screenshot fails
+                    (e.target as HTMLImageElement).src = 'https://picsum.photos/600/400';
+                  }}
                 />
                 <div className="absolute top-4 right-4 bg-navy/90 backdrop-blur text-white text-xs px-3 py-1 rounded-full">
                   {item.category}
                 </div>
+                {item.slides && (
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="bg-white/90 dark:bg-darkCard/90 backdrop-blur rounded-full p-3 transform scale-0 group-hover:scale-100 transition-transform">
+                      <Maximize2 className="text-navy dark:text-white" size={24} />
+                    </div>
+                  </div>
+                )}
               </div>
               
               <div className="p-6">
@@ -112,6 +190,84 @@ const Portfolio: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* Modal for Slideshow */}
+      {selectedItem && selectedItem.slides && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          <div 
+            className="relative max-w-6xl w-full max-h-[90vh] bg-white dark:bg-darkCard rounded-2xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 backdrop-blur text-white p-2 rounded-full transition-colors"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Slideshow */}
+            <div className="relative h-[70vh] bg-slate-900 flex items-center justify-center">
+              <img
+                src={selectedItem.slides[currentSlide]}
+                alt={`${selectedItem.title} - Slide ${currentSlide + 1}`}
+                className="max-w-full max-h-full object-contain"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = selectedItem.thumbnail;
+                }}
+              />
+
+              {/* Navigation Arrows */}
+              {selectedItem.slides.length > 1 && (
+                <>
+                  <button
+                    onClick={prevSlide}
+                    className="absolute left-4 bg-white/10 hover:bg-white/20 backdrop-blur text-white p-3 rounded-full transition-colors"
+                  >
+                    <ChevronLeft size={24} />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    className="absolute right-4 bg-white/10 hover:bg-white/20 backdrop-blur text-white p-3 rounded-full transition-colors"
+                  >
+                    <ChevronRight size={24} />
+                  </button>
+                </>
+              )}
+
+              {/* Slide Indicators */}
+              {selectedItem.slides.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                  {selectedItem.slides.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        index === currentSlide 
+                          ? 'bg-primary w-8' 
+                          : 'bg-white/30 hover:bg-white/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Info Section */}
+            <div className="p-6 border-t border-slate-200 dark:border-white/10">
+              <h3 className="font-display font-bold text-2xl text-navy dark:text-white mb-2">
+                {selectedItem.title}
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300">
+                Slide {currentSlide + 1} van {selectedItem.slides.length}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
