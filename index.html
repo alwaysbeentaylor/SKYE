@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SKYE | Unlimited Digital Growth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+              primary: '#0ea5e9', // Sky 500
+              primaryDark: '#0284c7', // Sky 600
+              accent: '#f97316', // Orange 500
+              navy: '#0f172a', // Slate 900
+              darkBg: '#020617', // Slate 950
+              darkCard: '#0f172a', // Slate 900
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'spin-slow': 'spin 8s linear infinite',
+              'flow': 'flow 3s linear infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              flow: {
+                '0%': { strokeDashoffset: '1000' },
+                '100%': { strokeDashoffset: '0' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #020617; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1e293b; 
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #0ea5e9; 
+      }
+
+      /* Glassmorphism Base */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      
+      .glass-panel-strong {
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(14, 165, 233, 0.1);
+      }
+
+      /* Circuit Grid Background */
+      .bg-grid-pattern {
+        background-image: 
+          linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+      }
+
+      /* Icon Animations */
+      .icon-hover-spin:hover { animation: spin 1s linear infinite; }
+      .icon-hover-bounce:hover { animation: bounce 1s infinite; }
+      .icon-hover-pulse:hover { animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+</head>
+  <body class="bg-slate-50 text-slate-800 dark:bg-darkBg dark:text-slate-200 antialiased transition-colors duration-300 selection:bg-primary selection:text-white">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
