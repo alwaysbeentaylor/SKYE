@@ -1,7 +1,10 @@
 
 import React, { useState } from 'react';
-import { Mail, Send, CheckCircle } from 'lucide-react';
+import { Mail, Send, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 import Button from '../components/Button';
+
+const TELEGRAM_BOT_TOKEN = '8547433349:AAFniIQU7rO9-nzHkgJK6F7Hv3MzLzv1Ymk';
+const TELEGRAM_USER_ID = '1471110442';
 
 const Contact: React.FC = () => {
   const [formState, setFormState] = useState({
@@ -11,19 +14,67 @@ const Contact: React.FC = () => {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value
     });
+    setError(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const sendToTelegram = async (data: typeof formState) => {
+    const message = `🔔 Nieuw contactformulier bericht\n\n` +
+      `👤 Naam: ${data.name}\n` +
+      `📧 Email: ${data.email}\n` +
+      `${data.company ? `🏢 Bedrijf: ${data.company}\n` : ''}` +
+      `\n💬 Bericht:\n${data.message}`;
+
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_USER_ID,
+        text: message,
+        parse_mode: 'HTML'
+      })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.description || 'Failed to send message');
+    }
+
+    return await response.json();
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Simulate API call
-    setTimeout(() => setSubmitted(false), 5000);
+    setLoading(true);
+    setError(null);
+
+    try {
+      await sendToTelegram(formState);
+      setSubmitted(true);
+      // Reset form
+      setFormState({
+        name: '',
+        email: '',
+        company: '',
+        message: ''
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Er is een fout opgetreden. Probeer het later opnieuw.');
+      console.error('Error sending to Telegram:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -129,8 +180,29 @@ const Contact: React.FC = () => {
             ></textarea>
           </div>
 
-          <Button type="submit" variant="primary" className="w-full justify-center text-lg">
-            Verstuur Bericht <Send size={18} className="ml-2" />
+          {error && (
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 flex items-start">
+              <AlertCircle className="text-red-600 dark:text-red-400 mr-3 mt-0.5" size={20} />
+              <p className="text-red-800 dark:text-red-300 text-sm">{error}</p>
+            </div>
+          )}
+
+          <Button 
+            type="submit" 
+            variant="primary" 
+            className="w-full justify-center text-lg"
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 animate-spin" size={18} />
+                Verzenden...
+              </>
+            ) : (
+              <>
+                Verstuur Bericht <Send size={18} className="ml-2" />
+              </>
+            )}
           </Button>
         </form>
       </div>

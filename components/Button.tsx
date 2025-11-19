@@ -8,6 +8,7 @@ interface ButtonProps {
   className?: string;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({ 
@@ -16,7 +17,8 @@ const Button: React.FC<ButtonProps> = ({
   variant = 'primary', 
   className = '', 
   onClick,
-  type = 'button'
+  type = 'button',
+  disabled = false
 }) => {
   const baseStyles = "inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-md transition-all duration-200 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2";
   
@@ -27,7 +29,9 @@ const Button: React.FC<ButtonProps> = ({
     accent: "bg-accent text-white hover:bg-orange-600 focus:ring-accent shadow-lg shadow-accent/30",
   };
 
-  const combinedStyles = `${baseStyles} ${variants[variant]} ${className}`;
+  const disabledStyles = disabled ? "opacity-50 cursor-not-allowed transform-none hover:transform-none" : "";
+
+  const combinedStyles = `${baseStyles} ${variants[variant]} ${disabledStyles} ${className}`;
 
   if (to) {
     return (
@@ -38,7 +42,7 @@ const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <button type={type} onClick={onClick} className={combinedStyles}>
+    <button type={type} onClick={onClick} className={combinedStyles} disabled={disabled}>
       {children}
     </button>
   );
