@@ -221,19 +221,24 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Legal / Status */}
+          {/* Resources */}
           <div>
-            <h3 className="font-display font-bold text-xl mb-6 text-white">Status</h3>
-            <div className="flex items-center gap-2 text-green-400 mb-4 bg-green-400/10 w-fit px-3 py-1 rounded-full text-sm font-medium border border-green-500/20">
+            <h3 className="font-display font-bold text-xl mb-6 text-white">Resources</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/media-kit" className="text-slate-400 hover:text-primary hover:translate-x-2 transition-all flex items-center group w-fit">
+                  <ChevronRight size={14} className="mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  Media Kit
+                </Link>
+              </li>
+            </ul>
+            <div className="mt-6 flex items-center gap-2 text-green-400 bg-green-400/10 w-fit px-3 py-1 rounded-full text-sm font-medium border border-green-500/20">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
               Beschikbaar voor nieuwe partners
             </div>
-            <p className="text-slate-500 text-sm">
-              Based in Wakanda.<br/>Serving Global Clients.
-            </p>
           </div>
         </div>
 

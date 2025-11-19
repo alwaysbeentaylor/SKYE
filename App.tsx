@@ -10,6 +10,7 @@ import Portfolio from './pages/Portfolio';
 import About from './pages/About';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
+import MediaKit from './pages/MediaKit';
 
 // Scroll to top component to handle navigation updates
 const ScrollToTop = () => {
@@ -37,6 +38,7 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/media-kit" element={<MediaKit />} />
           </Routes>
         </Layout>
       </Router>
