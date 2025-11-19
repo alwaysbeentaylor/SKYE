@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronRight, Linkedin, Github, Instagram, Moon, Sun, Globe } from 'lucide-react';
+import { Menu, X, ChevronRight, Linkedin, Github, Instagram, Moon, Sun, Globe, MessageCircle } from 'lucide-react';
 import Button from './Button';
 import { useApp } from '../context/AppContext';
 
@@ -192,12 +192,23 @@ const Footer: React.FC = () => {
             <p className="text-slate-400 leading-relaxed max-w-xs">
               {t.hero.subtitle}
             </p>
-            <div className="flex space-x-4">
-              {[Linkedin, Github, Instagram].map((Icon, i) => (
-                <a key={i} href="#" className="bg-white/5 hover:bg-primary hover:text-white text-slate-400 p-3 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_15px_#0ea5e9]">
-                  <Icon size={20} />
-                </a>
-              ))}
+            <div className="space-y-4">
+              <div className="flex space-x-4">
+                {[Linkedin, Github, Instagram].map((Icon, i) => (
+                  <a key={i} href="#" className="bg-white/5 hover:bg-primary hover:text-white text-slate-400 p-3 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_15px_#0ea5e9]">
+                    <Icon size={20} />
+                  </a>
+                ))}
+              </div>
+              <a 
+                href="https://wa.me/31645998932" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-green-500/20 hover:bg-green-500/30 text-green-400 px-4 py-2 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)] border border-green-500/30"
+              >
+                <MessageCircle size={20} />
+                <span className="text-sm font-medium">WhatsApp</span>
+              </a>
             </div>
           </div>
 

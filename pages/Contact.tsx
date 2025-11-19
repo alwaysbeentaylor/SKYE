@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Mail, Send, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
+import { Mail, Send, CheckCircle, Loader2, AlertCircle, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
 
 const TELEGRAM_BOT_TOKEN = '8547433349:AAFniIQU7rO9-nzHkgJK6F7Hv3MzLzv1Ymk';
@@ -123,7 +123,27 @@ const Contact: React.FC = () => {
             <Mail className="text-primary mt-1 mr-4" size={24} />
             <div>
               <h3 className="font-bold text-lg">Email</h3>
-              <p className="text-slate-400">hope@skyeisthelimit.com</p>
+              <a href="mailto:hope@skyeisthelimit.com" className="text-slate-400 hover:text-primary transition-colors">
+                hope@skyeisthelimit.com
+              </a>
+            </div>
+          </div>
+          
+          <div className="flex items-start">
+            <MessageCircle className="text-primary mt-1 mr-4" size={24} />
+            <div>
+              <h3 className="font-bold text-lg">WhatsApp</h3>
+              <a 
+                href="https://wa.me/31645998932" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-primary transition-colors inline-flex items-center gap-2 group"
+              >
+                +31 6 45 99 89 32
+                <span className="text-xs bg-primary/20 text-primary px-2 py-1 rounded-full group-hover:bg-primary/30 transition-colors">
+                  Direct chatten
+                </span>
+              </a>
             </div>
           </div>
         </div>
