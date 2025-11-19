@@ -34,24 +34,35 @@ const Contact: React.FC = () => {
 
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
     
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_USER_ID,
-        text: message,
-        parse_mode: 'HTML'
-      })
-    });
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: String(TELEGRAM_USER_ID),
+          text: message,
+        })
+      });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.description || 'Failed to send message');
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        // Better error handling
+        if (responseData.description?.includes('chat not found')) {
+          throw new Error('Chat niet gevonden. Zorg ervoor dat je eerst een bericht naar de bot hebt gestuurd.');
+        }
+        throw new Error(responseData.description || 'Kon bericht niet verzenden naar Telegram');
+      }
+
+      return responseData;
+    } catch (err) {
+      if (err instanceof Error) {
+        throw err;
+      }
+      throw new Error('Netwerkfout bij het verzenden naar Telegram');
     }
-
-    return await response.json();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
