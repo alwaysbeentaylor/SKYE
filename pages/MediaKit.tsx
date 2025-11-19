@@ -6,16 +6,16 @@ const MediaKit: React.FC = () => {
   return (
     <div className="min-h-screen bg-black p-8 font-display">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-12 text-white text-center">
+        <div className="mb-16 text-white text-center">
           <h1 className="text-3xl font-bold mb-2">SKYE Social Media Kit</h1>
           <p className="text-slate-400">Maak screenshots van deze designs om te delen.</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+        <div className="space-y-32">
           
           {/* 1. STORY FORMAT (9:16) */}
-          <div className="flex flex-col items-center">
-            <h3 className="text-white mb-4 text-sm font-bold uppercase tracking-wider">Instagram / TikTok Story</h3>
+          <div className="flex flex-col items-center py-16">
+            <h3 className="text-white mb-6 text-sm font-bold uppercase tracking-wider">Instagram / TikTok Story</h3>
             <div className="w-[375px] h-[667px] bg-gradient-to-br from-slate-900 to-black border-4 border-white/10 rounded-[40px] relative overflow-hidden shadow-2xl flex flex-col">
                {/* Content */}
                <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
@@ -53,8 +53,8 @@ const MediaKit: React.FC = () => {
           </div>
 
           {/* 2. FEED FORMAT (1:1) */}
-          <div className="flex flex-col items-center">
-            <h3 className="text-white mb-4 text-sm font-bold uppercase tracking-wider">Instagram Feed (Square)</h3>
+          <div className="flex flex-col items-center py-16">
+            <h3 className="text-white mb-6 text-sm font-bold uppercase tracking-wider">Instagram Feed (Square)</h3>
             <div className="w-[500px] h-[500px] bg-white relative overflow-hidden shadow-2xl flex flex-col justify-center items-center text-center p-12">
                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-primary"></div>
                
@@ -76,8 +76,8 @@ const MediaKit: React.FC = () => {
           </div>
 
           {/* 3. LINKEDIN/FB HEADER */}
-          <div className="flex flex-col items-center w-full">
-            <h3 className="text-white mb-4 text-sm font-bold uppercase tracking-wider">LinkedIn / Facebook Cover</h3>
+          <div className="flex flex-col items-center w-full py-16">
+            <h3 className="text-white mb-6 text-sm font-bold uppercase tracking-wider">LinkedIn / Facebook Cover</h3>
             <div className="w-full aspect-[1.91/1] bg-slate-900 relative overflow-hidden shadow-2xl flex items-center px-16 border border-white/10 rounded-xl">
                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-slate-900 to-black"></div>
                
@@ -102,6 +102,10 @@ const MediaKit: React.FC = () => {
             </div>
           </div>
 
+        </div>
+        
+        <div className="mt-32 mb-16 text-center">
+          <p className="text-slate-500 text-sm">Scroll omhoog om alle designs te zien</p>
         </div>
       </div>
     </div>
