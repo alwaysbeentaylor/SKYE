@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronRight, Linkedin, Github, Instagram, Moon, Sun, Globe, MessageCircle } from 'lucide-react';
 import Button from './Button';
 import { useApp } from '../context/AppContext';
+import CookieConsent from './CookieConsent';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -305,6 +306,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {children}
       </main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 };

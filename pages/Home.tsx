@@ -36,9 +36,9 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col relative">
       <SEOHead 
-        title="SKYE | Professioneel Webdesign Brugge - Websites vanaf €150/maand"
-        description="Professionele website laten maken in Brugge? SKYE biedt webdesign voor ondernemers vanaf €150/maand. Geen €5k vooraf. Direct online. Webdesigner België."
-        keywords="webdesign Brugge, website laten maken Brugge, webdesigner België, professionele website ondernemer, webdesign België, website Brugge"
+        title="SKYE | Professioneel Webdesign voor Ondernemers - Websites vanaf €150/maand"
+        description="Professionele website nodig? SKYE biedt webdesign voor ondernemers vanaf €150/maand. Geen €5k vooraf. Direct online. Webdesigner België."
+        keywords="webdesign België, website laten maken, webdesigner België, professionele website ondernemer, webdesign voor bedrijven, website huren"
       />
       <StructuredData type="WebSite" />
       <StructuredData type="LocalBusiness" />
@@ -66,11 +66,11 @@ const Home: React.FC = () => {
           </div>
 
           <h1 className="font-display font-black text-5xl md:text-7xl tracking-tighter text-navy dark:text-white mb-6 leading-[1.1] animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 drop-shadow-xl">
-            Professioneel Webdesign Brugge voor <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-accent">Ondernemers</span>
+            Professioneel Webdesign voor <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-accent">Ondernemers</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 font-light max-w-3xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-            Website laten maken in Brugge? Ik bouw professionele websites <span className="text-primary font-semibold">vanaf €150/maand</span>. <br/>
+            Website nodig? Ik bouw professionele websites <span className="text-primary font-semibold">vanaf €150/maand</span>. <br/>
             <span className="text-lg">Geen €5k vooraf. Direct online. Alles geregeld.</span>
           </p>
 
