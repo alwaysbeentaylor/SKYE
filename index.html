@@ -250,56 +250,50 @@
       }
     </style>
     <script>
-      // Security: Disable right-click context menu
-      document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        return false;
-      });
+      // Security scripts DISABLED FOR DEBUGGING
+      // Uncomment these in production
       
-      // Security: Disable common keyboard shortcuts
-      document.addEventListener('keydown', function(e) {
-        // Disable F12 (Developer Tools)
-        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-            (e.ctrlKey && e.shiftKey && e.key === 'C') || 
-            (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-            (e.ctrlKey && e.key === 'U') || 
-            (e.ctrlKey && e.key === 'S') ||
-            (e.ctrlKey && e.shiftKey && e.key === 'K')) {
-          e.preventDefault();
-          return false;
-        }
-      });
+      // // Security: Disable right-click context menu
+      // document.addEventListener('contextmenu', function(e) {
+      //   e.preventDefault();
+      //   return false;
+      // });
       
-      // Security: Disable text selection via mouse drag
-      document.addEventListener('selectstart', function(e) {
-        // Allow selection in input fields and textareas
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) {
-          return true;
-        }
-        e.preventDefault();
-        return false;
-      });
+      // // Security: Disable common keyboard shortcuts
+      // document.addEventListener('keydown', function(e) {
+      //   // Disable F12 (Developer Tools)
+      //   if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+      //       (e.ctrlKey && e.shiftKey && e.key === 'C') || 
+      //       (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+      //       (e.ctrlKey && e.key === 'U') || 
+      //       (e.ctrlKey && e.key === 'S') ||
+      //       (e.ctrlKey && e.shiftKey && e.key === 'K')) {
+      //     e.preventDefault();
+      //     return false;
+      //   }
+      // });
       
-      // Security: Disable drag and drop
-      document.addEventListener('dragstart', function(e) {
-        e.preventDefault();
-        return false;
-      });
+      // // Security: Disable text selection via mouse drag
+      // document.addEventListener('selectstart', function(e) {
+      //   // Allow selection in input fields and textareas
+      //   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) {
+      //     return true;
+      //   }
+      //   e.preventDefault();
+      //   return false;
+      // });
       
-      // Security: Disable image dragging
-      document.addEventListener('drag', function(e) {
-        e.preventDefault();
-        return false;
-      });
+      // // Security: Disable drag and drop
+      // document.addEventListener('dragstart', function(e) {
+      //   e.preventDefault();
+      //   return false;
+      // });
       
-      // Security: Console warning
-      (function() {
-        const noop = function() {};
-        const methods = ['log', 'debug', 'info', 'warn', 'error', 'assert', 'dir', 'dirxml', 'group', 'groupEnd', 'time', 'timeEnd', 'count', 'trace', 'profile', 'profileEnd'];
-        methods.forEach(function(method) {
-          console[method] = noop;
-        });
-      })();
+      // // Security: Disable image dragging
+      // document.addEventListener('drag', function(e) {
+      //   e.preventDefault();
+      //   return false;
+      // });
     </script>
 </head>
   <body class="bg-slate-50 text-slate-800 dark:bg-darkBg dark:text-slate-200 antialiased transition-colors duration-300 selection:bg-primary selection:text-white">

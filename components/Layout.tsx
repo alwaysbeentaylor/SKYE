@@ -8,7 +8,9 @@ import CookieConsent from './CookieConsent';
 import Analytics from './Analytics';
 import ExitIntentPopup from './ExitIntentPopup';
 import MobileCTABar from './MobileCTABar';
+import LanguagePrompt from './LanguagePrompt';
 import { trackWhatsAppClick } from '../utils/analytics';
+import { trackVisitor, resetTracking } from '../utils/visitorTracking';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -219,7 +221,7 @@ const Footer: React.FC = () => {
 
           {/* Navigation */}
           <div>
-            <h3 className="font-display font-bold text-xl mb-6 text-navy dark:text-white">Direct naar</h3>
+            <h3 className="font-display font-bold text-xl mb-6 text-navy dark:text-white">{t.footer.direct_to_title}</h3>
             <ul className="space-y-3">
               {[
                 { name: t.nav.home, path: '/' },
@@ -239,7 +241,7 @@ const Footer: React.FC = () => {
 
           {/* Resources */}
           <div>
-            <h3 className="font-display font-bold text-xl mb-6 text-navy dark:text-white">Resources</h3>
+            <h3 className="font-display font-bold text-xl mb-6 text-navy dark:text-white">{t.footer.resources_title}</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/media-kit" className="text-slate-600 dark:text-slate-400 hover:text-primary hover:translate-x-2 transition-all flex items-center group w-fit">
@@ -253,7 +255,7 @@ const Footer: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 dark:bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 dark:bg-green-400"></span>
               </span>
-              Beschikbaar voor nieuwe partners
+              {t.footer.available}
             </div>
           </div>
         </div>
@@ -261,8 +263,8 @@ const Footer: React.FC = () => {
         <div className="border-t border-slate-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-600 dark:text-slate-500">
           <p>&copy; 2025 SKYE. {t.footer.rights} {t.footer.built}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-primary transition-colors">Privacy</a>
-            <a href="#" className="hover:text-primary transition-colors">Algemene Voorwaarden</a>
+            <a href="#" className="hover:text-primary transition-colors">{t.footer.privacy}</a>
+            <a href="#" className="hover:text-primary transition-colors">{t.footer.terms}</a>
           </div>
         </div>
       </div>
@@ -271,6 +273,15 @@ const Footer: React.FC = () => {
 };
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const location = useLocation();
+  const { t } = useApp();
+
+  useEffect(() => {
+    // Track visitor on page load and route changes
+    resetTracking();
+    trackVisitor(location.pathname);
+  }, [location.pathname]);
+
   return (
     <div className="flex flex-col min-h-screen relative overflow-x-hidden text-slate-800 dark:text-slate-200 font-sans">
       {/* GLOBAL SEAMLESS BACKGROUND */}
@@ -305,7 +316,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
         </div>
         <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-navy dark:bg-navy/90 backdrop-blur text-white px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
-          Direct contact via WhatsApp
+          {t.common.whatsapp_tooltip}
         </span>
       </a>
 
@@ -317,6 +328,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <CookieConsent />
       <ExitIntentPopup />
       <MobileCTABar />
+      <LanguagePrompt />
     </div>
   );
 };

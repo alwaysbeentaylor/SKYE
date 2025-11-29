@@ -72,3 +72,8 @@ Controleer:
 **Fix Date**: 2024-01-15
 **Status**: ✅ Structured data nu direct in HTML voor betere crawler detectie
 
+
+
+
+
+

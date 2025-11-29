@@ -4,8 +4,10 @@ import { Code2, Zap, Target, ArrowRight, Sparkles, MessageCircle } from 'lucide-
 import Button from '../components/Button';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
+import { useApp } from '../context/AppContext';
 
 const About: React.FC = () => {
+  const { t } = useApp();
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg transition-colors duration-300">
       <SEOHead 
@@ -58,40 +60,37 @@ const About: React.FC = () => {
             {/* Right: Content */}
             <div className="space-y-8">
               <div className="inline-block">
-                <span className="text-primary font-mono text-sm tracking-widest uppercase">Over Hope</span>
+                <span className="text-primary font-mono text-sm tracking-widest uppercase">{t.about.hero.label}</span>
               </div>
               
               <h1 className="font-display font-black text-5xl lg:text-6xl text-navy dark:text-white leading-tight">
-                Geen bureau.<br/>
+                {t.about.hero.title_line1}<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                  Wel resultaat.
+                  {t.about.hero.title_line2}
                 </span>
               </h1>
 
               <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
                 <p className="text-xl">
-                  Ik ben Hope. Als we samenwerken, spreek je direct met mij: degene die jouw site bouwt. 
-                  Geen accountmanagers, geen lagen, geen doorverwijzingen.
+                  {t.about.hero.text1}
                 </p>
                 
                 <p>
-                  Ik hou niet van vage beloftes, uurtje-factuurtje verrassingen of wazige facturen. 
-                  Jij wilt als ondernemer gewoon weten waar je aan toe bent.
+                  {t.about.hero.text2}
                 </p>
                 
                 <p>
-                  Daarom werk ik met vaste maandbedragen. Duidelijkheid vooraf. 
-                  Als iets niet nodig is, zeg ik het eerlijk. Als iets beter kan, zeg ik het ook.
+                  {t.about.hero.text3}
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-4 pt-4">
                 <Button to="/pricing" variant="primary">
-                  Bekijk wat je krijgt voor €150
+                  {t.about.hero.cta_pricing}
                   <ArrowRight size={18} className="ml-2" />
                 </Button>
                 <Button to="/contact" variant="outline">
-                  Laten we praten
+                  {t.about.hero.cta_contact}
                 </Button>
                 <a 
                   href="https://wa.me/31645998932" 
@@ -100,7 +99,7 @@ const About: React.FC = () => {
                   className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
                 >
                   <MessageCircle size={18} />
-                  WhatsApp
+                  {t.about.hero.whatsapp}
                 </a>
               </div>
             </div>
@@ -121,9 +120,9 @@ const About: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-4xl text-white mb-4">Waarom anders</h2>
+            <h2 className="font-display font-bold text-4xl text-white mb-4">{t.about.values.title}</h2>
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Drie principes die alles anders maken
+              {t.about.values.subtitle}
             </p>
           </div>
 
@@ -135,14 +134,13 @@ const About: React.FC = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-primaryDark rounded-xl flex items-center justify-center mb-6 transform group-hover:rotate-6 transition-transform">
                   <Zap className="text-white" size={32} />
                 </div>
-                <h3 className="font-bold text-xl text-white mb-4">Direct Contact</h3>
+                <h3 className="font-bold text-xl text-white mb-4">{t.about.values.direct_contact.title}</h3>
                 <p className="text-slate-400 leading-relaxed">
-                  Geen 'ik geef het door'. Je hebt direct lijn met de techniek. 
-                  Vragen? Direct antwoord. Problemen? Direct opgelost.
+                  {t.about.values.direct_contact.desc}
                 </p>
                 <div className="mt-6 pt-6 border-t border-white/10">
                   <div className="flex items-center text-primary text-sm font-medium">
-                    <span>Direct lijn</span>
+                    <span>{t.about.values.direct_contact.label}</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -156,14 +154,13 @@ const About: React.FC = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-accent to-orange-600 rounded-xl flex items-center justify-center mb-6 transform group-hover:rotate-6 transition-transform">
                   <Target className="text-white" size={32} />
                 </div>
-                <h3 className="font-bold text-xl text-white mb-4">Eerlijk & Transparant</h3>
+                <h3 className="font-bold text-xl text-white mb-4">{t.about.values.honest.title}</h3>
                 <p className="text-slate-400 leading-relaxed">
-                  Huren is flexibel. Kopen is een keuze. Geen kleine lettertjes, 
-                  geen verborgen kosten. Je weet precies waar je aan toe bent.
+                  {t.about.values.honest.desc}
                 </p>
                 <div className="mt-6 pt-6 border-t border-white/10">
                   <div className="flex items-center text-accent text-sm font-medium">
-                    <span>Geen verrassingen</span>
+                    <span>{t.about.values.honest.label}</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -177,14 +174,13 @@ const About: React.FC = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-primary via-accent to-primary rounded-xl flex items-center justify-center mb-6 transform group-hover:rotate-6 transition-transform">
                   <Sparkles className="text-white" size={32} />
                 </div>
-                <h3 className="font-bold text-xl text-white mb-4">Geen Bullshit</h3>
+                <h3 className="font-bold text-xl text-white mb-4">{t.about.values.no_bullshit.title}</h3>
                 <p className="text-slate-400 leading-relaxed">
-                  Ik verkoop geen gouden bergen. Ik bouw systemen die werken. 
-                  Eerlijk advies, realistische verwachtingen, echte resultaten.
+                  {t.about.values.no_bullshit.desc}
                 </p>
                 <div className="mt-6 pt-6 border-t border-white/10">
                   <div className="flex items-center text-primary text-sm font-medium">
-                    <span>Echte resultaten</span>
+                    <span>{t.about.values.no_bullshit.label}</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -205,28 +201,26 @@ const About: React.FC = () => {
             <div className="relative z-10">
               <div className="max-w-3xl mx-auto text-center space-y-8">
                 <h2 className="font-display font-bold text-3xl md:text-4xl text-navy dark:text-white">
-                  De aanpak
+                  {t.about.philosophy.title}
                 </h2>
                 
                 <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
                   <p>
-                    Ik geloof niet in complexe structuren waar je door tien lagen moet om bij de techniek te komen. 
-                    Ik geloof in directe communicatie, heldere afspraken en systemen die daadwerkelijk werken.
+                    {t.about.philosophy.text1}
                   </p>
                   
                   <p className="text-xl font-semibold text-navy dark:text-white">
-                    Geen gedoe. Wel resultaat. Dat is de belofte.
+                    {t.about.philosophy.text2}
                   </p>
                   
                   <p>
-                    Of je nu een nieuwe website nodig hebt, je bestaande site wilt verbeteren, 
-                    of een compleet systeem wilt bouwen: we bespreken het, we maken het, en het werkt.
+                    {t.about.philosophy.text3}
                   </p>
                 </div>
 
                 <div className="pt-8">
                   <Button to="/contact" variant="primary" className="text-lg px-8">
-                    Laten we beginnen
+                    {t.about.philosophy.cta}
                     <ArrowRight size={20} className="ml-2" />
                   </Button>
                 </div>

@@ -9,50 +9,19 @@ import StructuredData from '../components/StructuredData';
 const Services: React.FC = () => {
   const { t } = useApp();
 
-  const servicesData = [
-    {
-      title: 'Websites & Landingspagina\'s',
-      price_ref: 'Basis (€150)',
-      icon: <LayoutTemplate size={32} />,
-      desc: 'Een strakke, snelle website die perfect werkt op mobiel. Geen Wordpress-chaos, maar moderne, stabiele code.',
-      benefit: 'Jouw visitekaartje staat als een huis. Altijd.'
-    },
-    {
-      title: 'Hosting & Security',
-      price_ref: 'Inbegrepen',
-      icon: <Server size={32} />,
-      desc: 'Snelle servers, SSL-certificaten en beveiligingsupdates. Ik regel de techniek op de achtergrond.',
-      benefit: 'Geen zorgen over hacks of trage laadtijden.'
-    },
-    {
-      title: 'Integraties & Koppelingen',
-      price_ref: '',
-      icon: <Database size={32} />,
-      desc: 'Koppel je site aan je CRM, je e-mailmarketing (Mailchimp e.d.) of simpele betaalsystemen.',
-      benefit: 'Je site werkt samen met je bedrijfsprocessen.'
-    },
-    {
-      title: 'Automatisering',
-      price_ref: '',
-      icon: <Workflow size={32} />,
-      desc: 'Formulieren die automatisch naar de juiste persoon gaan, of simpele funnels die leads opvolgen.',
-      benefit: 'Minder handwerk, minder fouten.'
-    },
-    {
-      title: 'Simpel Beheer',
-      price_ref: 'Inbegrepen',
-      icon: <Code size={32} />,
-      desc: 'Je krijgt een simpel paneel om teksten of foto\'s aan te passen. Voor het zware werk bel je mij.',
-      benefit: 'Jij de inhoud, ik de techniek.'
-    },
-    {
-      title: 'Analytics & Inzichten',
-      price_ref: 'Basis',
-      icon: <BarChart2 size={32} />,
-      desc: 'Privacy-vriendelijke statistieken. Zie hoeveel mensen kijken, zonder Google\'s ingewikkelde dashboards.',
-      benefit: 'Weten wat er gebeurt, zonder gedoe.'
-    }
+  const icons = [
+    <LayoutTemplate size={32} />,
+    <Server size={32} />,
+    <Database size={32} />,
+    <Workflow size={32} />,
+    <Code size={32} />,
+    <BarChart2 size={32} />
   ];
+
+  const servicesData = t.services.items.map((item, index) => ({
+    ...item,
+    icon: icons[index]
+  }));
   
   return (
     <div className="bg-slate-50 dark:bg-darkBg min-h-screen pb-20 transition-colors duration-300">
@@ -82,7 +51,7 @@ const Services: React.FC = () => {
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
             {t.services.subtitle} <br/>
-            Alles wat je nodig hebt in één overzichtelijk model.
+            {t.services.header_subtitle_extra}
           </p>
         </div>
       </section>
@@ -110,7 +79,7 @@ const Services: React.FC = () => {
 
               <div className="pt-4 border-t border-slate-100 dark:border-white/5">
                 <p className="text-navy dark:text-white font-semibold italic text-xs">
-                   <span className="text-primary font-bold mr-1">Winst:</span> {service.benefit}
+                   <span className="text-primary font-bold mr-1">{t.language === 'nl' ? 'Winst:' : 'Benefit:'}</span> {service.benefit}
                 </p>
               </div>
             </div>
@@ -121,11 +90,11 @@ const Services: React.FC = () => {
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-4 mt-24 text-center">
         <div className="bg-gradient-to-br from-white to-slate-100 dark:from-darkCard dark:to-slate-900 p-10 rounded-3xl shadow-2xl border border-slate-200 dark:border-white/10">
-          <h2 className="font-display font-bold text-3xl text-navy dark:text-white mb-4">Geen technische kopzorgen meer?</h2>
-          <p className="text-slate-600 dark:text-slate-400 mb-8 text-lg">Kies het pakket dat bij je past en laat mij het regelen.</p>
+          <h2 className="font-display font-bold text-3xl text-navy dark:text-white mb-4">{t.services.cta.title}</h2>
+          <p className="text-slate-600 dark:text-slate-400 mb-8 text-lg">{t.services.cta.subtitle}</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button to="/pricing" variant="primary">Bekijk Prijzen</Button>
-            <Button to="/contact" variant="outline">Stuur een bericht</Button>
+            <Button to="/pricing" variant="primary">{t.services.cta.button_pricing}</Button>
+            <Button to="/contact" variant="outline">{t.services.cta.button_contact}</Button>
             <a 
               href="https://wa.me/31645998932" 
               target="_blank" 
@@ -133,7 +102,7 @@ const Services: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
             >
               <MessageCircle size={18} />
-              WhatsApp
+              {t.services.cta.whatsapp}
             </a>
           </div>
         </div>

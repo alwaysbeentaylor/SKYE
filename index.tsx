@@ -13,3 +13,6 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// Log to console to verify React is loading
+console.log('React app initialized');

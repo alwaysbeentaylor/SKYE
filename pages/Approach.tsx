@@ -3,50 +3,29 @@ import { Search, PenTool, Hammer, Rocket } from 'lucide-react';
 import Button from '../components/Button';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
+import { useApp } from '../context/AppContext';
 
 const Approach: React.FC = () => {
-  const steps = [
-    {
-      id: 1,
-      title: "Strategy & Insight",
-      week: "Week 1",
-      icon: <Search size={28} />,
-      animation: "group-hover:scale-110 transition-transform duration-300",
-      desc: "We dig deep into your business model, audience, and goals. We don't write a single line of code until we know exactly what success looks like.",
-      actions: ["Competitor Analysis", "Technical Audit", "User Persona Definition", "Conversion Goal Setting"],
-      output: "Strategic Roadmap & Tech Stack Selection"
-    },
-    {
-      id: 2,
-      title: "Design & Architecture",
-      week: "Week 2-3",
-      icon: <PenTool size={28} />,
-      animation: "group-hover:-rotate-12 transition-transform duration-300",
-      desc: "We design the user experience and map out the data architecture. This ensures the system is scalable and user-friendly.",
-      actions: ["Wireframing & UX Flow", "High-Fidelity UI Design", "Database Schema Design", "API Integration Planning"],
-      output: "Interactive Prototypes & System Architecture"
-    },
-    {
-      id: 3,
-      title: "Build & Integration",
-      week: "Week 3-6",
-      icon: <Hammer size={28} />,
-      animation: "group-hover:rotate-12 transition-transform duration-300",
-      desc: "The heavy lifting. We build your custom solution using modern, clean code. Regular updates keep you in the loop.",
-      actions: ["Frontend Development (React/Next)", "Backend Development", "CMS Configuration", "Third-party API Integrations"],
-      output: "Fully Functional Staging Environment"
-    },
-    {
-      id: 4,
-      title: "Launch & Growth",
-      week: "Week 6+",
-      icon: <Rocket size={28} />,
-      animation: "group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300",
-      desc: "We deploy to production, ensure security compliance, and set up analytics. Then we monitor and iterate.",
-      actions: ["Quality Assurance Testing", "SEO Optimization Setup", "Deployment to Edge Network", "Analytics Configuration"],
-      output: "Live Product & Growth Dashboard"
-    }
+  const { t } = useApp();
+  const icons = [
+    <Search size={28} />,
+    <PenTool size={28} />,
+    <Hammer size={28} />,
+    <Rocket size={28} />
   ];
+  const animations = [
+    "group-hover:scale-110 transition-transform duration-300",
+    "group-hover:-rotate-12 transition-transform duration-300",
+    "group-hover:rotate-12 transition-transform duration-300",
+    "group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300"
+  ];
+  
+  const steps = t.approach.steps.map((step, index) => ({
+    id: index + 1,
+    ...step,
+    icon: icons[index],
+    animation: animations[index]
+  }));
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg transition-colors duration-300">
@@ -66,10 +45,10 @@ const Approach: React.FC = () => {
        <section className="bg-navy dark:bg-black py-24 text-white text-center relative overflow-hidden">
          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/20 blur-[100px] rounded-full opacity-50 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">
-          <h1 className="font-display font-black text-5xl md:text-6xl mb-6 tracking-tight">The SKYE Approach</h1>
+          <h1 className="font-display font-black text-5xl md:text-6xl mb-6 tracking-tight">{t.approach.title}</h1>
           <p className="text-xl text-slate-300">
-            Predictable. Transparent. Efficient. <br/>
-            Turning chaos into a structured transformation process.
+            {t.approach.subtitle_line1} <br/>
+            {t.approach.subtitle_line2}
           </p>
         </div>
       </section>
@@ -91,14 +70,14 @@ const Approach: React.FC = () => {
                 <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm leading-relaxed">{step.desc}</p>
                 
                 <div className="mb-6">
-                   <h4 className="font-semibold text-xs text-primary uppercase mb-2 tracking-wider">Key Actions:</h4>
+                   <h4 className="font-semibold text-xs text-primary uppercase mb-2 tracking-wider">{t.approach.labels.key_actions}</h4>
                    <ul className="text-sm text-slate-500 dark:text-slate-400 space-y-1">
                      {step.actions.map((act, i) => <li key={i}>• {act}</li>)}
                    </ul>
                 </div>
 
                 <div className="bg-blue-50 dark:bg-primary/10 p-3 rounded border border-blue-100 dark:border-primary/20 text-xs font-medium text-blue-800 dark:text-primary flex items-center">
-                   <span className="font-bold mr-1">Deliverable:</span> {step.output}
+                   <span className="font-bold mr-1">{t.approach.labels.deliverable}</span> {step.output}
                 </div>
               </div>
 
@@ -121,12 +100,11 @@ const Approach: React.FC = () => {
         <div className="mt-20 bg-gradient-to-r from-navy to-black dark:from-navy dark:to-black rounded-3xl p-10 md:p-16 text-center text-white shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
           <div className="relative z-10">
-            <h3 className="font-display font-bold text-3xl mb-4">Not a 48-hour Template Job</h3>
+            <h3 className="font-display font-bold text-3xl mb-4">{t.approach.summary.title}</h3>
             <p className="text-slate-300 mb-10 max-w-2xl mx-auto text-lg">
-              This is a professional transformation designed to last. We don't cut corners. 
-              We build systems that become assets.
+              {t.approach.summary.text}
             </p>
-            <Button to="/contact" variant="accent" className="text-lg px-8 py-3">Start the Process</Button>
+            <Button to="/contact" variant="accent" className="text-lg px-8 py-3">{t.approach.summary.cta}</Button>
           </div>
         </div>
       </section>

@@ -6,8 +6,10 @@ import Button from '../components/Button';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
 import { trackFormStart, trackFormSubmit, trackFormAbandonment } from '../utils/analytics';
+import { useApp } from '../context/AppContext';
 
 const Contact: React.FC = () => {
+  const { t } = useApp();
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -74,35 +76,13 @@ const Contact: React.FC = () => {
 
     // Validate environment variables
     if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      throw new Error('Email service is niet geconfigureerd. Neem contact op met de beheerder.');
+      throw new Error(t.contact.form.error_config);
     }
 
     // Format project type labels
-    const projectTypeLabels: Record<string, string> = {
-      'basis-website': 'Basis Website (€150/mnd)',
-      'maatwerk': 'Maatwerk Project',
-      'webshop': 'Webshop / E-commerce',
-      'web-app': 'Web Applicatie / SaaS',
-      'redesign': 'Redesign Bestaande Site',
-      'anders': 'Anders / Vraag',
-    };
-
-    const budgetLabels: Record<string, string> = {
-      '150-500': '€150 - €500/maand',
-      '500-1000': '€500 - €1.000/maand',
-      '1000-5000': '€1.000 - €5.000 eenmalig',
-      '5000+': '€5.000+ eenmalig',
-      'bespreken': 'Laten we bespreken',
-    };
-
-    const timelineLabels: Record<string, string> = {
-      'direct': 'Zo snel mogelijk',
-      '2-weken': 'Binnen 2 weken',
-      '1-maand': 'Binnen 1 maand',
-      '2-3-maanden': 'Binnen 2-3 maanden',
-      'later': 'Later dit jaar',
-      'verkennen': 'Nog aan het verkennen',
-    };
+    const projectTypeLabels: Record<string, string> = t.contact.form.project_type.options;
+    const budgetLabels: Record<string, string> = t.contact.form.budget.options;
+    const timelineLabels: Record<string, string> = t.contact.form.timeline.options;
 
     // Prepare template parameters
     const templateParams = {
@@ -110,10 +90,10 @@ const Contact: React.FC = () => {
       from_name: data.name,
       from_email: data.email,
       reply_to: data.email,
-      company: data.company || 'Niet opgegeven',
-      project_type: data.projectType ? (projectTypeLabels[data.projectType] || data.projectType) : 'Niet opgegeven',
-      budget: data.budget ? (budgetLabels[data.budget] || data.budget) : 'Niet opgegeven',
-      timeline: data.timeline ? (timelineLabels[data.timeline] || data.timeline) : 'Niet opgegeven',
+      company: data.company || t.contact.form.not_provided,
+      project_type: data.projectType ? (projectTypeLabels[data.projectType] || data.projectType) : t.contact.form.not_provided,
+      budget: data.budget ? (budgetLabels[data.budget] || data.budget) : t.contact.form.not_provided,
+      timeline: data.timeline ? (timelineLabels[data.timeline] || data.timeline) : t.contact.form.not_provided,
       message: data.message,
       // Formatted message for email body
       formatted_message: `
@@ -145,9 +125,9 @@ ${data.message}
       return { success: true };
     } catch (err) {
       if (err instanceof Error) {
-        throw new Error(`Kon email niet verzenden: ${err.message}`);
+        throw new Error(t.contact.form.error_send.replace('{error}', err.message));
       }
-      throw new Error('Onbekende fout bij het verzenden van de email');
+      throw new Error(t.contact.form.error_unknown);
     }
   };
 
@@ -172,7 +152,7 @@ ${data.message}
       });
     } catch (err) {
       trackFormSubmit('contact', false);
-      setError(err instanceof Error ? err.message : 'Er is een fout opgetreden. Probeer het later opnieuw.');
+      setError(err instanceof Error ? err.message : t.contact.form.error_generic);
       console.error('Error sending email:', err);
     } finally {
       setLoading(false);
@@ -186,12 +166,11 @@ ${data.message}
           <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle className="text-green-600 dark:text-green-400" size={32} />
           </div>
-          <h2 className="font-display font-bold text-3xl text-navy dark:text-white mb-4">Bericht Ontvangen</h2>
+          <h2 className="font-display font-bold text-3xl text-navy dark:text-white mb-4">{t.contact.success.title}</h2>
           <p className="text-slate-600 dark:text-slate-300 mb-8">
-            Bedankt {formState.name}. Ik heb je bericht binnen. <br/>
-            Ik kom er zo snel mogelijk bij je op terug.
+            {t.contact.success.message.replace('{name}', formState.name)}
           </p>
-          <Button onClick={() => setSubmitted(false)} to="/">Terug naar Home</Button>
+          <Button onClick={() => setSubmitted(false)} to="/">{t.contact.success.button}</Button>
         </div>
       </div>
     );
@@ -211,9 +190,9 @@ ${data.message}
          {/* Deco */}
          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
 
-        <h1 className="font-display font-bold text-4xl md:text-5xl mb-6 relative z-10">Laten we even praten.</h1>
+        <h1 className="font-display font-bold text-4xl md:text-5xl mb-6 relative z-10">{t.contact.title}</h1>
         <p className="text-xl text-slate-300 mb-8 max-w-md relative z-10">
-          Geen zware sales-calls. Vertel gewoon kort wat je doet en wat je zoekt, dan denk ik met je mee.
+          {t.contact.subtitle}
         </p>
         
         {/* Response Time Indicator */}
@@ -221,7 +200,7 @@ ${data.message}
           <div className="flex items-center gap-2">
             <Clock className="text-green-400" size={18} />
             <p className="text-sm text-green-300">
-              <span className="font-bold">Gemiddelde reactietijd: 2 uur</span> | Gratis consultatie binnen 24 uur
+              <span className="font-bold">{t.contact.response_time.label}</span> | {t.contact.response_time.note}
             </p>
           </div>
         </div>
@@ -230,12 +209,11 @@ ${data.message}
           <div className="flex items-start gap-3">
             <Info className="text-primary mt-1 flex-shrink-0" size={20} />
             <div>
-              <h3 className="font-bold text-white mb-2">Wat gebeurt er na verzending?</h3>
+              <h3 className="font-bold text-white mb-2">{t.contact.what_happens.title}</h3>
               <ul className="text-slate-300 text-sm space-y-1">
-                <li>✓ Ik ontvang je bericht direct</li>
-                <li>✓ Binnen 24 uur krijg je een reactie</li>
-                <li>✓ We plannen een gratis consultatie (15-30 min)</li>
-                <li>✓ Geen verplichtingen, gewoon praten</li>
+                {t.contact.what_happens.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -245,9 +223,9 @@ ${data.message}
           <div className="flex items-start">
             <Mail className="text-primary mt-1 mr-4" size={24} />
             <div>
-              <h3 className="font-bold text-lg">Email</h3>
-              <a href="mailto:info@hope-connects.nl" className="text-slate-400 hover:text-primary transition-colors">
-                info@hope-connects.nl
+              <h3 className="font-bold text-lg">{t.contact.email.label}</h3>
+              <a href={`mailto:${t.contact.email.address}`} className="text-slate-400 hover:text-primary transition-colors">
+                {t.contact.email.address}
               </a>
             </div>
           </div>
@@ -255,7 +233,7 @@ ${data.message}
           <div className="flex items-start">
             <MessageCircle className="text-primary mt-1 mr-4" size={24} />
             <div>
-              <h3 className="font-bold text-lg">WhatsApp</h3>
+              <h3 className="font-bold text-lg">{t.contact.whatsapp.label}</h3>
               <a 
                 href="https://wa.me/31645998932" 
                 onClick={() => trackWhatsAppClick('contact-page')}
@@ -263,9 +241,9 @@ ${data.message}
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-primary transition-colors inline-flex items-center gap-2 group"
               >
-                +31 6 45 99 89 32
+                {t.contact.whatsapp.number}
                 <span className="text-xs bg-primary/20 text-primary px-2 py-1 rounded-full group-hover:bg-primary/30 transition-colors">
-                  Direct chatten
+                  {t.contact.whatsapp.chat_label}
                 </span>
               </a>
             </div>
@@ -273,7 +251,7 @@ ${data.message}
         </div>
 
         <div className="mt-16 p-6 bg-white/5 rounded-xl border border-white/10 backdrop-blur relative z-10">
-          <p className="italic text-slate-300">"De beste investering is een systeem dat voor jou werkt, niet andersom."</p>
+          <p className="italic text-slate-300">"{t.contact.quote}"</p>
         </div>
       </div>
 
@@ -283,7 +261,7 @@ ${data.message}
           {/* Required Fields */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-navy dark:text-white mb-2">
-              Naam <span className="text-red-500">*</span>
+              {t.contact.form.name.label} <span className="text-red-500">{t.common.required}</span>
             </label>
             <input
               ref={nameInputRef}
@@ -294,13 +272,13 @@ ${data.message}
               value={formState.name}
               onChange={handleChange}
               className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-              placeholder="Je naam"
+              placeholder={t.contact.form.name.placeholder}
             />
           </div>
           
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-navy dark:text-white mb-2">
-              Email <span className="text-red-500">*</span>
+              {t.contact.form.email.label} <span className="text-red-500">{t.common.required}</span>
             </label>
             <input
               type="email"
@@ -310,13 +288,13 @@ ${data.message}
               value={formState.email}
               onChange={handleChange}
               className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-              placeholder="je@email.nl"
+              placeholder={t.contact.form.email.placeholder}
             />
           </div>
 
           <div>
             <label htmlFor="message" className="block text-sm font-medium text-navy dark:text-white mb-2">
-              Waar kan ik je mee helpen? <span className="text-red-500">*</span>
+              {t.contact.form.message.label} <span className="text-red-500">{t.common.required}</span>
             </label>
             <textarea
               id="message"
@@ -326,10 +304,10 @@ ${data.message}
               value={formState.message}
               onChange={handleChange}
               className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-              placeholder="Vertel me over je project, je doelen, of waar je tegenaan loopt..."
+              placeholder={t.contact.form.message.placeholder}
             ></textarea>
             <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-              Hoe meer details je geeft, hoe beter ik je kan helpen.
+              {t.contact.form.message.hint}
             </p>
           </div>
 
@@ -340,7 +318,7 @@ ${data.message}
               onClick={() => setShowMoreDetails(!showMoreDetails)}
               className="flex items-center justify-between w-full text-left text-sm font-medium text-navy dark:text-white hover:text-primary transition-colors"
             >
-              <span>Meer details (optioneel)</span>
+              <span>{t.contact.form.more_details}</span>
               {showMoreDetails ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
             </button>
 
@@ -348,7 +326,7 @@ ${data.message}
               <div className="mt-4 space-y-4 animate-in fade-in slide-in-from-top-2 duration-200">
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-navy dark:text-white mb-2">
-                    Bedrijf
+                    {t.contact.form.company.label}
                   </label>
                   <input
                     type="text"
@@ -357,13 +335,13 @@ ${data.message}
                     value={formState.company}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-                    placeholder="Je bedrijfsnaam"
+                    placeholder={t.contact.form.company.placeholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="projectType" className="block text-sm font-medium text-navy dark:text-white mb-2">
-                    Type Project
+                    {t.contact.form.project_type.label}
                   </label>
                   <select
                     id="projectType"
@@ -372,20 +350,16 @@ ${data.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
                   >
-                    <option value="">Selecteer type project</option>
-                    <option value="basis-website">Basis Website (€150/mnd)</option>
-                    <option value="maatwerk">Maatwerk Project</option>
-                    <option value="webshop">Webshop / E-commerce</option>
-                    <option value="web-app">Web Applicatie / SaaS</option>
-                    <option value="redesign">Redesign Bestaande Site</option>
-                    <option value="anders">Anders / Vraag</option>
+                    {Object.entries(t.contact.form.project_type.options).map(([value, label]) => (
+                      <option key={value} value={value}>{label}</option>
+                    ))}
                   </select>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="budget" className="block text-sm font-medium text-navy dark:text-white mb-2">
-                      Budget Range
+                      {t.contact.form.budget.label}
                     </label>
                     <select
                       id="budget"
@@ -394,18 +368,15 @@ ${data.message}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
                     >
-                      <option value="">Selecteer budget</option>
-                      <option value="150-500">€150 - €500/maand</option>
-                      <option value="500-1000">€500 - €1.000/maand</option>
-                      <option value="1000-5000">€1.000 - €5.000 eenmalig</option>
-                      <option value="5000+">€5.000+ eenmalig</option>
-                      <option value="bespreken">Laten we bespreken</option>
+                      {Object.entries(t.contact.form.budget.options).map(([value, label]) => (
+                        <option key={value} value={value}>{label}</option>
+                      ))}
                     </select>
                   </div>
 
                   <div>
                     <label htmlFor="timeline" className="block text-sm font-medium text-navy dark:text-white mb-2">
-                      Timeline
+                      {t.contact.form.timeline.label}
                     </label>
                     <select
                       id="timeline"
@@ -414,13 +385,9 @@ ${data.message}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
                     >
-                      <option value="">Selecteer timeline</option>
-                      <option value="direct">Zo snel mogelijk</option>
-                      <option value="2-weken">Binnen 2 weken</option>
-                      <option value="1-maand">Binnen 1 maand</option>
-                      <option value="2-3-maanden">Binnen 2-3 maanden</option>
-                      <option value="later">Later dit jaar</option>
-                      <option value="verkennen">Nog aan het verkennen</option>
+                      {Object.entries(t.contact.form.timeline.options).map(([value, label]) => (
+                        <option key={value} value={value}>{label}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -444,11 +411,11 @@ ${data.message}
             {loading ? (
               <>
                 <Loader2 className="mr-2 animate-spin" size={18} />
-                Verzenden...
+                {t.contact.form.submitting}
               </>
             ) : (
               <>
-                Verstuur Bericht <Send size={18} className="ml-2" />
+                {t.contact.form.submit} <Send size={18} className="ml-2" />
               </>
             )}
           </Button>

@@ -8,6 +8,9 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
+        // API routes are handled by Vercel serverless functions in production
+        // In development, the app uses local storage fallbacks (see utils/adminApi.ts, utils/visitorTracking.ts)
+        // No proxy needed for development
       },
       plugins: [react()],
       define: {

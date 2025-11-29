@@ -16,8 +16,17 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Theme State - Forced to dark initially for that premium feel
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
-  // Language State - Default Dutch
-  const [language, setLanguage] = useState<Language>('nl');
+  // Language State - Load from localStorage or default to Dutch
+  const [language, setLanguage] = useState<Language>(() => {
+    // Try to load saved language preference
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('skye-language-preference') as Language | null;
+      if (saved === 'nl' || saved === 'en') {
+        return saved;
+      }
+    }
+    return 'nl'; // Default to Dutch
+  });
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -31,10 +40,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
+  // Update language and save to localStorage
+  const handleSetLanguage = (lang: Language) => {
+    setLanguage(lang);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('skye-language-preference', lang);
+    }
+  };
+
   const t = translations[language as keyof typeof translations] || translations.nl;
 
   return (
-    <AppContext.Provider value={{ theme, toggleTheme, language, setLanguage, t }}>
+    <AppContext.Provider value={{ theme, toggleTheme, language, setLanguage: handleSetLanguage, t }}>
       {children}
     </AppContext.Provider>
   );

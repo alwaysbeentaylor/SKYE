@@ -169,3 +169,8 @@ Dit is geen juridisch advies. Voor volledige GDPR compliance raadpleeg een jurid
 **Status**: ✅ Cookie consent component geïmplementeerd
 **Volgende**: Cookie policy pagina maken en analytics configureren (indien gewenst)
 
+
+
+
+
+

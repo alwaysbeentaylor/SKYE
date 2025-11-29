@@ -10,29 +10,8 @@ import UrgencyBanner from '../components/UrgencyBanner';
 import { trackWhatsAppClick } from '../utils/analytics';
 
 const Pricing: React.FC = () => {
-  const testimonials = [
-    {
-      name: 'Sarah van der Berg',
-      company: 'LuxeEstate',
-      role: 'Eigenaar',
-      text: 'Binnen 2 weken stond ik online met een professionele site. Geen gedoe, gewoon werken. Hope regelt alles.',
-      rating: 5
-    },
-    {
-      name: 'Carlos Mendoza',
-      company: 'El Churasco',
-      role: 'Eigenaar',
-      text: 'Onze online bestellingen zijn verdubbeld sinds de nieuwe website. Het huurmodel past perfect bij ons restaurant.',
-      rating: 5
-    },
-    {
-      name: 'Thomas van der Berg',
-      company: 'Vitafer Gold',
-      role: 'Eigenaar',
-      text: 'Professionele uitstraling zonder grote investering. Het huurmodel is perfect voor ons supplementenbedrijf.',
-      rating: 5
-    }
-  ];
+  const { t } = useApp();
+  const testimonials = t.pricing.testimonials.items;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg pb-20 transition-colors duration-300">
@@ -62,12 +41,11 @@ const Pricing: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 mb-6">
             <Clock size={16} className="text-primary" />
-            <span className="text-sm font-bold text-primary">Start binnen 2 weken online</span>
+            <span className="text-sm font-bold text-primary">{t.pricing.start_badge}</span>
           </div>
-          <h1 className="font-display font-bold text-4xl md:text-6xl mb-6">Kies jouw model</h1>
+          <h1 className="font-display font-bold text-4xl md:text-6xl mb-6">{t.pricing.title}</h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            De kern is <span className="text-primary font-bold">huren</span>: flexibiliteit en geen grote investering vooraf. 
-            Liever eigendom? Afkopen kan altijd.
+            {t.pricing.subtitle}
           </p>
         </div>
       </section>
@@ -81,7 +59,7 @@ const Pricing: React.FC = () => {
         {/* Urgency Banner */}
         <div className="max-w-4xl mx-auto mb-8">
           <UrgencyBanner 
-            message="Laatste 3 plekken beschikbaar deze maand - Start binnen 2 weken online"
+            message={t.pricing.urgency_banner}
             availableSpots={3}
             variant="warning"
           />
@@ -93,32 +71,26 @@ const Pricing: React.FC = () => {
           <div className="glass-panel bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 border-2 border-primary/20 dark:border-white/10 flex flex-col hover:border-primary/50 hover:shadow-2xl transition-all duration-300 relative pt-12">
             {/* Popular Badge */}
             <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg z-20">
-              Meest Gekozen
+              {t.pricing.basic.badge}
             </div>
             
             <div className="mb-8 text-center">
-               <h3 className="text-2xl font-bold text-navy dark:text-white">Basis</h3>
-               <p className="text-slate-500 text-sm mt-2">Voor de slimme starter</p>
+               <h3 className="text-2xl font-bold text-navy dark:text-white">{t.pricing.basic.title}</h3>
+               <p className="text-slate-500 text-sm mt-2">{t.pricing.basic.subtitle}</p>
                <div className="mt-6 flex items-baseline justify-center text-navy dark:text-white">
-                 <span className="text-5xl font-black tracking-tight text-primary">€150</span>
-                 <span className="ml-1 text-xl font-semibold text-slate-500">/mnd</span>
+                 <span className="text-5xl font-black tracking-tight text-primary">{t.pricing.basic.price}</span>
+                 <span className="ml-1 text-xl font-semibold text-slate-500">{t.pricing.basic.period}</span>
                </div>
-               <p className="mt-2 text-xs text-slate-400">Excl. BTW</p>
+               <p className="mt-2 text-xs text-slate-400">{t.pricing.basic.vat_note}</p>
                <div className="mt-4 flex items-center justify-center gap-2 text-xs text-green-600 dark:text-green-400">
                  <Shield size={14} />
-                 <span className="font-semibold">30-dagen tevredenheidsgarantie</span>
+                 <span className="font-semibold">{t.pricing.basic.guarantee}</span>
                </div>
             </div>
             
             <div className="flex-1 mb-8">
               <ul className="space-y-4">
-                {[
-                  'Professionele website (Homepage + secties)',
-                  'Simpel Admin Paneel',
-                  'Hosting & SSL Security inbegrepen',
-                  'Maandelijkse technische updates',
-                  'Kleine content aanpassingen incl.'
-                ].map((item, i) => (
+                {t.pricing.basic.features.map((item, i) => (
                   <li key={i} className="flex items-start text-slate-600 dark:text-slate-300 text-sm">
                     <Check size={18} className="text-primary mr-3 flex-shrink-0 mt-0.5" /> {item}
                   </li>
@@ -127,40 +99,33 @@ const Pricing: React.FC = () => {
             </div>
             
             <Button to="/contact" variant="primary" className="w-full justify-center mb-4 text-lg py-4 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40">
-              Start Nu - Kies Basis <Zap size={18} className="ml-2" />
+              {t.pricing.basic.cta} <Zap size={18} className="ml-2" />
             </Button>
             <p className="text-center text-xs text-slate-500 mb-6">
-              ✓ Gratis consultatie inbegrepen
+              {t.pricing.basic.included_note}
             </p>
 
             <div className="pt-6 border-t border-slate-100 dark:border-white/10 text-center">
-              <p className="text-xs font-bold text-slate-400 uppercase mb-2">Of koop direct af</p>
-              <p className="text-navy dark:text-white font-bold">€1.500 eenmalig</p>
-              <p className="text-[10px] text-slate-500 mt-1">Optioneel onderhoud: €49/mnd</p>
+              <p className="text-xs font-bold text-slate-400 uppercase mb-2">{t.pricing.basic.buyout.label}</p>
+              <p className="text-navy dark:text-white font-bold">{t.pricing.basic.buyout.price}</p>
+              <p className="text-[10px] text-slate-500 mt-1">{t.pricing.basic.buyout.maintenance}</p>
             </div>
           </div>
 
           {/* MAATWERK */}
           <div className="glass-panel bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-white/10 flex flex-col hover:border-accent/50 transition-all duration-300">
             <div className="mb-8 text-center">
-               <h3 className="text-2xl font-bold text-navy dark:text-white">Maatwerk</h3>
-               <p className="text-slate-500 text-sm mt-2">Platformen & Complexiteit</p>
+               <h3 className="text-2xl font-bold text-navy dark:text-white">{t.pricing.custom.title}</h3>
+               <p className="text-slate-500 text-sm mt-2">{t.pricing.custom.subtitle}</p>
                <div className="mt-6 flex items-baseline justify-center text-navy dark:text-white">
-                 <span className="text-4xl font-black tracking-tight text-accent">Custom</span>
+                 <span className="text-4xl font-black tracking-tight text-accent">{t.pricing.custom.price}</span>
                </div>
-               <p className="mt-2 text-xs text-slate-400">Op offertebasis</p>
+               <p className="mt-2 text-xs text-slate-400">{t.pricing.custom.price_note}</p>
             </div>
             
             <div className="flex-1 mb-8">
               <ul className="space-y-4">
-                {[
-                  'Custom Web Applicaties',
-                  'SaaS MVP ontwikkeling',
-                  'Complexe database structuren',
-                  'Specifieke API koppelingen',
-                  'Volledig uniek design',
-                  'Schaalbare architectuur'
-                ].map((item, i) => (
+                {t.pricing.custom.features.map((item, i) => (
                   <li key={i} className="flex items-start text-slate-600 dark:text-slate-300 text-sm">
                     <Check size={18} className="text-accent mr-3 flex-shrink-0 mt-0.5" /> {item}
                   </li>
@@ -170,7 +135,7 @@ const Pricing: React.FC = () => {
             
             <div className="space-y-3 mb-6">
               <Button to="/contact" variant="accent" className="w-full justify-center text-lg py-4 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40">
-                Plan Gratis Gesprek <MessageCircle size={18} className="ml-2" />
+                {t.pricing.custom.cta} <MessageCircle size={18} className="ml-2" />
               </Button>
               <a 
                 href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20maatwerk%20project." 
@@ -180,16 +145,16 @@ const Pricing: React.FC = () => {
                 className="w-full inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
               >
                 <MessageCircle size={18} />
-                Direct WhatsApp
+                {t.pricing.custom.whatsapp}
               </a>
               <p className="text-center text-xs text-slate-500">
-                ✓ Geen verplichtingen, gewoon praten
+                {t.pricing.custom.note}
               </p>
             </div>
 
             <div className="pt-6 border-t border-slate-100 dark:border-white/10 text-center">
               <p className="text-xs text-slate-500">
-                Voor ondernemers die een uniek digitaal product willen lanceren.
+                {t.pricing.custom.description}
               </p>
             </div>
           </div>
@@ -201,10 +166,10 @@ const Pricing: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
         <div className="text-center mb-12">
           <h2 className="font-display font-bold text-3xl md:text-4xl text-navy dark:text-white mb-4">
-            Wat klanten zeggen
+            {t.pricing.testimonials.title}
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-lg">
-            Echte ondernemers, echte resultaten
+            {t.pricing.testimonials.subtitle}
           </p>
         </div>
         <Testimonials testimonials={testimonials} variant="grid" />
@@ -215,25 +180,15 @@ const Pricing: React.FC = () => {
         <div className="bg-blue-50 dark:bg-primary/5 border border-blue-100 dark:border-primary/20 rounded-xl p-8">
            <div className="flex items-start mb-4">
               <Info className="text-primary mr-4 mt-1" />
-              <h3 className="text-xl font-bold text-navy dark:text-white">Waarom huren meestal slimmer is</h3>
+              <h3 className="text-xl font-bold text-navy dark:text-white">{t.pricing.why_rent.title}</h3>
            </div>
            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-             <p>
-               <strong className="text-navy dark:text-white block mb-1">Geen grote investering</strong>
-               In plaats van duizenden euro's in één keer, spreid je de kosten. Zo houd je geld over voor marketing of andere zaken.
-             </p>
-             <p>
-               <strong className="text-navy dark:text-white block mb-1">Altijd Up-to-Date</strong>
-               Techniek veroudert snel. In het huurmodel zorg ik dat je site technisch bijblijft, zonder dat jij extra facturen krijgt voor 'groot onderhoud'.
-             </p>
-             <p>
-               <strong className="text-navy dark:text-white block mb-1">Flexibiliteit</strong>
-               Start klein met Basis. Groeit je bedrijf? Dan schaal je moeiteloos op naar Groei. Wil je er toch vanaf? Het is maandelijks opzegbaar (na 6 maanden).
-             </p>
-             <p>
-               <strong className="text-navy dark:text-white block mb-1">Afkopen kan altijd</strong>
-               Ben je zo tevreden dat je de site wilt hebben? Dan kun je op elk moment besluiten om de site alsnog af te kopen.
-             </p>
+             {t.pricing.why_rent.points.map((point, i) => (
+               <p key={i}>
+                 <strong className="text-navy dark:text-white block mb-1">{point.title}</strong>
+                 {point.text}
+               </p>
+             ))}
            </div>
         </div>
       </section>
@@ -242,14 +197,14 @@ const Pricing: React.FC = () => {
       <section className="max-w-4xl mx-auto px-4 mt-20 mb-12">
         <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/20 rounded-2xl p-10 text-center">
           <h2 className="font-display font-bold text-3xl md:text-4xl text-navy dark:text-white mb-4">
-            Klaar om te starten?
+            {t.pricing.final_cta.title}
           </h2>
           <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg">
-            Kies je pakket, we bespreken je wensen, en binnen 2 weken sta jij online.
+            {t.pricing.final_cta.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button to="/contact" variant="primary" className="px-8 py-4 text-lg shadow-lg shadow-primary/30">
-              Start Nu Gratis Consultatie
+              {t.pricing.final_cta.cta}
             </Button>
             <a 
               href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20website." 
@@ -259,11 +214,11 @@ const Pricing: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
             >
               <MessageCircle size={20} />
-              Direct WhatsApp
+              {t.pricing.final_cta.whatsapp}
             </a>
           </div>
           <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
-            ✓ Geen verborgen kosten  ✓ Geen verplichtingen  ✓ Gratis consultatie
+            {t.pricing.final_cta.guarantees}
           </p>
         </div>
       </section>

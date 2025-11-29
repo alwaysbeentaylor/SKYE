@@ -3,8 +3,10 @@ import { X, Download, Gift, MessageCircle } from 'lucide-react';
 import { useExitIntent } from '../hooks/useExitIntent';
 import { trackEvent, trackLeadMagnetDownload, trackCTAClick } from '../utils/analytics';
 import Button from './Button';
+import { useApp } from '../context/AppContext';
 
 const ExitIntentPopup: React.FC = () => {
+  const { t } = useApp();
   const { shouldShow, dismiss } = useExitIntent({ enabled: true, threshold: 50 });
 
   if (!shouldShow) return null;
@@ -41,7 +43,7 @@ const ExitIntentPopup: React.FC = () => {
         <button
           onClick={dismiss}
           className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
-          aria-label="Sluiten"
+          aria-label={t.common.close}
         >
           <X size={20} className="text-slate-600 dark:text-slate-300" />
         </button>
@@ -51,10 +53,10 @@ const ExitIntentPopup: React.FC = () => {
             <Gift className="text-primary" size={32} />
           </div>
           <h2 className="font-display font-bold text-2xl text-navy dark:text-white mb-2">
-            Wacht! Krijg 10% Korting
+            {t.exit_intent.title}
           </h2>
           <p className="text-slate-600 dark:text-slate-300">
-            Plan nu je gratis consultatie en krijg 10% korting op je eerste maand.
+            {t.exit_intent.message}
           </p>
         </div>
 
@@ -65,7 +67,7 @@ const ExitIntentPopup: React.FC = () => {
             className="w-full justify-center py-4 text-lg"
           >
             <Download size={20} className="mr-2" />
-            Download Gratis Gids: "Website Huren vs Kopen"
+            {t.exit_intent.download}
           </Button>
 
           <Button
@@ -73,7 +75,7 @@ const ExitIntentPopup: React.FC = () => {
             variant="accent"
             className="w-full justify-center py-4 text-lg"
           >
-            Plan Gratis Consultatie
+            {t.exit_intent.consultation}
           </Button>
 
           <a
@@ -84,12 +86,12 @@ const ExitIntentPopup: React.FC = () => {
             className="w-full inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-lg font-medium transition-all duration-300"
           >
             <MessageCircle size={20} />
-            Direct WhatsApp
+            {t.exit_intent.whatsapp}
           </a>
         </div>
 
         <p className="text-xs text-center text-slate-500 dark:text-slate-400 mt-4">
-          Geen spam. Alleen waardevolle tips en updates.
+          {t.exit_intent.privacy_note}
         </p>
       </div>
     </div>
@@ -97,4 +99,6 @@ const ExitIntentPopup: React.FC = () => {
 };
 
 export default ExitIntentPopup;
+
+
 

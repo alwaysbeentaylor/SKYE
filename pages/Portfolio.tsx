@@ -4,6 +4,7 @@ import { X, ChevronLeft, ChevronRight, Maximize2, MessageCircle } from 'lucide-r
 import Button from '../components/Button';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
+import { useApp } from '../context/AppContext';
 
 interface PortfolioItem {
   id: string;
@@ -16,56 +17,37 @@ interface PortfolioItem {
   slides?: string[]; // Multiple screenshots for slideshow
 }
 
-const portfolioData: PortfolioItem[] = [
-  {
-    id: '1',
-    title: 'Hope Connects',
-    category: 'Zakelijk',
-    thumbnail: '/projects/hopeconnects.png',
-    challenge: 'Renovatiebedrijf had leads nodig maar geen online aanwezigheid.',
-    result: 'Lead-generatie website die direct contact stimuleert en projecten showcased.',
-    tech: ['Lead Generation', 'Modern Design', 'Contact Optimization'],
-    slides: ['/projects/hopeconnects.png']
-  },
-  {
-    id: '2',
-    title: 'LuxeEstate',
-    category: 'Zakelijk',
-    thumbnail: '/projects/luxestate.png',
-    challenge: 'Vastgoed presentatie moest premium en professioneel uitstralen.',
-    result: 'Elegante vastgoed website die luxe properties perfect weergeeft.',
-    tech: ['Real Estate', 'Premium Design', 'Property Showcase'],
-    slides: ['/projects/luxestate.png']
-  },
-  {
-    id: '3',
-    title: 'VSB Sint-Maarten',
-    category: 'Zakelijk',
-    thumbnail: '/projects/vsb-sint-maarten.png',
-    challenge: 'School had moderne, overzichtelijke online presentatie nodig.',
-    result: 'Professionele schoolwebsite met duidelijke structuur en informatie.',
-    tech: ['Education', 'Information Architecture', 'Modern UI'],
-    slides: ['/projects/vsb-sint-maarten.png']
-  },
-  {
-    id: '4',
-    title: 'El Churasco',
-    category: 'Dienstverlening',
-    thumbnail: '/projects/elchurasco.png',
-    challenge: 'Restaurant wilde online bestellen en aantrekkelijke menupresentatie.',
-    result: 'Sfeervolle restaurant website die de authentieke sfeer perfect weergeeft en bestellingen faciliteert.',
-    tech: ['Online Ordering', 'Menu Showcase', 'Mobile First'],
-    slides: ['/projects/elchurasco.png']
-  }
-];
-
 const Portfolio: React.FC = () => {
-  const [filter, setFilter] = useState('Alles');
+  const { t } = useApp();
+  // Map titles to actual file names
+  const titleToFile: Record<string, string> = {
+    'Hope Connects': 'hopeconnects',
+    'LuxeEstate': 'luxestate',
+    'VSB Sint-Maarten': 'vsb-sint-maarten',
+    'El Churasco': 'elchurasco'
+  };
+  
+  const portfolioData: PortfolioItem[] = t.portfolio.items.map((item, index) => {
+    const fileName = titleToFile[item.title] || item.title.toLowerCase().replace(/\s+/g, '');
+    return {
+      id: String(index + 1),
+      ...item,
+      thumbnail: `/projects/${fileName}.png`,
+      slides: [`/projects/${fileName}.png`]
+    };
+  });
+
+  const [filter, setFilter] = useState(t.portfolio.categories.all);
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const categories = ['Alles', 'Zakelijk', 'E-commerce', 'Dienstverlening'];
+  const categories = [
+    t.portfolio.categories.all,
+    t.portfolio.categories.business,
+    t.portfolio.categories.ecommerce,
+    t.portfolio.categories.service
+  ];
 
-  const filteredItems = filter === 'Alles' 
+  const filteredItems = filter === t.portfolio.categories.all
     ? portfolioData 
     : portfolioData.filter(item => item.category === filter);
 
@@ -101,9 +83,9 @@ const Portfolio: React.FC = () => {
       />
       <section className="bg-navy dark:bg-black py-20 text-white text-center">
         <div className="max-w-4xl mx-auto px-4">
-          <h1 className="font-display font-bold text-4xl md:text-5xl mb-6">Echte resultaten</h1>
+          <h1 className="font-display font-bold text-4xl md:text-5xl mb-6">{t.portfolio.title}</h1>
           <p className="text-xl text-slate-300">
-            Geen abstracte kunst, maar websites die werken voor ondernemers.
+            {t.portfolio.subtitle}
           </p>
         </div>
       </section>
@@ -163,11 +145,11 @@ const Portfolio: React.FC = () => {
                 
                 <div className="space-y-3 mb-6">
                   <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Probleem</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">{t.portfolio.labels.problem}</p>
                     <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{item.challenge}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-primary uppercase tracking-wider">Resultaat</p>
+                    <p className="text-xs font-bold text-primary uppercase tracking-wider">{t.portfolio.labels.result}</p>
                     <p className="text-sm text-navy dark:text-white font-medium leading-relaxed">{item.result}</p>
                   </div>
                 </div>
@@ -187,10 +169,10 @@ const Portfolio: React.FC = () => {
         {/* WhatsApp CTA */}
         <div className="mt-16 text-center">
           <div className="glass-panel bg-white dark:bg-darkCard/50 rounded-2xl p-8 border border-slate-100 dark:border-white/10 max-w-2xl mx-auto">
-            <h3 className="font-display font-bold text-2xl text-navy dark:text-white mb-4">Interesse in zo'n resultaat?</h3>
-            <p className="text-slate-600 dark:text-slate-300 mb-6">Laten we praten over wat ik voor jou kan betekenen.</p>
+            <h3 className="font-display font-bold text-2xl text-navy dark:text-white mb-4">{t.portfolio.cta.title}</h3>
+            <p className="text-slate-600 dark:text-slate-300 mb-6">{t.portfolio.cta.subtitle}</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button to="/contact" variant="primary">Neem contact op</Button>
+              <Button to="/contact" variant="primary">{t.portfolio.cta.contact}</Button>
               <a 
                 href="https://wa.me/31645998932" 
                 target="_blank" 
@@ -198,7 +180,7 @@ const Portfolio: React.FC = () => {
                 className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
               >
                 <MessageCircle size={18} />
-                WhatsApp
+                {t.portfolio.cta.whatsapp}
               </a>
             </div>
           </div>
@@ -276,7 +258,7 @@ const Portfolio: React.FC = () => {
                 {selectedItem.title}
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-300">
-                Slide {currentSlide + 1} van {selectedItem.slides.length}
+                {t.portfolio.labels.slide.replace('{current}', String(currentSlide + 1)).replace('{total}', String(selectedItem.slides?.length || 1))}
               </p>
             </div>
           </div>

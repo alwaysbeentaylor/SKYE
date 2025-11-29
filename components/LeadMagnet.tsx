@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Download, Mail, CheckCircle, Loader2 } from 'lucide-react';
 import { trackLeadMagnetDownload, trackFormSubmit } from '../utils/analytics';
 import emailjs from '@emailjs/browser';
+import { useApp } from '../context/AppContext';
 
 interface LeadMagnetProps {
   title?: string;
@@ -11,11 +12,14 @@ interface LeadMagnetProps {
 }
 
 const LeadMagnet: React.FC<LeadMagnetProps> = ({
-  title = "Download Gratis: De Complete Gids",
-  description = "Website Huren vs Kopen - Alles wat je moet weten",
+  title,
+  description,
   pdfUrl = "/leadmagnet.pdf",
   className = ""
 }) => {
+  const { t } = useApp();
+  const displayTitle = title || t.leadmagnet.download_button;
+  const displayDescription = description || t.leadmagnet.download_button;
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -55,7 +59,7 @@ const LeadMagnet: React.FC<LeadMagnetProps> = ({
       // Trigger download
       window.open(pdfUrl, '_blank');
     } catch (err) {
-      setError('Er ging iets mis. Probeer het opnieuw.');
+      setError(t.leadmagnet.error);
       trackFormSubmit('leadmagnet', false);
       console.error('Error:', err);
     } finally {
@@ -70,10 +74,10 @@ const LeadMagnet: React.FC<LeadMagnetProps> = ({
           <CheckCircle className="text-green-600 dark:text-green-400 flex-shrink-0 mt-1" size={24} />
           <div>
             <h3 className="font-bold text-green-800 dark:text-green-300 mb-1">
-              Download gestart!
+              {t.leadmagnet.success_title}
             </h3>
             <p className="text-sm text-green-700 dark:text-green-400">
-              Check je email voor de link. We sturen je ook waardevolle tips toe.
+              {t.leadmagnet.success_message}
             </p>
           </div>
         </div>
@@ -89,10 +93,10 @@ const LeadMagnet: React.FC<LeadMagnetProps> = ({
         </div>
         <div className="flex-1">
           <h3 className="font-display font-bold text-lg text-navy dark:text-white mb-1">
-            {title}
+            {displayTitle}
           </h3>
           <p className="text-sm text-slate-600 dark:text-slate-300">
-            {description}
+            {displayDescription}
           </p>
         </div>
       </div>
@@ -100,7 +104,7 @@ const LeadMagnet: React.FC<LeadMagnetProps> = ({
       <form onSubmit={handleSubmit} className="space-y-3">
         <div>
           <label htmlFor="leadmagnet-email" className="sr-only">
-            Email adres
+            {t.leadmagnet.email_label}
           </label>
           <div className="flex gap-2">
             <div className="relative flex-1">
@@ -110,7 +114,7 @@ const LeadMagnet: React.FC<LeadMagnetProps> = ({
                 id="leadmagnet-email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="je@email.nl"
+                placeholder={t.leadmagnet.email_placeholder}
                 required
                 className="w-full pl-10 pr-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none dark:text-white"
               />
@@ -123,12 +127,12 @@ const LeadMagnet: React.FC<LeadMagnetProps> = ({
               {loading ? (
                 <>
                   <Loader2 size={18} className="animate-spin" />
-                  Verzenden...
+                  {t.leadmagnet.submitting}
                 </>
               ) : (
                 <>
                   <Download size={18} />
-                  Download
+                  {t.leadmagnet.download_button}
                 </>
               )}
             </button>
@@ -140,7 +144,7 @@ const LeadMagnet: React.FC<LeadMagnetProps> = ({
         )}
 
         <p className="text-xs text-slate-500 dark:text-slate-400">
-          Geen spam. Alleen waardevolle tips en updates. Je kunt je altijd uitschrijven.
+          {t.leadmagnet.privacy_note}
         </p>
       </form>
     </div>
@@ -148,4 +152,6 @@ const LeadMagnet: React.FC<LeadMagnetProps> = ({
 };
 
 export default LeadMagnet;
+
+
 

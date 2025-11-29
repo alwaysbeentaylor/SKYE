@@ -15,26 +15,7 @@ import { trackWhatsAppClick } from '../utils/analytics';
 const Home: React.FC = () => {
   const { t } = useApp();
 
-  const heroTestimonials = [
-    {
-      name: 'Sarah van der Berg',
-      company: 'LuxeEstate',
-      text: 'Binnen 2 weken stond ik online. Geen gedoe, gewoon werken.',
-      rating: 5
-    },
-    {
-      name: 'Carlos Mendoza',
-      company: 'El Churasco',
-      text: 'Onze online bestellingen zijn verdubbeld sinds de nieuwe website.',
-      rating: 5
-    },
-    {
-      name: 'Thomas van der Berg',
-      company: 'Vitafer Gold',
-      text: 'Professionele uitstraling zonder grote investering. Perfect voor ons supplementenbedrijf.',
-      rating: 5
-    }
-  ];
+  const heroTestimonials = t.home.testimonials;
 
   return (
     <div className="flex flex-col relative">
@@ -63,12 +44,12 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           
           <h1 className="font-display font-black text-5xl md:text-7xl tracking-tighter text-navy dark:text-white mb-6 leading-[1.1] animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 drop-shadow-xl">
-            Start Binnen 2 Weken Online - <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-accent">€150/maand</span>
+            {t.home.hero.title.split(' - ')[0]} - <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-accent">{t.home.hero.title.split(' - ')[1]}</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 font-light max-w-3xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-            Geen €5k vooraf. Geen verborgen kosten. <span className="text-primary font-semibold">Direct online</span>. <br/>
-            <span className="text-lg">Alles geregeld. Jij focust op je bedrijf.</span>
+            {t.home.hero.subtitle_line1} <span className="text-primary font-semibold">{t.home.hero.subtitle_line2}</span>. <br/>
+            <span className="text-lg">{t.home.hero.subtitle_line3}</span>
           </p>
 
           {/* Social Proof Banner with Live Counter */}
@@ -81,7 +62,7 @@ const Home: React.FC = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20">
               <Clock size={16} className="text-red-500" />
               <span className="text-sm font-bold text-red-700 dark:text-red-400">
-                Laatste 3 plekken deze maand beschikbaar
+                {t.home.hero.urgency_badge}
               </span>
             </div>
           </div>
@@ -91,17 +72,17 @@ const Home: React.FC = () => {
               to="/pricing" 
               variant="primary" 
               className="px-8 py-4 text-lg shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)]"
-              ctaLabel="Start Nu - €150/maand"
+              ctaLabel={t.home.hero.cta_start}
             >
-              Start Nu - €150/maand <ArrowRight size={20} className="ml-2" />
+              {t.home.hero.cta_start} <ArrowRight size={20} className="ml-2" />
             </Button>
             <Button 
               to="/contact" 
               variant="secondary" 
               className="px-8 py-4 text-lg dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10"
-              ctaLabel="Plan Gratis Consultatie"
+              ctaLabel={t.home.hero.cta_consultation}
             >
-              Plan Gratis Consultatie
+              {t.home.hero.cta_consultation}
             </Button>
             <a 
               href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20website." 
@@ -111,7 +92,7 @@ const Home: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
             >
               <MessageCircle size={20} />
-              WhatsApp
+              {t.home.hero.whatsapp}
             </a>
           </div>
 
@@ -127,27 +108,27 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16 relative">
              <div className="hidden md:block absolute -top-32 left-1/2 -translate-x-1/2 w-3 h-3 bg-primary/50 rounded-full border border-primary"></div>
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-navy dark:text-white">Waarom huren slimmer is.</h2>
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-navy dark:text-white">{t.home.why_rent.title}</h2>
             <p className="text-slate-500 dark:text-slate-400 mt-4 text-lg max-w-2xl mx-auto">
-              Je wilt gewoon dat je online klopt en werkt. Zonder gedoe.
+              {t.home.why_rent.subtitle}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
              <div className="glass-panel p-8 rounded-2xl hover:border-accent/50 transition-all duration-500 group">
                <Clock size={40} className="text-accent mb-6 group-hover:scale-110 transition-transform" />
-               <h3 className="font-display font-bold text-xl mb-3 text-navy dark:text-white">Geen tijdverspilling</h3>
-               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Jij focust op je bedrijf. Ik regel de updates, de beveiliging en de techniek. Het werkt gewoon.</p>
+               <h3 className="font-display font-bold text-xl mb-3 text-navy dark:text-white">{t.home.why_rent.no_time_waste.title}</h3>
+               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{t.home.why_rent.no_time_waste.desc}</p>
              </div>
              <div className="glass-panel p-8 rounded-2xl hover:border-primary/50 transition-all duration-500 group">
                <CreditCard size={40} className="text-primary mb-6 group-hover:scale-110 transition-transform" />
-               <h3 className="font-display font-bold text-xl mb-3 text-navy dark:text-white">Geen €5k vooraf</h3>
-               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Hou je cashflow gezond. Voor een vast, laag maandbedrag sta je professioneel online.</p>
+               <h3 className="font-display font-bold text-xl mb-3 text-navy dark:text-white">{t.home.why_rent.no_5k_upfront.title}</h3>
+               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{t.home.why_rent.no_5k_upfront.desc}</p>
              </div>
              <div className="glass-panel p-8 rounded-2xl hover:border-green-500/50 transition-all duration-500 group">
                <ShieldCheck size={40} className="text-green-500 mb-6 group-hover:scale-110 transition-transform" />
-               <h3 className="font-display font-bold text-xl mb-3 text-navy dark:text-white">Altijd Up-to-Date</h3>
-               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Het web verandert snel. Jouw huursite groeit mee met nieuwe techniek en security standaarden.</p>
+               <h3 className="font-display font-bold text-xl mb-3 text-navy dark:text-white">{t.home.why_rent.always_updated.title}</h3>
+               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{t.home.why_rent.always_updated.desc}</p>
              </div>
           </div>
         </div>
@@ -159,27 +140,27 @@ const Home: React.FC = () => {
 
          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-12">
-              <h2 className="font-display font-bold text-4xl text-navy dark:text-white mb-4">Kies jouw fundament</h2>
-              <p className="text-slate-600 dark:text-slate-400">Flexibel opzegbaar, later afkopen altijd mogelijk.</p>
+              <h2 className="font-display font-bold text-4xl text-navy dark:text-white mb-4">{t.home.pricing_teaser.title}</h2>
+              <p className="text-slate-600 dark:text-slate-400">{t.home.pricing_teaser.subtitle}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                {/* Basic Teaser */}
                <div className="glass-panel-strong p-8 rounded-2xl border border-slate-200 dark:border-white/10 hover:border-primary/50 transition-all flex flex-col text-center">
-                  <h3 className="text-2xl font-bold text-navy dark:text-white mb-2">Basis</h3>
-                  <div className="text-4xl font-black text-primary mb-2">€150<span className="text-sm font-medium text-slate-500 dark:text-slate-400">/mnd</span></div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300 mb-4">of €1.500 eenmalig afkoop</div>
-                  <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">Voor de serieuze starter. Een professionele site zonder hoofdpijn.</p>
-                  <Button to="/pricing" variant="outline" className="mt-auto">Meer info</Button>
+                  <h3 className="text-2xl font-bold text-navy dark:text-white mb-2">{t.home.pricing_teaser.basic.title}</h3>
+                  <div className="text-4xl font-black text-primary mb-2">{t.home.pricing_teaser.basic.price}<span className="text-sm font-medium text-slate-500 dark:text-slate-400">{t.home.pricing_teaser.basic.period}</span></div>
+                  <div className="text-lg text-slate-600 dark:text-slate-300 mb-4">{t.home.pricing_teaser.basic.buyout}</div>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">{t.home.pricing_teaser.basic.desc}</p>
+                  <Button to="/pricing" variant="outline" className="mt-auto">{t.home.pricing_teaser.basic.more_info}</Button>
                </div>
 
                {/* Custom Teaser */}
                <div className="glass-panel-strong p-8 rounded-2xl border border-slate-200 dark:border-white/10 hover:border-accent/50 transition-all flex flex-col text-center">
-                  <h3 className="text-2xl font-bold text-navy dark:text-white mb-2">Maatwerk</h3>
-                  <div className="text-4xl font-black text-accent mb-2">Custom</div>
-                  <div className="text-lg text-slate-600 dark:text-slate-300 mb-4">op offerte</div>
-                  <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">Complexe platformen of specifieke web-applicaties.</p>
-                  <Button to="/contact" variant="outline" className="mt-auto border-accent text-accent hover:bg-accent/10">Plan gesprek</Button>
+                  <h3 className="text-2xl font-bold text-navy dark:text-white mb-2">{t.home.pricing_teaser.custom.title}</h3>
+                  <div className="text-4xl font-black text-accent mb-2">{t.home.pricing_teaser.custom.price}</div>
+                  <div className="text-lg text-slate-600 dark:text-slate-300 mb-4">{t.home.pricing_teaser.custom.buyout}</div>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">{t.home.pricing_teaser.custom.desc}</p>
+                  <Button to="/contact" variant="outline" className="mt-auto border-accent text-accent hover:bg-accent/10">{t.home.pricing_teaser.custom.button}</Button>
                </div>
             </div>
          </div>
@@ -190,15 +171,15 @@ const Home: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="font-display font-bold text-3xl md:text-4xl text-navy dark:text-white mb-4">
-              Gratis Gids: Website Huren vs Kopen
+              {t.home.leadmagnet.title}
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg">
-              Alles wat je moet weten voordat je een beslissing maakt
+              {t.home.leadmagnet.subtitle}
             </p>
           </div>
           <LeadMagnet 
-            title="Download Gratis: De Complete Gids"
-            description="Website Huren vs Kopen - Alles wat je moet weten voordat je een beslissing maakt"
+            title={t.home.leadmagnet.download_title}
+            description={t.home.leadmagnet.download_desc}
             className="max-w-2xl mx-auto"
           />
         </div>
@@ -208,13 +189,11 @@ const Home: React.FC = () => {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
            <div className="glass-panel p-10 rounded-3xl border border-slate-200 dark:border-slate-700/50 bg-slate-100/50 dark:bg-navy/40">
-              <h2 className="font-display font-bold text-2xl text-navy dark:text-white mb-4">Ik ben Hope.</h2>
+              <h2 className="font-display font-bold text-2xl text-navy dark:text-white mb-4">{t.home.hope_teaser.title}</h2>
               <p className="text-slate-600 dark:text-slate-300 text-lg mb-6 leading-relaxed">
-                 Geen accountmanagers, geen lagen, geen vaagheid. 
-                 Jij spreekt direct met degene die jouw site bouwt. 
-                 Eerlijk advies, heldere prijzen.
+                 {t.home.hope_teaser.text}
               </p>
-              <Button to="/about" variant="secondary" className="text-sm">Leer me kennen</Button>
+              <Button to="/about" variant="secondary" className="text-sm">{t.home.hope_teaser.button}</Button>
            </div>
         </div>
       </section>
@@ -223,28 +202,28 @@ const Home: React.FC = () => {
       <section className="py-32 text-center relative overflow-hidden">
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
          <div className="relative z-10 max-w-2xl mx-auto px-4">
-            <h2 className="font-display font-black text-4xl md:text-5xl text-navy dark:text-white mb-6">Klaar om te starten?</h2>
-            <p className="text-slate-600 dark:text-slate-400 mb-10 text-lg">Kies je pakket, we bespreken je wensen, en binnen 2 weken sta jij online.</p>
+            <h2 className="font-display font-black text-4xl md:text-5xl text-navy dark:text-white mb-6">{t.home.final_cta.title}</h2>
+            <p className="text-slate-600 dark:text-slate-400 mb-10 text-lg">{t.home.final_cta.subtitle}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 to="/pricing" 
                 variant="primary" 
                 className="px-10 py-4 text-xl"
-                ctaLabel="Bekijk Prijzen & Start Nu"
+                ctaLabel={t.home.final_cta.cta_pricing}
               >
-                Bekijk Prijzen & Start Nu
+                {t.home.final_cta.cta_pricing}
               </Button>
               <Button 
                 to="/contact" 
                 variant="outline" 
                 className="px-10 py-4 text-xl"
-                ctaLabel="Plan Gratis Consultatie"
+                ctaLabel={t.home.final_cta.cta_consultation}
               >
-                Plan Gratis Consultatie
+                {t.home.final_cta.cta_consultation}
               </Button>
             </div>
             <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
-              ✓ Geen verborgen kosten  ✓ Geen verplichtingen  ✓ 30-dagen garantie
+              {t.home.final_cta.guarantees}
             </p>
          </div>
       </section>

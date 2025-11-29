@@ -4,31 +4,11 @@ import { ChevronDown, ChevronUp, HelpCircle, MessageCircle } from 'lucide-react'
 import Button from '../components/Button';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
-
-const faqData = [
-  {
-    question: "Waarom zou ik huren in plaats van kopen?",
-    answer: "Huren verlaagt de drempel. Je hoeft geen duizenden euro's in één keer te investeren. Daarnaast zit bij de huurprijs het technische onderhoud, hosting en beveiliging inbegrepen. Je hebt er dus geen omkijken naar."
-  },
-  {
-    question: "Ben ik eigenaar van de website?",
-    answer: "Bij het huurmodel (€150/€500) blijft Skye eigenaar van de techniek en het ontwerp, jij bent natuurlijk eigenaar van je eigen content (tekst/foto's). Wil je volledig eigenaar worden van de code? Dan kun je gebruikmaken van de afkoopoptie."
-  },
-  {
-    question: "Kan ik later alsnog afkopen?",
-    answer: "Ja, absoluut. Als je na een tijdje besluit dat je de site in eigen beheer wilt nemen, betaal je het afkoopbedrag (vanaf €1.500 voor Basis) en is de site van jou. Je kunt dan zelf de hosting regelen of een los onderhoudspakket afnemen."
-  },
-  {
-    question: "Zit ik vast aan een langdurig contract?",
-    answer: "Nee. We gaan een samenwerking aan van minimaal 6 maanden om de opstartkosten te dekken. Daarna is het maandelijks opzegbaar. Geen wurgcontracten."
-  },
-  {
-    question: "Wat als ik wil doorgroeien naar een groter systeem?",
-    answer: "Dat is het mooie van mijn werkwijze. Ik bouw met code (Next.js), niet met beperkte 'page builders'. We kunnen jouw basis-site later uitbouwen tot een volledige web-applicatie zonder dat we opnieuw moeten beginnen."
-  }
-];
+import { useApp } from '../context/AppContext';
 
 const FAQ: React.FC = () => {
+  const { t } = useApp();
+  const faqData = t.faq.items;
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
@@ -48,9 +28,9 @@ const FAQ: React.FC = () => {
           <div className="flex justify-center mb-4">
             <HelpCircle size={48} className="text-primary" />
           </div>
-          <h1 className="font-display font-bold text-4xl mb-6">Veelgestelde Vragen</h1>
+          <h1 className="font-display font-bold text-4xl mb-6">{t.faq.title}</h1>
           <p className="text-xl text-slate-300">
-            Duidelijkheid vooraf. Geen verrassingen.
+            {t.faq.subtitle}
           </p>
         </div>
       </section>
@@ -82,9 +62,9 @@ const FAQ: React.FC = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-slate-600 dark:text-slate-400 mb-4">Staat je vraag er niet tussen?</p>
+          <p className="text-slate-600 dark:text-slate-400 mb-4">{t.faq.no_answer}</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button to="/contact" variant="secondary">Stuur Hope een bericht</Button>
+            <Button to="/contact" variant="secondary">{t.faq.cta_contact}</Button>
             <a 
               href="https://wa.me/31645998932" 
               target="_blank" 
@@ -92,7 +72,7 @@ const FAQ: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
             >
               <MessageCircle size={18} />
-              WhatsApp
+              {t.faq.whatsapp}
             </a>
           </div>
         </div>
