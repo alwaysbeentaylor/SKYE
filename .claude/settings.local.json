@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout:*)",
+      "Bash(mkdir:*)",
+      "Bash(move \"Schermafbeelding 2025-11-29 112246.png\" public/projects/hope-connects.png)",
+      "Bash(move \"Schermafbeelding 2025-11-29 112346.png\" public/projects/luxeestate.png)",
+      "Bash(move:*)",
+      "Bash(move \"Schermafbeelding 2025-11-29 112452.png\" public/projects/barbershop-mancode.png)",
+      "Bash(mv:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
