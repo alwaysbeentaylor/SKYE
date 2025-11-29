@@ -1,0 +1,19 @@
+# SKYE - Robots.txt voor SEO
+# Allow all search engines to crawl the website
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /#/
+
+# Sitemap location
+Sitemap: https://skye.be/sitemap.xml
+
+# Crawl-delay voor bepaalde bots (optioneel)
+User-agent: Baiduspider
+Crawl-delay: 10
+
+User-agent: YandexBot
+Crawl-delay: 10
+

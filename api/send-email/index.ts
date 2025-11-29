@@ -1,12 +1,16 @@
 import nodemailer from 'nodemailer';
 
 export default async function handler(req: Request): Promise<Response> {
-  // CORS headers
+  // CORS headers with security considerations
+  // Note: '*' allows all origins. For production, consider restricting to specific domains
   const corsHeaders = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'X-XSS-Protection': '1; mode=block',
   };
 
   // Handle preflight OPTIONS request
@@ -47,6 +51,23 @@ export default async function handler(req: Request): Promise<Response> {
     if (!name || !email || !message) {
       return new Response(
         JSON.stringify({ error: 'Name, email, and message are required' }),
+        { status: 400, headers: corsHeaders }
+      );
+    }
+
+    // Security: Input validation and sanitization
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid email format' }),
+        { status: 400, headers: corsHeaders }
+      );
+    }
+
+    // Security: Limit input length to prevent abuse
+    if (name.length > 200 || email.length > 200 || (company && company.length > 200) || message.length > 5000) {
+      return new Response(
+        JSON.stringify({ error: 'Input too long. Please shorten your message.' }),
         { status: 400, headers: corsHeaders }
       );
     }

@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 const faqData = [
   {
@@ -35,6 +37,12 @@ const FAQ: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg pb-20 transition-colors duration-300">
+      <SEOHead 
+        title="Veelgestelde Vragen | Website Huren of Kopen - SKYE Brugge"
+        description="Antwoorden op veelgestelde vragen over website huren, afkopen, contracten en meer. Veelgestelde vragen over webdesign diensten in Brugge."
+        keywords="website veelgestelde vragen, website huren vragen, website afkopen, webdesign FAQ, veelgestelde vragen Brugge"
+        canonical="https://skye.be/#/faq"
+      />
       <section className="bg-navy dark:bg-black py-20 text-white text-center">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex justify-center mb-4">

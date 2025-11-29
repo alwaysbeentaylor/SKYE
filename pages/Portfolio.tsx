@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Maximize2, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 interface PortfolioItem {
   id: string;
@@ -91,6 +93,12 @@ const Portfolio: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg pb-20 transition-colors duration-300">
+      <SEOHead 
+        title="Website Portfolio Brugge | Projecten & Referenties - SKYE"
+        description="Bekijk onze webdesign portfolio met projecten uit Brugge en België. Echte resultaten voor ondernemers: restaurants, vastgoed, scholen en meer."
+        keywords="website portfolio Brugge, webdesign referenties, website voorbeelden Brugge, portfolio webdesigner België"
+        canonical="https://skye.be/#/portfolio"
+      />
       <section className="bg-navy dark:bg-black py-20 text-white text-center">
         <div className="max-w-4xl mx-auto px-4">
           <h1 className="font-display font-bold text-4xl md:text-5xl mb-6">Echte resultaten</h1>

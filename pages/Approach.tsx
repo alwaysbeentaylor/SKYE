@@ -1,6 +1,8 @@
 import React from 'react';
 import { Search, PenTool, Hammer, Rocket } from 'lucide-react';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 const Approach: React.FC = () => {
   const steps = [
@@ -48,6 +50,19 @@ const Approach: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg transition-colors duration-300">
+      <SEOHead 
+        title="Onze Aanpak | Webdesign Proces Brugge - SKYE"
+        description="Hoe wij te werk gaan: van strategie tot lancering. Transparant webdesign proces voor ondernemers in Brugge. Predictable, transparent, efficient."
+        keywords="webdesign proces, website ontwikkelproces, website aanpak, webdesign methodiek Brugge"
+        canonical="https://skye.be/#/approach"
+      />
+      <StructuredData 
+        type="Service" 
+        data={{
+          serviceType: "Web Design Process",
+          description: "Transparant en gestructureerd webdesign proces: van strategie tot lancering voor ondernemers in Brugge."
+        }}
+      />
        <section className="bg-navy dark:bg-black py-24 text-white text-center relative overflow-hidden">
          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/20 blur-[100px] rounded-full opacity-50 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">

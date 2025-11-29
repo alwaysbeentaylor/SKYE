@@ -4,6 +4,8 @@ import { Check, Info, MessageCircle, Clock, Shield, Zap } from 'lucide-react';
 import Button from '../components/Button';
 import Testimonials from '../components/Testimonials';
 import TrustBadges from '../components/TrustBadges';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 const Pricing: React.FC = () => {
   const testimonials = [
@@ -32,6 +34,25 @@ const Pricing: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg pb-20 transition-colors duration-300">
+      <SEOHead 
+        title="Website Prijzen Brugge | €150/maand of Afkoop - SKYE"
+        description="Transparante website prijzen voor Brugge. Basis pakket vanaf €150/maand of €1.500 eenmalig. Geen verborgen kosten. Bekijk alle pakketten en prijzen."
+        keywords="website prijzen Brugge, website kosten Brugge, webdesign prijzen, website vanaf 150 euro, website huren of kopen"
+        canonical="https://skye.be/#/pricing"
+      />
+      <StructuredData 
+        type="Service" 
+        data={{
+          serviceType: "Website Development Service",
+          description: "Website pakketten vanaf €150 per maand. Flexibel huren of eenmalig afkopen. Transparante prijzen voor ondernemers in Brugge.",
+          offers: {
+            '@type': 'Offer',
+            price: '150',
+            priceCurrency: 'EUR',
+            availability: 'https://schema.org/InStock'
+          }
+        }}
+      />
        <section className="bg-navy dark:bg-black py-24 text-white text-center relative overflow-hidden">
          {/* Glow effect */}
          <div className="absolute top-[-50%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]"></div>

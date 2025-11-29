@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Mail, Send, CheckCircle, Loader2, AlertCircle, MessageCircle, Info } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 const Contact: React.FC = () => {
   const [formState, setFormState] = useState({
@@ -157,6 +159,13 @@ ${data.message}
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg grid lg:grid-cols-2">
+      <SEOHead 
+        title="Contact | Webdesigner Brugge - Plan Gratis Gesprek - SKYE"
+        description="Neem contact op voor een gratis consultatie. Plan een gesprek over jouw website project. Direct contact via WhatsApp of email. Webdesigner in Brugge."
+        keywords="contact webdesigner Brugge, website consultatie Brugge, webdesigner contact België, gratis website advies"
+        canonical="https://skye.be/#/contact"
+      />
+      <StructuredData type="LocalBusiness" />
       {/* Left Side: Info */}
       <div className="bg-navy dark:bg-black text-white p-12 lg:p-24 flex flex-col justify-center relative overflow-hidden">
          {/* Deco */}

@@ -3,6 +3,8 @@ import React from 'react';
 import { LayoutTemplate, Server, Database, Workflow, BarChart2, Code, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
 import { useApp } from '../context/AppContext';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 const Services: React.FC = () => {
   const { t } = useApp();
@@ -24,14 +26,14 @@ const Services: React.FC = () => {
     },
     {
       title: 'Integraties & Koppelingen',
-      price_ref: 'Groei',
+      price_ref: '',
       icon: <Database size={32} />,
       desc: 'Koppel je site aan je CRM, je e-mailmarketing (Mailchimp e.d.) of simpele betaalsystemen.',
       benefit: 'Je site werkt samen met je bedrijfsprocessen.'
     },
     {
       title: 'Automatisering',
-      price_ref: 'Groei',
+      price_ref: '',
       icon: <Workflow size={32} />,
       desc: 'Formulieren die automatisch naar de juiste persoon gaan, of simpele funnels die leads opvolgen.',
       benefit: 'Minder handwerk, minder fouten.'
@@ -45,7 +47,7 @@ const Services: React.FC = () => {
     },
     {
       title: 'Analytics & Inzichten',
-      price_ref: 'Basis & Groei',
+      price_ref: 'Basis',
       icon: <BarChart2 size={32} />,
       desc: 'Privacy-vriendelijke statistieken. Zie hoeveel mensen kijken, zonder Google\'s ingewikkelde dashboards.',
       benefit: 'Weten wat er gebeurt, zonder gedoe.'
@@ -54,6 +56,23 @@ const Services: React.FC = () => {
   
   return (
     <div className="bg-slate-50 dark:bg-darkBg min-h-screen pb-20 transition-colors duration-300">
+      <SEOHead 
+        title="Webdesign Diensten Brugge | Websites, Hosting & Integraties - SKYE"
+        description="Complete webdesign diensten in Brugge: professionele websites, hosting, security, integraties en automatisering. Alles in één pakket vanaf €150/maand."
+        keywords="webdesign diensten Brugge, website hosting Brugge, website integraties, website automatisering, webdesigner Brugge"
+        canonical="https://skye.be/#/services"
+      />
+      <StructuredData 
+        type="Service" 
+        data={{
+          serviceType: "Web Design Service",
+          description: "Complete webdesign diensten voor ondernemers in Brugge: professionele websites, hosting, security, integraties en automatisering.",
+          areaServed: {
+            '@type': 'City',
+            name: 'Brugge'
+          }
+        }}
+      />
       {/* Header */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 bg-navy dark:bg-black z-0"></div>
@@ -77,9 +96,11 @@ const Services: React.FC = () => {
                 <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/5 text-primary group-hover:scale-110 transition-transform">
                    {service.icon}
                 </div>
-                <span className="text-xs font-bold uppercase tracking-wider bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-300 px-2 py-1 rounded">
-                  {service.price_ref}
-                </span>
+                {service.price_ref && (
+                  <span className="text-xs font-bold uppercase tracking-wider bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-300 px-2 py-1 rounded">
+                    {service.price_ref}
+                  </span>
+                )}
               </div>
               
               <h3 className="font-display font-bold text-xl text-navy dark:text-white mb-3">{service.title}</h3>

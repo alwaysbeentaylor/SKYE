@@ -1,10 +1,14 @@
 export default async function handler(req: Request): Promise<Response> {
-  // CORS headers
+  // CORS headers with security considerations
+  // Note: '*' allows all origins. For production, consider restricting to specific domains
   const corsHeaders = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'X-XSS-Protection': '1; mode=block',
   };
 
   // Handle preflight OPTIONS request
@@ -43,6 +47,14 @@ export default async function handler(req: Request): Promise<Response> {
     if (!message || typeof message !== 'string') {
       return new Response(
         JSON.stringify({ error: 'Message is required and must be a string' }),
+        { status: 400, headers: corsHeaders }
+      );
+    }
+
+    // Security: Limit message length to prevent abuse
+    if (message.length > 5000) {
+      return new Response(
+        JSON.stringify({ error: 'Message too long. Maximum 5000 characters.' }),
         { status: 400, headers: corsHeaders }
       );
     }

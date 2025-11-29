@@ -2,10 +2,18 @@
 import React from 'react';
 import { Code2, Zap, Target, ArrowRight, Sparkles, MessageCircle } from 'lucide-react';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 const About: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg transition-colors duration-300">
+      <SEOHead 
+        title="Over Hope | Webdesigner Brugge - Direct Contact, Geen Bullshit - SKYE"
+        description="Ik ben Hope, webdesigner in Brugge. Direct contact, eerlijke prijzen, geen accountmanagers. Professionele websites voor ondernemers vanaf €150/maand."
+        keywords="over Hope, webdesigner Brugge, website ontwikkelaar Brugge, freelance webdesigner België"
+        canonical="https://skye.be/#/about"
+      />
       {/* Hero Section with Abstract Visual */}
       <section className="relative overflow-hidden py-20 lg:py-32">
         {/* Animated Background Elements */}

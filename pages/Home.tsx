@@ -6,6 +6,8 @@ import Button from '../components/Button';
 import { useApp } from '../context/AppContext';
 import Testimonials from '../components/Testimonials';
 import TrustBadges from '../components/TrustBadges';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 const Home: React.FC = () => {
   const { t } = useApp();
@@ -33,6 +35,14 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col relative">
+      <SEOHead 
+        title="SKYE | Professioneel Webdesign Brugge - Websites vanaf €150/maand"
+        description="Professionele website laten maken in Brugge? SKYE biedt webdesign voor ondernemers vanaf €150/maand. Geen €5k vooraf. Direct online. Webdesigner België."
+        keywords="webdesign Brugge, website laten maken Brugge, webdesigner België, professionele website ondernemer, webdesign België, website Brugge"
+      />
+      <StructuredData type="WebSite" />
+      <StructuredData type="LocalBusiness" />
+      <StructuredData type="Organization" />
       
       {/* THE DIGITAL THREAD */}
       <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-px h-full z-0 hidden md:block pointer-events-none">
@@ -56,11 +66,11 @@ const Home: React.FC = () => {
           </div>
 
           <h1 className="font-display font-black text-5xl md:text-7xl tracking-tighter text-navy dark:text-white mb-6 leading-[1.1] animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 drop-shadow-xl">
-            Professionele Websites voor <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-accent">Lokale Ondernemers</span>
+            Professioneel Webdesign Brugge voor <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-accent">Ondernemers</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 font-light max-w-3xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-            Website nodig? Ik bouw professionele sites <span className="text-primary font-semibold">vanaf €150/maand</span>. <br/>
+            Website laten maken in Brugge? Ik bouw professionele websites <span className="text-primary font-semibold">vanaf €150/maand</span>. <br/>
             <span className="text-lg">Geen €5k vooraf. Direct online. Alles geregeld.</span>
           </p>
 
