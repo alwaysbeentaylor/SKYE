@@ -59,12 +59,6 @@ const Home: React.FC = () => {
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-visible">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           
-          {/* Badge */}
-          <div className="inline-flex items-center px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-8 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse shadow-[0_0_10px_#0ea5e9]"></span>
-            Website-as-a-Service
-          </div>
-
           <h1 className="font-display font-black text-5xl md:text-7xl tracking-tighter text-navy dark:text-white mb-6 leading-[1.1] animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 drop-shadow-xl">
             Professioneel Webdesign voor <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-accent">Ondernemers</span>
           </h1>
