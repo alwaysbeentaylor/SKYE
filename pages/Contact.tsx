@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Mail, Send, CheckCircle, Loader2, AlertCircle, MessageCircle, Info } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import Button from '../components/Button';
 
 const Contact: React.FC = () => {
@@ -25,66 +26,88 @@ const Contact: React.FC = () => {
     setError(null);
   };
 
-  const sendToTelegram = async (data: typeof formState) => {
-    const message = `🔔 Nieuw contactformulier bericht\n\n` +
-      `👤 Naam: ${data.name}\n` +
-      `📧 Email: ${data.email}\n` +
-      `${data.company ? `🏢 Bedrijf: ${data.company}\n` : ''}` +
-      `${data.projectType ? `🎯 Project Type: ${data.projectType}\n` : ''}` +
-      `${data.budget ? `💰 Budget: ${data.budget}\n` : ''}` +
-      `${data.timeline ? `⏰ Timeline: ${data.timeline}\n` : ''}` +
-      `\n💬 Bericht:\n${data.message}`;
+  const sendEmail = async (data: typeof formState) => {
+    // EmailJS configuration from environment variables
+    const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    // Call our serverless function instead of Telegram directly
-    // This avoids CORS issues and keeps the bot token secure
-    // Always use absolute URL to ensure it works in production
-    const apiUrl = `${window.location.origin}/api/send-telegram`;
-    
-    console.log('Sending to API:', apiUrl);
-    
+    // Validate environment variables
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      throw new Error('Email service is niet geconfigureerd. Neem contact op met de beheerder.');
+    }
+
+    // Format project type labels
+    const projectTypeLabels: Record<string, string> = {
+      'basis-website': 'Basis Website (€150/mnd)',
+      'maatwerk': 'Maatwerk Project',
+      'webshop': 'Webshop / E-commerce',
+      'web-app': 'Web Applicatie / SaaS',
+      'redesign': 'Redesign Bestaande Site',
+      'anders': 'Anders / Vraag',
+    };
+
+    const budgetLabels: Record<string, string> = {
+      '150-500': '€150 - €500/maand',
+      '500-1000': '€500 - €1.000/maand',
+      '1000-5000': '€1.000 - €5.000 eenmalig',
+      '5000+': '€5.000+ eenmalig',
+      'bespreken': 'Laten we bespreken',
+    };
+
+    const timelineLabels: Record<string, string> = {
+      'direct': 'Zo snel mogelijk',
+      '2-weken': 'Binnen 2 weken',
+      '1-maand': 'Binnen 1 maand',
+      '2-3-maanden': 'Binnen 2-3 maanden',
+      'later': 'Later dit jaar',
+      'verkennen': 'Nog aan het verkennen',
+    };
+
+    // Prepare template parameters
+    const templateParams = {
+      to_email: 'table.23@icloud.com',
+      from_name: data.name,
+      from_email: data.email,
+      reply_to: data.email,
+      company: data.company || 'Niet opgegeven',
+      project_type: data.projectType ? (projectTypeLabels[data.projectType] || data.projectType) : 'Niet opgegeven',
+      budget: data.budget ? (budgetLabels[data.budget] || data.budget) : 'Niet opgegeven',
+      timeline: data.timeline ? (timelineLabels[data.timeline] || data.timeline) : 'Niet opgegeven',
+      message: data.message,
+      // Formatted message for email body
+      formatted_message: `
+🔔 Nieuw Contactformulier Bericht
+
+👤 Naam: ${data.name}
+📧 Email: ${data.email}
+🏢 Bedrijf: ${data.company || 'Niet opgegeven'}
+🎯 Project Type: ${data.projectType ? (projectTypeLabels[data.projectType] || data.projectType) : 'Niet opgegeven'}
+💰 Budget: ${data.budget ? (budgetLabels[data.budget] || data.budget) : 'Niet opgegeven'}
+⏰ Timeline: ${data.timeline ? (timelineLabels[data.timeline] || data.timeline) : 'Niet opgegeven'}
+
+💬 Bericht:
+${data.message}
+      `.trim(),
+    };
+
     try {
-      // Add timeout to prevent hanging (increased to 30 seconds for serverless cold start)
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      // Initialize EmailJS with public key
+      emailjs.init(EMAILJS_PUBLIC_KEY);
 
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: message,
-        }),
-        signal: controller.signal
-      });
+      // Send email using EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
 
-      clearTimeout(timeoutId);
-
-      // Check if response is ok before trying to parse JSON
-      if (!response.ok) {
-        let errorMessage = 'Kon bericht niet verzenden naar Telegram';
-        try {
-          const errorData = await response.json();
-          errorMessage = errorData.error || errorMessage;
-        } catch {
-          errorMessage = `Server error: ${response.status} ${response.statusText}`;
-        }
-        throw new Error(errorMessage);
-      }
-
-      const responseData = await response.json();
-      return responseData;
+      return { success: true };
     } catch (err) {
       if (err instanceof Error) {
-        if (err.name === 'AbortError') {
-          throw new Error('Verzoek duurde te lang. Controleer je internetverbinding en probeer het opnieuw.');
-        }
-        if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
-          throw new Error('Kan de server niet bereiken. Zorg ervoor dat je online bent en probeer het opnieuw.');
-        }
-        throw err;
+        throw new Error(`Kon email niet verzenden: ${err.message}`);
       }
-      throw new Error('Netwerkfout bij het verzenden naar Telegram');
+      throw new Error('Onbekende fout bij het verzenden van de email');
     }
   };
 
@@ -94,7 +117,7 @@ const Contact: React.FC = () => {
     setError(null);
 
     try {
-      await sendToTelegram(formState);
+      await sendEmail(formState);
       setSubmitted(true);
       // Reset form
       setFormState({
@@ -108,7 +131,7 @@ const Contact: React.FC = () => {
       });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Er is een fout opgetreden. Probeer het later opnieuw.');
-      console.error('Error sending to Telegram:', err);
+      console.error('Error sending email:', err);
     } finally {
       setLoading(false);
     }
