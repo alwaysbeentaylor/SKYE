@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 import { Mail, Send, CheckCircle, Loader2, AlertCircle, MessageCircle, Info } from 'lucide-react';
 import Button from '../components/Button';
 
-const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || '';
-const TELEGRAM_USER_ID = import.meta.env.VITE_TELEGRAM_USER_ID || '';
-
 const Contact: React.FC = () => {
   const [formState, setFormState] = useState({
     name: '',
@@ -38,28 +35,25 @@ const Contact: React.FC = () => {
       `${data.timeline ? `⏰ Timeline: ${data.timeline}\n` : ''}` +
       `\n💬 Bericht:\n${data.message}`;
 
-    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    // Call our serverless function instead of Telegram directly
+    // This avoids CORS issues and keeps the bot token secure
+    const apiUrl = '/api/send-telegram';
     
     try {
-      const response = await fetch(url, {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          chat_id: String(TELEGRAM_USER_ID),
-          text: message,
+          message: message,
         })
       });
 
       const responseData = await response.json();
 
       if (!response.ok) {
-        // Better error handling
-        if (responseData.description?.includes('chat not found')) {
-          throw new Error('Chat niet gevonden. Zorg ervoor dat je eerst een bericht naar de bot hebt gestuurd.');
-        }
-        throw new Error(responseData.description || 'Kon bericht niet verzenden naar Telegram');
+        throw new Error(responseData.error || 'Kon bericht niet verzenden naar Telegram');
       }
 
       return responseData;
