@@ -1,4 +1,4 @@
-export default async function handler(request: Request): Promise<Response> {
+export default async function handler(req: Request): Promise<Response> {
   // CORS headers
   const corsHeaders = {
     'Content-Type': 'application/json',
@@ -7,15 +7,13 @@ export default async function handler(request: Request): Promise<Response> {
     'Access-Control-Allow-Headers': 'Content-Type',
   };
 
-  console.log('API called:', request.method, request.url);
-
   // Handle preflight OPTIONS request
-  if (request.method === 'OPTIONS') {
+  if (req.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: corsHeaders });
   }
 
   // Only allow POST requests
-  if (request.method !== 'POST') {
+  if (req.method !== 'POST') {
     return new Response(
       JSON.stringify({ error: 'Method not allowed' }),
       { status: 405, headers: corsHeaders }
@@ -28,7 +26,6 @@ export default async function handler(request: Request): Promise<Response> {
 
   // Validate environment variables
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_USER_ID) {
-    console.error('Missing Telegram credentials - Token:', !!TELEGRAM_BOT_TOKEN, 'User ID:', !!TELEGRAM_USER_ID);
     return new Response(
       JSON.stringify({ error: 'Server configuration error. Please contact the administrator.' }),
       { status: 500, headers: corsHeaders }
@@ -36,10 +33,8 @@ export default async function handler(request: Request): Promise<Response> {
   }
 
   try {
-    const body = await request.json();
+    const body = await req.json();
     const { message } = body;
-
-    console.log('Received message, length:', message?.length);
 
     if (!message) {
       return new Response(
@@ -50,8 +45,6 @@ export default async function handler(request: Request): Promise<Response> {
 
     // Call Telegram API from server (no CORS issues)
     const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-    
-    console.log('Calling Telegram API...');
     
     const telegramResponse = await fetch(telegramUrl, {
       method: 'POST',
@@ -64,14 +57,9 @@ export default async function handler(request: Request): Promise<Response> {
       }),
     });
 
-    console.log('Telegram response status:', telegramResponse.status);
-    
     const telegramData = await telegramResponse.json();
-    console.log('Telegram response:', telegramData.ok ? 'Success' : 'Error');
 
     if (!telegramResponse.ok) {
-      console.error('Telegram API error:', telegramData);
-      
       // Better error messages
       if (telegramData.description?.includes('chat not found')) {
         return new Response(
@@ -100,4 +88,3 @@ export default async function handler(request: Request): Promise<Response> {
     );
   }
 }
-

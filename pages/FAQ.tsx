@@ -21,10 +21,6 @@ const faqData = [
     answer: "Nee. We gaan een samenwerking aan van minimaal 6 maanden om de opstartkosten te dekken. Daarna is het maandelijks opzegbaar. Geen wurgcontracten."
   },
   {
-    question: "Wat is het verschil tussen Basis (€150) en Groei (€500)?",
-    answer: "Basis is perfect voor een solide, professionele aanwezigheid (homepage, dienstenpagina, contact). Groei is voor als je meer functionaliteit nodig hebt: integraties met andere software, webshop-elementen, sales funnels of complexere formulieren."
-  },
-  {
     question: "Wat als ik wil doorgroeien naar een groter systeem?",
     answer: "Dat is het mooie van mijn werkwijze. Ik bouw met code (Next.js), niet met beperkte 'page builders'. We kunnen jouw basis-site later uitbouwen tot een volledige web-applicatie zonder dat we opnieuw moeten beginnen."
   }

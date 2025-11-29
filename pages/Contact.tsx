@@ -37,15 +37,15 @@ const Contact: React.FC = () => {
 
     // Call our serverless function instead of Telegram directly
     // This avoids CORS issues and keeps the bot token secure
-    // Use full URL in production, relative in development
-    const apiUrl = import.meta.env.PROD 
-      ? '/api/send-telegram' 
-      : `${window.location.origin}/api/send-telegram`;
+    // Always use absolute URL to ensure it works in production
+    const apiUrl = `${window.location.origin}/api/send-telegram`;
+    
+    console.log('Sending to API:', apiUrl);
     
     try {
-      // Add timeout to prevent hanging
+      // Add timeout to prevent hanging (increased to 30 seconds for serverless cold start)
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
       const response = await fetch(apiUrl, {
         method: 'POST',
