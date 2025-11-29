@@ -37,9 +37,16 @@ const Contact: React.FC = () => {
 
     // Call our serverless function instead of Telegram directly
     // This avoids CORS issues and keeps the bot token secure
-    const apiUrl = '/api/send-telegram';
+    // Use full URL in production, relative in development
+    const apiUrl = import.meta.env.PROD 
+      ? '/api/send-telegram' 
+      : `${window.location.origin}/api/send-telegram`;
     
     try {
+      // Add timeout to prevent hanging
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -47,18 +54,34 @@ const Contact: React.FC = () => {
         },
         body: JSON.stringify({
           message: message,
-        })
+        }),
+        signal: controller.signal
       });
 
-      const responseData = await response.json();
+      clearTimeout(timeoutId);
 
+      // Check if response is ok before trying to parse JSON
       if (!response.ok) {
-        throw new Error(responseData.error || 'Kon bericht niet verzenden naar Telegram');
+        let errorMessage = 'Kon bericht niet verzenden naar Telegram';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.error || errorMessage;
+        } catch {
+          errorMessage = `Server error: ${response.status} ${response.statusText}`;
+        }
+        throw new Error(errorMessage);
       }
 
+      const responseData = await response.json();
       return responseData;
     } catch (err) {
       if (err instanceof Error) {
+        if (err.name === 'AbortError') {
+          throw new Error('Verzoek duurde te lang. Controleer je internetverbinding en probeer het opnieuw.');
+        }
+        if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
+          throw new Error('Kan de server niet bereiken. Zorg ervoor dat je online bent en probeer het opnieuw.');
+        }
         throw err;
       }
       throw new Error('Netwerkfout bij het verzenden naar Telegram');
