@@ -32,18 +32,12 @@ const CookieConsent: React.FC = () => {
   }, []);
 
   const applyCookiePreferences = (prefs: typeof cookiePreferences) => {
-    // Hier kun je tracking scripts in- of uitschakelen op basis van preferences
-    // Bijvoorbeeld: Google Analytics alleen laden als analytics is toegestaan
-    
-    // Voorbeeld voor Google Analytics (uncomment als je GA gebruikt):
-    // if (prefs.analytics) {
-    //   // Load Google Analytics
-    //   // @ts-ignore
-    //   window.gtag = window.gtag || function(){(window.gtag.q=window.gtag.q||[]).push(arguments)};
-    // } else {
-    //   // Disable Google Analytics
-    //   // Clear any existing GA cookies
-    // }
+    // Analytics scripts worden geladen via Analytics component
+    // Deze functie kan gebruikt worden voor extra cleanup indien nodig
+    if (!prefs.analytics) {
+      // Clear analytics cookies if disabled
+      // Analytics component handles script loading based on consent
+    }
   };
 
   const handleAcceptAll = () => {

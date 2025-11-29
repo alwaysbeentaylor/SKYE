@@ -1,26 +1,64 @@
 
-import React, { useState } from 'react';
-import { Mail, Send, CheckCircle, Loader2, AlertCircle, MessageCircle, Info } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Mail, Send, CheckCircle, Loader2, AlertCircle, MessageCircle, Info, ChevronDown, ChevronUp, Clock } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import Button from '../components/Button';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
+import { trackFormStart, trackFormSubmit, trackFormAbandonment } from '../utils/analytics';
 
 const Contact: React.FC = () => {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
+    message: '',
+    // Optional fields
     company: '',
     projectType: '',
     budget: '',
-    timeline: '',
-    message: ''
+    timeline: ''
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showMoreDetails, setShowMoreDetails] = useState(false);
+  const [fieldsCompleted, setFieldsCompleted] = useState(0);
+  const formStartedRef = useRef(false);
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // Track form start
+  useEffect(() => {
+    const handleFirstFocus = () => {
+      if (!formStartedRef.current) {
+        formStartedRef.current = true;
+        trackFormStart('contact');
+      }
+    };
+
+    if (nameInputRef.current) {
+      nameInputRef.current.addEventListener('focus', handleFirstFocus);
+      return () => {
+        nameInputRef.current?.removeEventListener('focus', handleFirstFocus);
+      };
+    }
+  }, []);
+
+  // Track form abandonment
+  useEffect(() => {
+    const completed = [formState.name, formState.email, formState.message].filter(Boolean).length;
+    setFieldsCompleted(completed);
+
+    const handleBeforeUnload = () => {
+      if (completed > 0 && completed < 3 && !submitted) {
+        trackFormAbandonment('contact', completed);
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [formState, submitted]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value
@@ -120,18 +158,20 @@ ${data.message}
 
     try {
       await sendEmail(formState);
+      trackFormSubmit('contact', true);
       setSubmitted(true);
       // Reset form
       setFormState({
         name: '',
         email: '',
+        message: '',
         company: '',
         projectType: '',
         budget: '',
-        timeline: '',
-        message: ''
+        timeline: ''
       });
     } catch (err) {
+      trackFormSubmit('contact', false);
       setError(err instanceof Error ? err.message : 'Er is een fout opgetreden. Probeer het later opnieuw.');
       console.error('Error sending email:', err);
     } finally {
@@ -176,6 +216,16 @@ ${data.message}
           Geen zware sales-calls. Vertel gewoon kort wat je doet en wat je zoekt, dan denk ik met je mee.
         </p>
         
+        {/* Response Time Indicator */}
+        <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-lg relative z-10">
+          <div className="flex items-center gap-2">
+            <Clock className="text-green-400" size={18} />
+            <p className="text-sm text-green-300">
+              <span className="font-bold">Gemiddelde reactietijd: 2 uur</span> | Gratis consultatie binnen 24 uur
+            </p>
+          </div>
+        </div>
+        
         <div className="mb-12 p-6 bg-white/5 rounded-xl border border-white/10 backdrop-blur relative z-10">
           <div className="flex items-start gap-3">
             <Info className="text-primary mt-1 flex-shrink-0" size={20} />
@@ -208,6 +258,7 @@ ${data.message}
               <h3 className="font-bold text-lg">WhatsApp</h3>
               <a 
                 href="https://wa.me/31645998932" 
+                onClick={() => trackWhatsAppClick('contact-page')}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-primary transition-colors inline-flex items-center gap-2 group"
@@ -229,9 +280,13 @@ ${data.message}
       {/* Right Side: Form */}
       <div className="p-8 lg:p-24 flex flex-col justify-center bg-slate-50 dark:bg-darkBg transition-colors">
         <form onSubmit={handleSubmit} className="max-w-lg w-full mx-auto space-y-6">
+          {/* Required Fields */}
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-navy dark:text-white mb-2">Naam</label>
+            <label htmlFor="name" className="block text-sm font-medium text-navy dark:text-white mb-2">
+              Naam <span className="text-red-500">*</span>
+            </label>
             <input
+              ref={nameInputRef}
               type="text"
               id="name"
               name="name"
@@ -244,7 +299,9 @@ ${data.message}
           </div>
           
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-navy dark:text-white mb-2">Email</label>
+            <label htmlFor="email" className="block text-sm font-medium text-navy dark:text-white mb-2">
+              Email <span className="text-red-500">*</span>
+            </label>
             <input
               type="email"
               id="email"
@@ -258,85 +315,8 @@ ${data.message}
           </div>
 
           <div>
-             <label htmlFor="company" className="block text-sm font-medium text-navy dark:text-white mb-2">Bedrijf (Optioneel)</label>
-             <input
-              type="text"
-              id="company"
-              name="company"
-              value={formState.company}
-              onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-              placeholder="Je bedrijfsnaam"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="projectType" className="block text-sm font-medium text-navy dark:text-white mb-2">
-              Type Project <span className="text-slate-400 font-normal">(Optioneel)</span>
-            </label>
-            <select
-              id="projectType"
-              name="projectType"
-              value={formState.projectType}
-              onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-            >
-              <option value="">Selecteer type project</option>
-              <option value="basis-website">Basis Website (€150/mnd)</option>
-              <option value="maatwerk">Maatwerk Project</option>
-              <option value="webshop">Webshop / E-commerce</option>
-              <option value="web-app">Web Applicatie / SaaS</option>
-              <option value="redesign">Redesign Bestaande Site</option>
-              <option value="anders">Anders / Vraag</option>
-            </select>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="budget" className="block text-sm font-medium text-navy dark:text-white mb-2">
-                Budget Range <span className="text-slate-400 font-normal">(Optioneel)</span>
-              </label>
-              <select
-                id="budget"
-                name="budget"
-                value={formState.budget}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-              >
-                <option value="">Selecteer budget</option>
-                <option value="150-500">€150 - €500/maand</option>
-                <option value="500-1000">€500 - €1.000/maand</option>
-                <option value="1000-5000">€1.000 - €5.000 eenmalig</option>
-                <option value="5000+">€5.000+ eenmalig</option>
-                <option value="bespreken">Laten we bespreken</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="timeline" className="block text-sm font-medium text-navy dark:text-white mb-2">
-                Timeline <span className="text-slate-400 font-normal">(Optioneel)</span>
-              </label>
-              <select
-                id="timeline"
-                name="timeline"
-                value={formState.timeline}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-              >
-                <option value="">Selecteer timeline</option>
-                <option value="direct">Zo snel mogelijk</option>
-                <option value="2-weken">Binnen 2 weken</option>
-                <option value="1-maand">Binnen 1 maand</option>
-                <option value="2-3-maanden">Binnen 2-3 maanden</option>
-                <option value="later">Later dit jaar</option>
-                <option value="verkennen">Nog aan het verkennen</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
             <label htmlFor="message" className="block text-sm font-medium text-navy dark:text-white mb-2">
-              Waar kan ik je mee helpen? <span className="text-slate-400 font-normal">(Verplicht)</span>
+              Waar kan ik je mee helpen? <span className="text-red-500">*</span>
             </label>
             <textarea
               id="message"
@@ -346,11 +326,106 @@ ${data.message}
               value={formState.message}
               onChange={handleChange}
               className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
-              placeholder="Vertel me over je project, je doelen, of waar je tegenaan loopt. Bijvoorbeeld: 'Ik heb een kapperszaak en wil online afspraken kunnen maken' of 'Mijn huidige website is verouderd en ik wil een moderne versie'..."
+              placeholder="Vertel me over je project, je doelen, of waar je tegenaan loopt..."
             ></textarea>
             <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
               Hoe meer details je geeft, hoe beter ik je kan helpen.
             </p>
+          </div>
+
+          {/* Expandable More Details Section */}
+          <div className="border-t border-slate-200 dark:border-white/10 pt-6">
+            <button
+              type="button"
+              onClick={() => setShowMoreDetails(!showMoreDetails)}
+              className="flex items-center justify-between w-full text-left text-sm font-medium text-navy dark:text-white hover:text-primary transition-colors"
+            >
+              <span>Meer details (optioneel)</span>
+              {showMoreDetails ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+            </button>
+
+            {showMoreDetails && (
+              <div className="mt-4 space-y-4 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div>
+                  <label htmlFor="company" className="block text-sm font-medium text-navy dark:text-white mb-2">
+                    Bedrijf
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formState.company}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
+                    placeholder="Je bedrijfsnaam"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="projectType" className="block text-sm font-medium text-navy dark:text-white mb-2">
+                    Type Project
+                  </label>
+                  <select
+                    id="projectType"
+                    name="projectType"
+                    value={formState.projectType}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
+                  >
+                    <option value="">Selecteer type project</option>
+                    <option value="basis-website">Basis Website (€150/mnd)</option>
+                    <option value="maatwerk">Maatwerk Project</option>
+                    <option value="webshop">Webshop / E-commerce</option>
+                    <option value="web-app">Web Applicatie / SaaS</option>
+                    <option value="redesign">Redesign Bestaande Site</option>
+                    <option value="anders">Anders / Vraag</option>
+                  </select>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="budget" className="block text-sm font-medium text-navy dark:text-white mb-2">
+                      Budget Range
+                    </label>
+                    <select
+                      id="budget"
+                      name="budget"
+                      value={formState.budget}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
+                    >
+                      <option value="">Selecteer budget</option>
+                      <option value="150-500">€150 - €500/maand</option>
+                      <option value="500-1000">€500 - €1.000/maand</option>
+                      <option value="1000-5000">€1.000 - €5.000 eenmalig</option>
+                      <option value="5000+">€5.000+ eenmalig</option>
+                      <option value="bespreken">Laten we bespreken</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="timeline" className="block text-sm font-medium text-navy dark:text-white mb-2">
+                      Timeline
+                    </label>
+                    <select
+                      id="timeline"
+                      name="timeline"
+                      value={formState.timeline}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg bg-white dark:bg-darkCard border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white"
+                    >
+                      <option value="">Selecteer timeline</option>
+                      <option value="direct">Zo snel mogelijk</option>
+                      <option value="2-weken">Binnen 2 weken</option>
+                      <option value="1-maand">Binnen 1 maand</option>
+                      <option value="2-3-maanden">Binnen 2-3 maanden</option>
+                      <option value="later">Later dit jaar</option>
+                      <option value="verkennen">Nog aan het verkennen</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {error && (

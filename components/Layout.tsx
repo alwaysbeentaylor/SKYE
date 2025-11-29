@@ -5,6 +5,10 @@ import { Menu, X, ChevronRight, Linkedin, Github, Instagram, Moon, Sun, Globe, M
 import Button from './Button';
 import { useApp } from '../context/AppContext';
 import CookieConsent from './CookieConsent';
+import Analytics from './Analytics';
+import ExitIntentPopup from './ExitIntentPopup';
+import MobileCTABar from './MobileCTABar';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -282,12 +286,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
          <div className="absolute bottom-[20%] right-[-5%] w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] animate-pulse-slow"></div>
       </div>
 
+      {/* Analytics */}
+      <Analytics />
+
       {/* Sticky WhatsApp Button */}
       <a
         href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20website."
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 group"
+        onClick={() => trackWhatsAppClick('sticky-button')}
+        className="fixed bottom-6 right-6 z-50 group lg:block hidden"
         aria-label="Chat via WhatsApp"
       >
         <div className="relative">
@@ -302,11 +310,13 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </a>
 
       <Navbar />
-      <main className="flex-grow pt-24 relative z-10">
+      <main className="flex-grow pt-24 relative z-10 pb-20 lg:pb-0">
         {children}
       </main>
       <Footer />
       <CookieConsent />
+      <ExitIntentPopup />
+      <MobileCTABar />
     </div>
   );
 };

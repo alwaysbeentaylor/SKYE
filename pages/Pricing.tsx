@@ -6,6 +6,8 @@ import Testimonials from '../components/Testimonials';
 import TrustBadges from '../components/TrustBadges';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
+import UrgencyBanner from '../components/UrgencyBanner';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 const Pricing: React.FC = () => {
   const testimonials = [
@@ -76,6 +78,15 @@ const Pricing: React.FC = () => {
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 relative z-10">
+        {/* Urgency Banner */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <UrgencyBanner 
+            message="Laatste 3 plekken beschikbaar deze maand - Start binnen 2 weken online"
+            availableSpots={3}
+            variant="warning"
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-4xl mx-auto">
           
           {/* BASIS - 150 */}
@@ -163,6 +174,7 @@ const Pricing: React.FC = () => {
               </Button>
               <a 
                 href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20maatwerk%20project." 
+                onClick={() => trackWhatsAppClick('pricing-maatwerk')}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
@@ -241,6 +253,7 @@ const Pricing: React.FC = () => {
             </Button>
             <a 
               href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20website." 
+              onClick={() => trackWhatsAppClick('pricing-cta')}
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"

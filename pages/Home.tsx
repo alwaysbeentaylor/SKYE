@@ -8,6 +8,9 @@ import Testimonials from '../components/Testimonials';
 import TrustBadges from '../components/TrustBadges';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
+import LiveCounter from '../components/LiveCounter';
+import LeadMagnet from '../components/LeadMagnet';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 const Home: React.FC = () => {
   const { t } = useApp();
@@ -60,37 +63,49 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           
           <h1 className="font-display font-black text-5xl md:text-7xl tracking-tighter text-navy dark:text-white mb-6 leading-[1.1] animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 drop-shadow-xl">
-            Professioneel Webdesign voor <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-accent">Ondernemers</span>
+            Start Binnen 2 Weken Online - <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-accent">€150/maand</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 font-light max-w-3xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-            Website nodig? Ik bouw professionele websites <span className="text-primary font-semibold">vanaf €150/maand</span>. <br/>
-            <span className="text-lg">Geen €5k vooraf. Direct online. Alles geregeld.</span>
+            Geen €5k vooraf. Geen verborgen kosten. <span className="text-primary font-semibold">Direct online</span>. <br/>
+            <span className="text-lg">Alles geregeld. Jij focust op je bedrijf.</span>
           </p>
 
-          {/* Social Proof Banner */}
+          {/* Social Proof Banner with Live Counter */}
           <div className="mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-250">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
-              <div className="flex -space-x-2">
-                {[...Array(3)].map((_, i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-primary border-2 border-white dark:border-slate-800"></div>
-                ))}
-              </div>
-              <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                Al <span className="text-primary font-bold">50+</span> ondernemers gingen je voor
+            <LiveCounter baseCount={50} />
+          </div>
+
+          {/* Urgency Badge */}
+          <div className="mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-250">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20">
+              <Clock size={16} className="text-red-500" />
+              <span className="text-sm font-bold text-red-700 dark:text-red-400">
+                Laatste 3 plekken deze maand beschikbaar
               </span>
             </div>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-            <Button to="/pricing" variant="primary" className="px-8 py-4 text-lg shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)]">
-              Ontdek het €150 Pakket <ArrowRight size={20} className="ml-2" />
+            <Button 
+              to="/pricing" 
+              variant="primary" 
+              className="px-8 py-4 text-lg shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)]"
+              ctaLabel="Start Nu - €150/maand"
+            >
+              Start Nu - €150/maand <ArrowRight size={20} className="ml-2" />
             </Button>
-            <Button to="/contact" variant="secondary" className="px-8 py-4 text-lg dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10">
-              Plan een gesprek
+            <Button 
+              to="/contact" 
+              variant="secondary" 
+              className="px-8 py-4 text-lg dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10"
+              ctaLabel="Plan Gratis Consultatie"
+            >
+              Plan Gratis Consultatie
             </Button>
             <a 
               href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20website." 
+              onClick={() => trackWhatsAppClick('homepage-hero')}
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
@@ -170,6 +185,25 @@ const Home: React.FC = () => {
          </div>
       </section>
 
+      {/* Leadmagnet Section */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-navy dark:text-white mb-4">
+              Gratis Gids: Website Huren vs Kopen
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 text-lg">
+              Alles wat je moet weten voordat je een beslissing maakt
+            </p>
+          </div>
+          <LeadMagnet 
+            title="Download Gratis: De Complete Gids"
+            description="Website Huren vs Kopen - Alles wat je moet weten voordat je een beslissing maakt"
+            className="max-w-2xl mx-auto"
+          />
+        </div>
+      </section>
+
       {/* Hope Teaser */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
@@ -190,8 +224,28 @@ const Home: React.FC = () => {
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
          <div className="relative z-10 max-w-2xl mx-auto px-4">
             <h2 className="font-display font-black text-4xl md:text-5xl text-navy dark:text-white mb-6">Klaar om te starten?</h2>
-            <p className="text-slate-600 dark:text-slate-400 mb-10 text-lg">Kies je pakket, we bespreken je wensen, en binnen no-time sta jij strak online.</p>
-            <Button to="/pricing" variant="primary" className="px-10 py-4 text-xl">Bekijk Prijzen</Button>
+            <p className="text-slate-600 dark:text-slate-400 mb-10 text-lg">Kies je pakket, we bespreken je wensen, en binnen 2 weken sta jij online.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                to="/pricing" 
+                variant="primary" 
+                className="px-10 py-4 text-xl"
+                ctaLabel="Bekijk Prijzen & Start Nu"
+              >
+                Bekijk Prijzen & Start Nu
+              </Button>
+              <Button 
+                to="/contact" 
+                variant="outline" 
+                className="px-10 py-4 text-xl"
+                ctaLabel="Plan Gratis Consultatie"
+              >
+                Plan Gratis Consultatie
+              </Button>
+            </div>
+            <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
+              ✓ Geen verborgen kosten  ✓ Geen verplichtingen  ✓ 30-dagen garantie
+            </p>
          </div>
       </section>
     </div>

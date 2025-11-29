@@ -127,3 +127,4 @@ const TrustBadges: React.FC<TrustBadgesProps> = ({
 
 export default TrustBadges;
 
+
