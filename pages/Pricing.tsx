@@ -8,6 +8,7 @@ import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
 import UrgencyBanner from '../components/UrgencyBanner';
 import { trackWhatsAppClick } from '../utils/analytics';
+import { useApp } from '../context/AppContext';
 
 const Pricing: React.FC = () => {
   const { t } = useApp();

@@ -12,10 +12,15 @@ interface LanguageDetectionResponse {
   country?: string;
 }
 
-// Map language codes to country names for display
-const languageToCountry: Record<Language, string> = {
-  'nl': 'Nederland of België',
-  'en': 'een Engelssprekend land'
+// Map language codes to country names for display - will be used dynamically based on current language
+const getCountryName = (detectedLang: Language, currentLang: Language): string => {
+  if (currentLang === 'nl') {
+    // Dutch translations
+    return detectedLang === 'nl' ? 'Nederland of België' : 'een Engelssprekend land';
+  } else {
+    // English translations
+    return detectedLang === 'nl' ? 'the Netherlands or Belgium' : 'an English-speaking country';
+  }
 };
 
 const LanguagePrompt: React.FC = () => {
@@ -274,7 +279,7 @@ const LanguagePrompt: React.FC = () => {
     return null;
   }
 
-  const countryName = languageToCountry[detectedLanguage];
+  const countryName = getCountryName(detectedLanguage, language);
   const message = t.languagePrompt.message.replace('{country}', countryName);
 
   return (
