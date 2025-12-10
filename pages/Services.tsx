@@ -22,23 +22,23 @@ const Services: React.FC = () => {
     ...item,
     icon: icons[index]
   }));
-  
+
   return (
     <div className="bg-slate-50 dark:bg-darkBg min-h-screen pb-20 transition-colors duration-300">
-      <SEOHead 
-        title="Webdesign Diensten Brugge | Websites, Hosting & Integraties - SKYE"
-        description="Complete webdesign diensten in Brugge: professionele websites, hosting, security, integraties en automatisering. Alles in één pakket vanaf €150/maand."
-        keywords="webdesign diensten Brugge, website hosting Brugge, website integraties, website automatisering, webdesigner Brugge"
+      <SEOHead
+        title="Design & Automation Diensten | Websites, Hosting & Integraties - SKYE"
+        description="Complete Design & Automation diensten: professionele websites, hosting, security, integraties en automatisering. Alles in één pakket vanaf €150/maand."
+        keywords="design automation diensten, website hosting, website integraties, website automatisering, systeem ontwikkelaar"
         canonical="https://skye.be/#/services"
       />
-      <StructuredData 
-        type="Service" 
+      <StructuredData
+        type="Service"
         data={{
-          serviceType: "Web Design Service",
-          description: "Complete webdesign diensten voor ondernemers in Brugge: professionele websites, hosting, security, integraties en automatisering.",
+          serviceType: "Design & Automation Service",
+          description: "Complete design & automation diensten voor ondernemers: professionele websites, hosting, security, integraties en automatisering.",
           areaServed: {
-            '@type': 'City',
-            name: 'Brugge'
+            '@type': 'Country',
+            name: 'Belgium'
           }
         }}
       />
@@ -50,7 +50,7 @@ const Services: React.FC = () => {
             {t.services.title}
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            {t.services.subtitle} <br/>
+            {t.services.subtitle} <br />
             {t.services.header_subtitle_extra}
           </p>
         </div>
@@ -63,7 +63,7 @@ const Services: React.FC = () => {
             <div key={index} className="glass-panel bg-white dark:bg-darkCard/80 backdrop-blur-xl p-8 rounded-2xl border border-slate-200 dark:border-white/10 shadow-xl hover:border-primary/50 transition-all duration-300 group">
               <div className="flex justify-between items-start mb-6">
                 <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/5 text-primary group-hover:scale-110 transition-transform">
-                   {service.icon}
+                  {service.icon}
                 </div>
                 {service.price_ref && (
                   <span className="text-xs font-bold uppercase tracking-wider bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-300 px-2 py-1 rounded">
@@ -71,7 +71,7 @@ const Services: React.FC = () => {
                   </span>
                 )}
               </div>
-              
+
               <h3 className="font-display font-bold text-xl text-navy dark:text-white mb-3">{service.title}</h3>
               <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm leading-relaxed min-h-[60px]">
                 {service.desc}
@@ -79,7 +79,7 @@ const Services: React.FC = () => {
 
               <div className="pt-4 border-t border-slate-100 dark:border-white/5">
                 <p className="text-navy dark:text-white font-semibold italic text-xs">
-                   <span className="text-primary font-bold mr-1">{t.language === 'nl' ? 'Winst:' : 'Benefit:'}</span> {service.benefit}
+                  <span className="text-primary font-bold mr-1">{t.language === 'nl' ? 'Winst:' : 'Benefit:'}</span> {service.benefit}
                 </p>
               </div>
             </div>
@@ -95,9 +95,9 @@ const Services: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <Button to="/pricing" variant="primary">{t.services.cta.button_pricing}</Button>
             <Button to="/contact" variant="outline">{t.services.cta.button_contact}</Button>
-            <a 
-              href="https://wa.me/31645998932" 
-              target="_blank" 
+            <a
+              href="https://wa.me/31645998932"
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
             >

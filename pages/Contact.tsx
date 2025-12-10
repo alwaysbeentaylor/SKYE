@@ -178,23 +178,23 @@ ${data.message}
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg grid lg:grid-cols-2">
-      <SEOHead 
-        title="Contact | Webdesigner Brugge - Plan Gratis Gesprek - SKYE"
-        description="Neem contact op voor een gratis consultatie. Plan een gesprek over jouw website project. Direct contact via WhatsApp of email. Webdesigner in Brugge."
-        keywords="contact webdesigner Brugge, website consultatie Brugge, webdesigner contact België, gratis website advies"
+      <SEOHead
+        title="Contact | Design & Automation - Plan Gratis Gesprek - SKYE"
+        description="Neem contact op voor een gratis consultatie. Plan een gesprek over jouw project. Direct contact via WhatsApp of email."
+        keywords="contact developer, website consultatie, design automation contact, gratis advies"
         canonical="https://skye.be/#/contact"
       />
       <StructuredData type="LocalBusiness" />
       {/* Left Side: Info */}
       <div className="bg-navy dark:bg-black text-white p-12 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-         {/* Deco */}
-         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
+        {/* Deco */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
 
         <h1 className="font-display font-bold text-4xl md:text-5xl mb-6 relative z-10">{t.contact.title}</h1>
         <p className="text-xl text-slate-300 mb-8 max-w-md relative z-10">
           {t.contact.subtitle}
         </p>
-        
+
         {/* Response Time Indicator */}
         <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-lg relative z-10">
           <div className="flex items-center gap-2">
@@ -204,7 +204,7 @@ ${data.message}
             </p>
           </div>
         </div>
-        
+
         <div className="mb-12 p-6 bg-white/5 rounded-xl border border-white/10 backdrop-blur relative z-10">
           <div className="flex items-start gap-3">
             <Info className="text-primary mt-1 flex-shrink-0" size={20} />
@@ -229,15 +229,15 @@ ${data.message}
               </a>
             </div>
           </div>
-          
+
           <div className="flex items-start">
             <MessageCircle className="text-primary mt-1 mr-4" size={24} />
             <div>
               <h3 className="font-bold text-lg">{t.contact.whatsapp.label}</h3>
-              <a 
-                href="https://wa.me/31645998932" 
+              <a
+                href="https://wa.me/31645998932"
                 onClick={() => trackWhatsAppClick('contact-page')}
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-primary transition-colors inline-flex items-center gap-2 group"
               >
@@ -275,7 +275,7 @@ ${data.message}
               placeholder={t.contact.form.name.placeholder}
             />
           </div>
-          
+
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-navy dark:text-white mb-2">
               {t.contact.form.email.label} <span className="text-red-500">{t.common.required}</span>
@@ -402,9 +402,9 @@ ${data.message}
             </div>
           )}
 
-          <Button 
-            type="submit" 
-            variant="primary" 
+          <Button
+            type="submit"
+            variant="primary"
             className="w-full justify-center text-lg"
             disabled={loading}
           >

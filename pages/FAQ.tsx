@@ -17,10 +17,10 @@ const FAQ: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg pb-20 transition-colors duration-300">
-      <SEOHead 
-        title="Veelgestelde Vragen | Website Huren of Kopen - SKYE Brugge"
-        description="Antwoorden op veelgestelde vragen over website huren, afkopen, contracten en meer. Veelgestelde vragen over webdesign diensten in Brugge."
-        keywords="website veelgestelde vragen, website huren vragen, website afkopen, webdesign FAQ, veelgestelde vragen Brugge"
+      <SEOHead
+        title="Veelgestelde Vragen | Design & Automation - SKYE"
+        description="Antwoorden op veelgestelde vragen over website huren, afkopen, contracten en Design & Automation services."
+        keywords="design automation veelgestelde vragen, website huren vragen, website afkopen, developer FAQ"
         canonical="https://skye.be/#/faq"
       />
       <section className="bg-navy dark:bg-black py-20 text-white text-center">
@@ -48,7 +48,7 @@ const FAQ: React.FC = () => {
                 </span>
                 {openIndex === index ? <ChevronUp size={20} className="text-primary" /> : <ChevronDown size={20} className="text-slate-400" />}
               </button>
-              
+
               {openIndex === index && (
                 <div className="px-6 pb-6 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="h-px bg-slate-100 dark:bg-white/10 mb-4"></div>
@@ -65,9 +65,9 @@ const FAQ: React.FC = () => {
           <p className="text-slate-600 dark:text-slate-400 mb-4">{t.faq.no_answer}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button to="/contact" variant="secondary">{t.faq.cta_contact}</Button>
-            <a 
-              href="https://wa.me/31645998932" 
-              target="_blank" 
+            <a
+              href="https://wa.me/31645998932"
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
             >

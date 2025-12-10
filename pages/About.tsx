@@ -10,10 +10,10 @@ const About: React.FC = () => {
   const { t } = useApp();
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg transition-colors duration-300">
-      <SEOHead 
-        title="Over Hope | Webdesigner Brugge - Direct Contact, Geen Bullshit - SKYE"
-        description="Ik ben Hope, webdesigner in Brugge. Direct contact, eerlijke prijzen, geen accountmanagers. Professionele websites voor ondernemers vanaf €150/maand."
-        keywords="over Hope, webdesigner Brugge, website ontwikkelaar Brugge, freelance webdesigner België"
+      <SEOHead
+        title="Over Hope | Design & Automation - Direct Contact, Geen Bullshit - SKYE"
+        description="Ik ben Hope, specialist in Design & Automation. Direct contact, eerlijke prijzen, geen accountmanagers. Professionele systemen voor ondernemers."
+        keywords="over Hope, design en automation, website ontwikkelaar, freelance developer"
         canonical="https://skye.be/#/about"
       />
       {/* Hero Section with Abstract Visual */}
@@ -26,34 +26,54 @@ const About: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left: Abstract Visual Identity */}
-            <div className="relative">
-              <div className="relative aspect-square max-w-lg mx-auto">
-                {/* Layered Geometric Shapes */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 rounded-3xl transform rotate-6"></div>
-                <div className="absolute inset-4 bg-gradient-to-tr from-primary/30 via-transparent to-transparent rounded-3xl transform -rotate-6"></div>
-                
-                {/* Code-like Grid Pattern */}
-                <div className="absolute inset-0 bg-grid-pattern opacity-30 rounded-3xl"></div>
-                
-                {/* Central Focus Element */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative">
-                    {/* Pulsing Rings */}
-                    <div className="absolute inset-0 border-2 border-primary/30 rounded-full animate-ping"></div>
-                    <div className="absolute inset-4 border-2 border-primary/20 rounded-full animate-ping delay-500"></div>
-                    
-                    {/* Central Icon */}
-                    <div className="relative w-32 h-32 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center transform rotate-12 shadow-2xl shadow-primary/50">
-                      <Code2 className="text-white" size={48} />
-                    </div>
-                  </div>
+            {/* Left: Interactive Visual Identity */}
+            <div className="relative perspective-1000 group">
+              <div
+                className="relative aspect-video w-full transition-transform duration-100 ease-out transform-style-3d hover:scale-110"
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  const centerX = rect.width / 2;
+                  const centerY = rect.height / 2;
+                  const rotateX = ((y - centerY) / centerY) * -15; // Rotate X based on Y position
+                  const rotateY = ((x - centerX) / centerX) * 15;  // Rotate Y based on X position
+                  e.currentTarget.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                }}
+                style={{ transform: 'perspective(1000px) rotateX(0) rotateY(0) scale(1)' }}
+              >
+                {/* Profile Image */}
+                <div className="absolute inset-0 rounded-2xl overflow-hidden glass-panel border border-white/20 shadow-2xl">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-accent/20 mix-blend-overlay z-10 pointer-events-none"></div>
+                  <img
+                    src="/images/about-hope.png"
+                    alt="Hope - Design & Automation Machine"
+                    className="w-full h-full object-cover"
+                  />
+
+                  {/* Glitch/Tech Overlays */}
+                  <div className="absolute inset-0 bg-scanline opacity-10 pointer-events-none"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-white/30 drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] animate-scan"></div>
                 </div>
 
-                {/* Floating Elements */}
-                <div className="absolute top-8 right-8 w-16 h-16 bg-primary/20 rounded-xl transform rotate-45 backdrop-blur-sm border border-primary/30"></div>
-                <div className="absolute bottom-12 left-12 w-12 h-12 bg-accent/20 rounded-lg transform -rotate-12 backdrop-blur-sm border border-accent/30"></div>
-                <div className="absolute top-1/2 right-4 w-8 h-8 bg-primary/30 rounded-full"></div>
+                {/* Floating Elements popping out of frame */}
+                <div className="absolute -right-12 top-1/4glass-panel-strong p-4 rounded-xl shadow-[0_0_30px_rgba(14,165,233,0.3)] animate-float transform translate-z-20 hidden lg:block">
+                  <Code2 className="text-primary w-8 h-8" />
+                </div>
+                <div className="absolute -left-8 bottom-1/4 glass-panel-strong p-3 rounded-xl shadow-[0_0_30px_rgba(249,115,22,0.3)] animate-float delay-700 transform translate-z-30 hidden lg:block">
+                  <Target className="text-accent w-6 h-6" />
+                </div>
+
+                {/* Floating Badge */}
+                <div className="absolute -bottom-10 right-10 glass-panel-strong p-4 rounded-xl shadow-xl animate-float delay-300 transform translate-z-50 z-20">
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
+                    <span className="text-white font-bold text-sm tracking-wide">SYSTEM ONLINE</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -62,9 +82,9 @@ const About: React.FC = () => {
               <div className="inline-block">
                 <span className="text-primary font-mono text-sm tracking-widest uppercase">{t.about.hero.label}</span>
               </div>
-              
+
               <h1 className="font-display font-black text-5xl lg:text-6xl text-navy dark:text-white leading-tight">
-                {t.about.hero.title_line1}<br/>
+                {t.about.hero.title_line1}<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
                   {t.about.hero.title_line2}
                 </span>
@@ -74,11 +94,11 @@ const About: React.FC = () => {
                 <p className="text-xl">
                   {t.about.hero.text1}
                 </p>
-                
+
                 <p>
                   {t.about.hero.text2}
                 </p>
-                
+
                 <p>
                   {t.about.hero.text3}
                 </p>
@@ -92,9 +112,9 @@ const About: React.FC = () => {
                 <Button to="/contact" variant="outline">
                   {t.about.hero.cta_contact}
                 </Button>
-                <a 
-                  href="https://wa.me/31645998932" 
-                  target="_blank" 
+                <a
+                  href="https://wa.me/31645998932"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
                 >
@@ -203,16 +223,16 @@ const About: React.FC = () => {
                 <h2 className="font-display font-bold text-3xl md:text-4xl text-navy dark:text-white">
                   {t.about.philosophy.title}
                 </h2>
-                
+
                 <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
                   <p>
                     {t.about.philosophy.text1}
                   </p>
-                  
+
                   <p className="text-xl font-semibold text-navy dark:text-white">
                     {t.about.philosophy.text2}
                   </p>
-                  
+
                   <p>
                     {t.about.philosophy.text3}
                   </p>

@@ -24,9 +24,9 @@ export const translations = {
       title: "Je wilt gewoon dat het werkt.",
       subtitle: "Geen offertes van €5.000 waar je van schrikt. Geen technische kopzorgen.",
       items: [
-        { title: "Geen Tijd", desc: "Je bent ondernemer. Je wilt niet prutsen met plugins, updates of beveiliging. Dat moet gewoon geregeld zijn." },
-        { title: "Onduidelijke Kosten", desc: "Bureaus die uurtje-factuurtje werken of vage offertes sturen? Bij mij weet je precies waar je aan toe bent." },
-        { title: "Groei Plafond", desc: "Je 'doe-het-zelf' site voldoet niet meer. Je hebt een systeem nodig dat met je meegroeit, zonder dat je opnieuw moet beginnen." }
+        { title: "Geen website?", desc: "Klanten kunnen je niet vinden. Je laat geld liggen op tafel en bent onzichtbaar." },
+        { title: "Verouderde site?", desc: "Je concurrent krijgt jouw klanten omdat zijn site wel modern is en vertrouwen wekt." },
+        { title: "Geen tijd?", desc: "Elke dag dat je wacht met professioneel online gaan, kost je potentiële omzet." }
       ]
     },
     cta_final: {
@@ -43,13 +43,13 @@ export const translations = {
     },
     home: {
       hero: {
-        title: "Start Binnen 2 Weken Online - €150/maand",
-        subtitle_line1: "Geen €5k vooraf. Geen verborgen kosten.",
-        subtitle_line2: "Direct online.",
-        subtitle_line3: "Alles geregeld. Jij focust op je bedrijf.",
-        urgency_badge: "SKYE Unlimited",
-        cta_start: "Start Nu - €150/maand",
-        cta_consultation: "Plan Gratis Consultatie",
+        title: "Krijg meer klanten via je website - zonder technische kennis",
+        subtitle_line1: "Live binnen 7 dagen.",
+        subtitle_line2: "Vanaf €150/maand.",
+        subtitle_line3: "30 dagen niet-goed-geld-terug garantie.",
+        urgency_badge: "Max 3 nieuwe klanten per maand",
+        cta_start: "Start Nu - Gratis Gesprek",
+        cta_consultation: "Bekijk Prijzen & Start Nu",
         whatsapp: "WhatsApp"
       },
       why_rent: {
@@ -99,12 +99,30 @@ export const translations = {
         text: "Geen accountmanagers, geen lagen, geen vaagheid. Jij spreekt direct met degene die jouw site bouwt. Eerlijk advies, heldere prijzen.",
         button: "Leer me kennen"
       },
+      process_steps: {
+        title: "Zo simpel is het.",
+        step1: {
+          title: "Gratis Gesprek",
+          duration: "15 min",
+          desc: "We bespreken je doelen en kijken of we een match zijn."
+        },
+        step2: {
+          title: "Ik bouw je site",
+          duration: "7 dagen",
+          desc: "Jij levert input, ik lever een complete, winstgevende website."
+        },
+        step3: {
+          title: "Meer klanten",
+          duration: "Vanaf dag 1",
+          desc: "Je nieuwe site staat live en begint direct voor je te werken."
+        }
+      },
       final_cta: {
         title: "Klaar om te starten?",
-        subtitle: "Kies je pakket, we bespreken je wensen, en binnen 2 weken sta jij online.",
+        subtitle: "Kies je pakket, we bespreken je wensen, en binnen 7 dagen sta jij online.",
         cta_pricing: "Bekijk Prijzen & Start Nu",
         cta_consultation: "Plan Gratis Consultatie",
-        guarantees: "✓ Geen verborgen kosten  ✓ Geen verplichtingen  ✓ 30-dagen garantie"
+        guarantees: "✓ 100% Tevredenheidsgarantie  ✓ Geen verplichtingen  ✓ 30-dagen garantie"
       },
       testimonials: [
         {
@@ -182,8 +200,8 @@ export const translations = {
       title: "Kies jouw model",
       subtitle: "Huren voor flexibiliteit of afkopen voor eigendom. Transparant en eerlijk.",
       maintenance_note: "Bij afkoop optioneel onderhoud: €49/mnd.",
-      urgency_banner: "Laatste 3 plekken beschikbaar deze maand - Start binnen 2 weken online",
-      start_badge: "Start binnen 2 weken online",
+      urgency_banner: "Nog 2 plekken beschikbaar voor deze maand",
+      start_badge: "Start binnen 7 dagen online",
       basic: {
         badge: "Meest Gekozen",
         title: "Basis",
@@ -191,13 +209,14 @@ export const translations = {
         price: "€150",
         period: "/mnd",
         vat_note: "Excl. BTW",
-        guarantee: "30-dagen tevredenheidsgarantie",
+        guarantee: "30-dagen niet-goed-geld-terug",
         features: [
-          'Professionele website (Homepage + secties)',
-          'Simpel Admin Paneel',
-          'Hosting & SSL Security inbegrepen',
-          'Maandelijkse technische updates',
-          'Kleine content aanpassingen incl.'
+          'Professionele 5-pagina website (t.w.v. €1.500)',
+          'Premium Hosting & SSL (t.w.v. €200/jr)',
+          'Basis SEO optimalisatie (t.w.v. €300)',
+          'Google My Business setup (t.w.v. €150)',
+          'Onbeperkte wijzigingen & support (t.w.v. €100/mnd)',
+          'WhatsApp widget integratie (t.w.v. €75)'
         ],
         cta: "Start Nu - Kies Basis",
         included_note: "✓ Gratis consultatie inbegrepen",
@@ -598,7 +617,7 @@ export const translations = {
   en: {
     nav: {
       home: 'Home',
-      services: 'Services',
+      services: 'Design & Automation',
       approach: 'Approach',
       pricing: 'Pricing',
       portfolio: 'Portfolio',
@@ -610,7 +629,7 @@ export const translations = {
     hero: {
       title_prefix: "SKYE is",
       title_suffix: "Unlimited",
-      subtitle: "Professional websites starting at €150/month. No huge upfront costs, just professional results.",
+      subtitle: "Professional design & automation systems starting at €150/month. No huge upfront costs, just professional results.",
       cta_primary: "View Packages",
       cta_secondary: "Schedule Call",
       bullets: ["Fixed Monthly Fee", "No Hassle", "Always Up-to-date"]
@@ -638,7 +657,7 @@ export const translations = {
     },
     home: {
       hero: {
-        title: "Start Online Within 2 Weeks - €150/month",
+        title: "SKYE - UNLIMITED",
         subtitle_line1: "No €5k upfront. No hidden costs.",
         subtitle_line2: "Directly online.",
         subtitle_line3: "Everything handled. You focus on your business.",

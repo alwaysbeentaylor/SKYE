@@ -26,7 +26,7 @@ const Portfolio: React.FC = () => {
     'VSB Sint-Maarten': 'vsb-sint-maarten',
     'El Churasco': 'elchurasco'
   };
-  
+
   const portfolioData: PortfolioItem[] = t.portfolio.items.map((item, index) => {
     const fileName = titleToFile[item.title] || item.title.toLowerCase().replace(/\s+/g, '');
     return {
@@ -48,7 +48,7 @@ const Portfolio: React.FC = () => {
   ];
 
   const filteredItems = filter === t.portfolio.categories.all
-    ? portfolioData 
+    ? portfolioData
     : portfolioData.filter(item => item.category === filter);
 
   const openModal = (item: PortfolioItem) => {
@@ -75,10 +75,10 @@ const Portfolio: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg pb-20 transition-colors duration-300">
-      <SEOHead 
-        title="Website Portfolio Brugge | Projecten & Referenties - SKYE"
-        description="Bekijk onze webdesign portfolio met projecten uit Brugge en België. Echte resultaten voor ondernemers: restaurants, vastgoed, scholen en meer."
-        keywords="website portfolio Brugge, webdesign referenties, website voorbeelden Brugge, portfolio webdesigner België"
+      <SEOHead
+        title="Showcase & Cases | Projecten & Referenties - SKYE"
+        description="Bekijk onze Design & Automation portfolio. Echte resultaten voor ondernemers: restaurants, vastgoed, scholen en meer."
+        keywords="design automation portfolio, website referenties, systeem voorbeelden, portfolio developer"
         canonical="https://skye.be/#/portfolio"
       />
       <section className="bg-navy dark:bg-black py-20 text-white text-center">
@@ -97,11 +97,10 @@ const Portfolio: React.FC = () => {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                filter === cat 
-                ? 'bg-primary text-white shadow-lg' 
-                : 'bg-white dark:bg-darkCard text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 border border-slate-200 dark:border-white/10'
-              }`}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${filter === cat
+                  ? 'bg-primary text-white shadow-lg'
+                  : 'bg-white dark:bg-darkCard text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 border border-slate-200 dark:border-white/10'
+                }`}
             >
               {cat}
             </button>
@@ -111,15 +110,15 @@ const Portfolio: React.FC = () => {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItems.map((item) => (
-            <div 
-              key={item.id} 
+            <div
+              key={item.id}
               className="glass-panel bg-white dark:bg-darkCard rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group border border-slate-100 dark:border-white/10 cursor-pointer"
               onClick={() => item.slides && openModal(item)}
             >
               <div className="relative h-56 overflow-hidden">
-                <img 
-                  src={item.thumbnail} 
-                  alt={item.title} 
+                <img
+                  src={item.thumbnail}
+                  alt={item.title}
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     // Fallback to placeholder if screenshot fails
@@ -137,12 +136,12 @@ const Portfolio: React.FC = () => {
                   </div>
                 )}
               </div>
-              
+
               <div className="p-6">
                 <h3 className="font-display font-bold text-xl text-navy dark:text-white mb-4">
                   {item.title}
                 </h3>
-                
+
                 <div className="space-y-3 mb-6">
                   <div>
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">{t.portfolio.labels.problem}</p>
@@ -157,7 +156,7 @@ const Portfolio: React.FC = () => {
                 <div className="flex flex-wrap gap-2 mt-4 border-t border-slate-100 dark:border-white/10 pt-4">
                   {item.tech.map((t, i) => (
                     <span key={i} className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300">
-                       {t}
+                      {t}
                     </span>
                   ))}
                 </div>
@@ -173,9 +172,9 @@ const Portfolio: React.FC = () => {
             <p className="text-slate-600 dark:text-slate-300 mb-6">{t.portfolio.cta.subtitle}</p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button to="/contact" variant="primary">{t.portfolio.cta.contact}</Button>
-              <a 
-                href="https://wa.me/31645998932" 
-                target="_blank" 
+              <a
+                href="https://wa.me/31645998932"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
               >
@@ -189,11 +188,11 @@ const Portfolio: React.FC = () => {
 
       {/* Modal for Slideshow */}
       {selectedItem && selectedItem.slides && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={closeModal}
         >
-          <div 
+          <div
             className="relative max-w-6xl w-full max-h-[90vh] bg-white dark:bg-darkCard rounded-2xl overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
@@ -241,11 +240,10 @@ const Portfolio: React.FC = () => {
                     <button
                       key={index}
                       onClick={() => setCurrentSlide(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        index === currentSlide 
-                          ? 'bg-primary w-8' 
+                      className={`w-2 h-2 rounded-full transition-all ${index === currentSlide
+                          ? 'bg-primary w-8'
                           : 'bg-white/30 hover:bg-white/50'
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>

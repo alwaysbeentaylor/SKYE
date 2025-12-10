@@ -19,7 +19,7 @@ const Approach: React.FC = () => {
     "group-hover:rotate-12 transition-transform duration-300",
     "group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300"
   ];
-  
+
   const steps = t.approach.steps.map((step, index) => ({
     id: index + 1,
     ...step,
@@ -29,25 +29,25 @@ const Approach: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg transition-colors duration-300">
-      <SEOHead 
-        title="Onze Aanpak | Webdesign Proces Brugge - SKYE"
-        description="Hoe wij te werk gaan: van strategie tot lancering. Transparant webdesign proces voor ondernemers in Brugge. Predictable, transparent, efficient."
-        keywords="webdesign proces, website ontwikkelproces, website aanpak, webdesign methodiek Brugge"
+      <SEOHead
+        title="Onze Aanpak | Design & Automation Proces - SKYE"
+        description="Hoe wij te werk gaan: van strategie tot lancering. Transparant Design & Automation proces voor ondernemers."
+        keywords="design automation proces, website ontwikkelproces, aanpak, systeem methodiek"
         canonical="https://skye.be/#/approach"
       />
-      <StructuredData 
-        type="Service" 
+      <StructuredData
+        type="Service"
         data={{
-          serviceType: "Web Design Process",
-          description: "Transparant en gestructureerd webdesign proces: van strategie tot lancering voor ondernemers in Brugge."
+          serviceType: "Design & Automation Process",
+          description: "Transparant en gestructureerd Design & Automation proces: van strategie tot lancering voor ondernemers."
         }}
       />
-       <section className="bg-navy dark:bg-black py-24 text-white text-center relative overflow-hidden">
-         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/20 blur-[100px] rounded-full opacity-50 pointer-events-none"></div>
+      <section className="bg-navy dark:bg-black py-24 text-white text-center relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/20 blur-[100px] rounded-full opacity-50 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <h1 className="font-display font-black text-5xl md:text-6xl mb-6 tracking-tight">{t.approach.title}</h1>
           <p className="text-xl text-slate-300">
-            {t.approach.subtitle_line1} <br/>
+            {t.approach.subtitle_line1} <br />
             {t.approach.subtitle_line2}
           </p>
         </div>
@@ -60,7 +60,7 @@ const Approach: React.FC = () => {
 
           {steps.map((step, index) => (
             <div key={step.id} className={`flex flex-col md:flex-row items-center mb-20 relative ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''} group`}>
-              
+
               {/* Content Card */}
               <div className="w-full md:w-5/12 bg-white dark:bg-darkCard p-8 rounded-2xl shadow-xl border border-slate-100 dark:border-white/10 z-10 relative transition-transform duration-500 hover:scale-105 hover:border-primary/50">
                 <div className="absolute top-0 right-0 bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-300 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg uppercase">
@@ -68,16 +68,16 @@ const Approach: React.FC = () => {
                 </div>
                 <h3 className="font-display font-bold text-2xl text-navy dark:text-white mb-2">{step.title}</h3>
                 <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm leading-relaxed">{step.desc}</p>
-                
+
                 <div className="mb-6">
-                   <h4 className="font-semibold text-xs text-primary uppercase mb-2 tracking-wider">{t.approach.labels.key_actions}</h4>
-                   <ul className="text-sm text-slate-500 dark:text-slate-400 space-y-1">
-                     {step.actions.map((act, i) => <li key={i}>• {act}</li>)}
-                   </ul>
+                  <h4 className="font-semibold text-xs text-primary uppercase mb-2 tracking-wider">{t.approach.labels.key_actions}</h4>
+                  <ul className="text-sm text-slate-500 dark:text-slate-400 space-y-1">
+                    {step.actions.map((act, i) => <li key={i}>• {act}</li>)}
+                  </ul>
                 </div>
 
                 <div className="bg-blue-50 dark:bg-primary/10 p-3 rounded border border-blue-100 dark:border-primary/20 text-xs font-medium text-blue-800 dark:text-primary flex items-center">
-                   <span className="font-bold mr-1">{t.approach.labels.deliverable}</span> {step.output}
+                  <span className="font-bold mr-1">{t.approach.labels.deliverable}</span> {step.output}
                 </div>
               </div>
 

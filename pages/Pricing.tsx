@@ -16,17 +16,17 @@ const Pricing: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-darkBg pb-20 transition-colors duration-300">
-      <SEOHead 
-        title="Website Prijzen Brugge | €150/maand of Afkoop - SKYE"
-        description="Transparante website prijzen voor Brugge. Basis pakket vanaf €150/maand of €1.500 eenmalig. Geen verborgen kosten. Bekijk alle pakketten en prijzen."
-        keywords="website prijzen Brugge, website kosten Brugge, webdesign prijzen, website vanaf 150 euro, website huren of kopen"
+      <SEOHead
+        title="Prijzen & Pakketten | €150/maand of Afkoop - SKYE"
+        description="Transparante prijzen voor Design & Automation. Basis pakket vanaf €150/maand of €1.500 eenmalig. Geen verborgen kosten. Bekijk alle pakketten en prijzen."
+        keywords="prijzen design automation, website kosten, website vanaf 150 euro, website huren of kopen"
         canonical="https://skye.be/#/pricing"
       />
-      <StructuredData 
-        type="Service" 
+      <StructuredData
+        type="Service"
         data={{
           serviceType: "Website Development Service",
-          description: "Website pakketten vanaf €150 per maand. Flexibel huren of eenmalig afkopen. Transparante prijzen voor ondernemers in Brugge.",
+          description: "Website en systeem pakketten vanaf €150 per maand. Flexibel huren of eenmalig afkopen. Transparante prijzen voor ondernemers.",
           offers: {
             '@type': 'Offer',
             price: '150',
@@ -35,10 +35,10 @@ const Pricing: React.FC = () => {
           }
         }}
       />
-       <section className="bg-navy dark:bg-black py-24 text-white text-center relative overflow-hidden">
-         {/* Glow effect */}
-         <div className="absolute top-[-50%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]"></div>
-         
+      <section className="bg-navy dark:bg-black py-24 text-white text-center relative overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute top-[-50%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]"></div>
+
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 mb-6">
             <Clock size={16} className="text-primary" />
@@ -59,7 +59,7 @@ const Pricing: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 relative z-10">
         {/* Urgency Banner */}
         <div className="max-w-4xl mx-auto mb-8">
-          <UrgencyBanner 
+          <UrgencyBanner
             message={t.pricing.urgency_banner}
             availableSpots={3}
             variant="warning"
@@ -67,28 +67,28 @@ const Pricing: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-4xl mx-auto">
-          
+
           {/* BASIS - 150 */}
           <div className="glass-panel bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 border-2 border-primary/20 dark:border-white/10 flex flex-col hover:border-primary/50 hover:shadow-2xl transition-all duration-300 relative pt-12">
             {/* Popular Badge */}
             <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg z-20">
               {t.pricing.basic.badge}
             </div>
-            
+
             <div className="mb-8 text-center">
-               <h3 className="text-2xl font-bold text-navy dark:text-white">{t.pricing.basic.title}</h3>
-               <p className="text-slate-500 text-sm mt-2">{t.pricing.basic.subtitle}</p>
-               <div className="mt-6 flex items-baseline justify-center text-navy dark:text-white">
-                 <span className="text-5xl font-black tracking-tight text-primary">{t.pricing.basic.price}</span>
-                 <span className="ml-1 text-xl font-semibold text-slate-500">{t.pricing.basic.period}</span>
-               </div>
-               <p className="mt-2 text-xs text-slate-400">{t.pricing.basic.vat_note}</p>
-               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-green-600 dark:text-green-400">
-                 <Shield size={14} />
-                 <span className="font-semibold">{t.pricing.basic.guarantee}</span>
-               </div>
+              <h3 className="text-2xl font-bold text-navy dark:text-white">{t.pricing.basic.title}</h3>
+              <p className="text-slate-500 text-sm mt-2">{t.pricing.basic.subtitle}</p>
+              <div className="mt-6 flex items-baseline justify-center text-navy dark:text-white">
+                <span className="text-5xl font-black tracking-tight text-primary">{t.pricing.basic.price}</span>
+                <span className="ml-1 text-xl font-semibold text-slate-500">{t.pricing.basic.period}</span>
+              </div>
+              <p className="mt-2 text-xs text-slate-400">{t.pricing.basic.vat_note}</p>
+              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-green-600 dark:text-green-400">
+                <Shield size={14} />
+                <span className="font-semibold">{t.pricing.basic.guarantee}</span>
+              </div>
             </div>
-            
+
             <div className="flex-1 mb-8">
               <ul className="space-y-4">
                 {t.pricing.basic.features.map((item, i) => (
@@ -98,7 +98,7 @@ const Pricing: React.FC = () => {
                 ))}
               </ul>
             </div>
-            
+
             <Button to="/contact" variant="primary" className="w-full justify-center mb-4 text-lg py-4 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40">
               {t.pricing.basic.cta} <Zap size={18} className="ml-2" />
             </Button>
@@ -116,14 +116,14 @@ const Pricing: React.FC = () => {
           {/* MAATWERK */}
           <div className="glass-panel bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-white/10 flex flex-col hover:border-accent/50 transition-all duration-300">
             <div className="mb-8 text-center">
-               <h3 className="text-2xl font-bold text-navy dark:text-white">{t.pricing.custom.title}</h3>
-               <p className="text-slate-500 text-sm mt-2">{t.pricing.custom.subtitle}</p>
-               <div className="mt-6 flex items-baseline justify-center text-navy dark:text-white">
-                 <span className="text-4xl font-black tracking-tight text-accent">{t.pricing.custom.price}</span>
-               </div>
-               <p className="mt-2 text-xs text-slate-400">{t.pricing.custom.price_note}</p>
+              <h3 className="text-2xl font-bold text-navy dark:text-white">{t.pricing.custom.title}</h3>
+              <p className="text-slate-500 text-sm mt-2">{t.pricing.custom.subtitle}</p>
+              <div className="mt-6 flex items-baseline justify-center text-navy dark:text-white">
+                <span className="text-4xl font-black tracking-tight text-accent">{t.pricing.custom.price}</span>
+              </div>
+              <p className="mt-2 text-xs text-slate-400">{t.pricing.custom.price_note}</p>
             </div>
-            
+
             <div className="flex-1 mb-8">
               <ul className="space-y-4">
                 {t.pricing.custom.features.map((item, i) => (
@@ -133,15 +133,15 @@ const Pricing: React.FC = () => {
                 ))}
               </ul>
             </div>
-            
+
             <div className="space-y-3 mb-6">
               <Button to="/contact" variant="accent" className="w-full justify-center text-lg py-4 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40">
                 {t.pricing.custom.cta} <MessageCircle size={18} className="ml-2" />
               </Button>
-              <a 
-                href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20maatwerk%20project." 
+              <a
+                href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20maatwerk%20project."
                 onClick={() => trackWhatsAppClick('pricing-maatwerk')}
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
               >
@@ -179,18 +179,18 @@ const Pricing: React.FC = () => {
       {/* Comparison / Info */}
       <section className="max-w-4xl mx-auto px-4 mt-20">
         <div className="bg-blue-50 dark:bg-primary/5 border border-blue-100 dark:border-primary/20 rounded-xl p-8">
-           <div className="flex items-start mb-4">
-              <Info className="text-primary mr-4 mt-1" />
-              <h3 className="text-xl font-bold text-navy dark:text-white">{t.pricing.why_rent.title}</h3>
-           </div>
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-             {t.pricing.why_rent.points.map((point, i) => (
-               <p key={i}>
-                 <strong className="text-navy dark:text-white block mb-1">{point.title}</strong>
-                 {point.text}
-               </p>
-             ))}
-           </div>
+          <div className="flex items-start mb-4">
+            <Info className="text-primary mr-4 mt-1" />
+            <h3 className="text-xl font-bold text-navy dark:text-white">{t.pricing.why_rent.title}</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            {t.pricing.why_rent.points.map((point, i) => (
+              <p key={i}>
+                <strong className="text-navy dark:text-white block mb-1">{point.title}</strong>
+                {point.text}
+              </p>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -207,10 +207,10 @@ const Pricing: React.FC = () => {
             <Button to="/contact" variant="primary" className="px-8 py-4 text-lg shadow-lg shadow-primary/30">
               {t.pricing.final_cta.cta}
             </Button>
-            <a 
-              href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20website." 
+            <a
+              href="https://wa.me/31645998932?text=Hoi%20Hope!%20Ik%20wil%20graag%20praten%20over%20een%20website."
               onClick={() => trackWhatsAppClick('pricing-cta')}
-              target="_blank" 
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
             >

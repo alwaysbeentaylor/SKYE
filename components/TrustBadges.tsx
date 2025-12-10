@@ -25,7 +25,7 @@ const defaultBadges: TrustBadge[] = [
   },
   {
     icon: <CheckCircle size={20} />,
-    text: '30-dagen Garantie',
+    text: '100% Tevredenheid',
     highlight: true
   },
   {
@@ -38,14 +38,10 @@ const defaultBadges: TrustBadge[] = [
     text: 'Start binnen 2 weken',
     highlight: false
   },
-  {
-    icon: <Users size={20} />,
-    text: '50+ Tevreden Klanten',
-    highlight: false
-  }
+
 ];
 
-const TrustBadges: React.FC<TrustBadgesProps> = ({ 
+const TrustBadges: React.FC<TrustBadgesProps> = ({
   variant = 'default',
   badges = defaultBadges
 }) => {
@@ -57,11 +53,10 @@ const TrustBadges: React.FC<TrustBadgesProps> = ({
             {badges.map((badge, index) => (
               <div
                 key={index}
-                className={`flex items-center gap-2 ${
-                  badge.highlight
-                    ? 'text-primary font-bold'
-                    : 'text-slate-600 dark:text-slate-300'
-                }`}
+                className={`flex items-center gap-2 ${badge.highlight
+                  ? 'text-primary font-bold'
+                  : 'text-slate-600 dark:text-slate-300'
+                  }`}
               >
                 <div className={badge.highlight ? 'text-primary' : 'text-slate-400'}>
                   {badge.icon}
@@ -83,11 +78,10 @@ const TrustBadges: React.FC<TrustBadgesProps> = ({
         {badges.map((badge, index) => (
           <div
             key={index}
-            className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
-              badge.highlight
-                ? 'bg-primary/10 text-primary border border-primary/20'
-                : 'bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300'
-            }`}
+            className={`flex items-center gap-2 px-3 py-2 rounded-lg ${badge.highlight
+              ? 'bg-primary/10 text-primary border border-primary/20'
+              : 'bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300'
+              }`}
           >
             <div className={badge.highlight ? 'text-primary' : 'text-slate-400'}>
               {badge.icon}
@@ -107,11 +101,10 @@ const TrustBadges: React.FC<TrustBadgesProps> = ({
       {badges.map((badge, index) => (
         <div
           key={index}
-          className={`flex items-center gap-3 p-4 rounded-xl ${
-            badge.highlight
-              ? 'bg-primary/10 border-2 border-primary/30 text-primary'
-              : 'bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300'
-          }`}
+          className={`flex items-center gap-3 p-4 rounded-xl ${badge.highlight
+            ? 'bg-primary/10 border-2 border-primary/30 text-primary'
+            : 'bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300'
+            }`}
         >
           <div className={badge.highlight ? 'text-primary' : 'text-slate-400'}>
             {badge.icon}
