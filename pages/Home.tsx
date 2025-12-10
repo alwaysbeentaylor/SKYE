@@ -12,7 +12,7 @@ import StructuredData from '../components/StructuredData';
 
 import LeadMagnet from '../components/LeadMagnet';
 import ProcessSteps from '../components/ProcessSteps';
-import ClientTrust from '../components/ClientTrust';
+
 import { trackWhatsAppClick } from '../utils/analytics';
 
 const Home: React.FC = () => {
@@ -117,7 +117,7 @@ const Home: React.FC = () => {
 
           </div>
 
-          <ClientTrust />
+
 
           {/* Testimonials Carousel */}
           <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-400 mt-12">
