@@ -57,11 +57,11 @@ const Home: React.FC = () => {
             <LiveCounter baseCount={50} />
           </div>
 
-          {/* Urgency Badge */}
+          {/* SKYE Unlimited Badge */}
           <div className="mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-250">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20">
-              <Clock size={16} className="text-red-500" />
-              <span className="text-sm font-bold text-red-700 dark:text-red-400">
+            <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/30 backdrop-blur-sm">
+              <Zap size={16} className="text-primary" />
+              <span className="text-sm font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
                 {t.home.hero.urgency_badge}
               </span>
             </div>

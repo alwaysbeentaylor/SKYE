@@ -47,7 +47,7 @@ export const translations = {
         subtitle_line1: "Geen €5k vooraf. Geen verborgen kosten.",
         subtitle_line2: "Direct online.",
         subtitle_line3: "Alles geregeld. Jij focust op je bedrijf.",
-        urgency_badge: "Laatste 3 plekken deze maand beschikbaar",
+        urgency_badge: "SKYE Unlimited",
         cta_start: "Start Nu - €150/maand",
         cta_consultation: "Plan Gratis Consultatie",
         whatsapp: "WhatsApp"
