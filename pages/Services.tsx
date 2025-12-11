@@ -27,7 +27,7 @@ const Services: React.FC = () => {
     <div className="bg-slate-50 dark:bg-darkBg min-h-screen pb-20 transition-colors duration-300">
       <SEOHead
         title="Design & Automation Diensten | Websites, Hosting & Integraties - SKYE"
-        description="Complete Design & Automation diensten: professionele websites, hosting, security, integraties en automatisering. Alles in één pakket vanaf €150/maand."
+        description="Complete Design & Automation diensten: professionele websites, hosting, security, integraties en automatisering. Alles in één pakket vanaf €297/maand."
         keywords="design automation diensten, website hosting, website integraties, website automatisering, systeem ontwikkelaar"
         canonical="https://skye.be/#/services"
       />

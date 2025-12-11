@@ -15,7 +15,7 @@ export const translations = {
     hero: {
       title_prefix: "SKYE is",
       title_suffix: "Unlimited",
-      subtitle: "Professionele websites en systemen vanaf €150 per maand. Geen grote investering vooraf, wel direct professioneel online.",
+      subtitle: "Professionele websites en systemen vanaf €297 per maand. Geen grote investering vooraf, wel direct professioneel online.",
       cta_primary: "Bekijk Pakketten",
       cta_secondary: "Plan een gesprek",
       bullets: ["Vast maandbedrag", "Geen gedoe", "Altijd up-to-date"]
@@ -45,7 +45,7 @@ export const translations = {
       hero: {
         title: "Krijg meer klanten via je website - zonder technische kennis",
         subtitle_line1: "Live binnen 7 dagen.",
-        subtitle_line2: "Vanaf €150/maand.",
+        subtitle_line2: "Vanaf €297/maand.",
         subtitle_line3: "30 dagen niet-goed-geld-terug garantie.",
         urgency_badge: "Max 3 nieuwe klanten per maand",
         cta_start: "Start Nu - Gratis Gesprek",
@@ -72,8 +72,8 @@ export const translations = {
         title: "Kies jouw fundament",
         subtitle: "Flexibel opzegbaar, later afkopen altijd mogelijk.",
         basic: {
-          title: "Basis",
-          price: "€150",
+          title: "Starter",
+          price: "€297",
           period: "/mnd",
           buyout: "of €1.500 eenmalig afkoop",
           desc: "Voor de serieuze starter. Een professionele site zonder hoofdpijn.",
@@ -152,7 +152,7 @@ export const translations = {
       items: [
         {
           title: 'Websites & Landingspagina\'s',
-          price_ref: 'Basis (€150)',
+          price_ref: 'Starter (€297)',
           desc: 'Een strakke, snelle website die perfect werkt op mobiel. Geen Wordpress-chaos, maar moderne, stabiele code.',
           benefit: 'Jouw visitekaartje staat als een huis. Altijd.'
         },
@@ -182,7 +182,7 @@ export const translations = {
         },
         {
           title: 'Analytics & Inzichten',
-          price_ref: 'Basis',
+          price_ref: 'Starter',
           desc: 'Privacy-vriendelijke statistieken. Zie hoeveel mensen kijken, zonder Google\'s ingewikkelde dashboards.',
           benefit: 'Weten wat er gebeurt, zonder gedoe.'
         }
@@ -200,51 +200,66 @@ export const translations = {
       title: "Kies jouw model",
       subtitle: "Huren voor flexibiliteit of afkopen voor eigendom. Transparant en eerlijk.",
       maintenance_note: "Bij afkoop optioneel onderhoud: €49/mnd.",
-      urgency_banner: "Nog 2 plekken beschikbaar voor deze maand",
+      urgency_banner: "Beperkt aantal plekken beschikbaar - Nog 2 plekken deze maand",
       start_badge: "Start binnen 7 dagen online",
-      basic: {
-        badge: "Meest Gekozen",
-        title: "Basis",
-        subtitle: "Voor de slimme starter",
-        price: "€150",
+      starter: {
+        badge: "",
+        title: "STARTER",
+        subtitle: "Jouw investering: €297/maand",
+        price: "€297",
         period: "/mnd",
+        total_value: "€3.050",
         vat_note: "Excl. BTW",
         guarantee: "30-dagen niet-goed-geld-terug",
         features: [
-          'Professionele 5-pagina website (t.w.v. €1.500)',
-          'Premium Hosting & SSL (t.w.v. €200/jr)',
-          'Basis SEO optimalisatie (t.w.v. €300)',
-          'Google My Business setup (t.w.v. €150)',
-          'Onbeperkte wijzigingen & support (t.w.v. €100/mnd)',
-          'WhatsApp widget integratie (t.w.v. €75)'
+          'Professionele one-page website — waarde €1.500',
+          'Mobiel responsive design — waarde €400',
+          'Basis SEO-optimalisatie — waarde €500',
+          'Hosting + SSL inbegrepen — waarde €300/jaar',
+          'Onbeperkte kleine aanpassingen — waarde €150/maand',
+          '24/7 support — waarde €200/maand'
         ],
-        cta: "Start Nu - Kies Basis",
-        included_note: "✓ Gratis consultatie inbegrepen",
-        buyout: {
-          label: "Of koop direct af",
-          price: "€1.500 eenmalig",
-          maintenance: "Optioneel onderhoud: €49/mnd"
-        }
+        cta: "Kies Starter",
+        included_note: "✓ Totale waarde: €3.050"
+      },
+      business: {
+        badge: "MEEST GEKOZEN",
+        title: "BUSINESS",
+        subtitle: "Jouw investering: €497/maand",
+        price: "€497",
+        period: "/mnd",
+        total_value: "€5.650+",
+        vat_note: "Excl. BTW",
+        guarantee: "30-dagen niet-goed-geld-terug",
+        features: [
+          'Alles van Starter',
+          'Multi-page website (tot 5 pagina\'s) — waarde €3.000',
+          'Contact & booking formulieren — waarde €400',
+          'Google Analytics + Search Console setup — waarde €300',
+          'Maandelijkse performance updates — waarde €250/maand',
+          'Prioriteit support — waarde €300/maand',
+          'Maandelijkse strategy call (15 min) — waarde €200/maand'
+        ],
+        cta: "Kies Business",
+        included_note: "✓ Totale waarde: €5.650+"
       },
       custom: {
-        title: "Maatwerk",
-        subtitle: "Platformen & Complexiteit",
-        price: "Custom",
-        period: "",
-        price_note: "Op offertebasis",
+        title: "CUSTOM",
+        subtitle: "Voor bedrijven die meer willen",
+        price: "Contact",
+        price_note: "",
         features: [
-          'Custom Web Applicaties',
-          'SaaS MVP ontwikkeling',
-          'Complexe database structuren',
-          'Specifieke API koppelingen',
-          'Volledig uniek design',
-          'Schaalbare architectuur'
+          'E-commerce / webshop',
+          'Reserveringssystemen',
+          'Automatisaties & integraties',
+          'Op maat gebouwde oplossingen'
         ],
-        cta: "Plan Gratis Gesprek",
-        whatsapp: "Direct WhatsApp",
-        note: "✓ Geen verplichtingen, gewoon praten",
+        cta: "Neem contact op",
+        whatsapp: "WhatsApp",
+        note: "Geen prijs tonen",
         description: "Voor ondernemers die een uniek digitaal product willen lanceren."
       },
+      guarantee: "Niet tevreden in de eerste 30 dagen? Geld terug, geen vragen.",
       testimonials: {
         title: "Wat klanten zeggen",
         subtitle: "Echte ondernemers, echte resultaten",
@@ -686,8 +701,8 @@ export const translations = {
         title: "Choose your foundation",
         subtitle: "Flexible cancellation, buyout always possible.",
         basic: {
-          title: "Basic",
-          price: "€150",
+          title: "Starter",
+          price: "€297",
           period: "/mo",
           buyout: "or €1,500 one-time buyout",
           desc: "For the serious starter. A professional site without headaches.",
@@ -748,7 +763,7 @@ export const translations = {
       items: [
         {
           title: 'Websites & Landing Pages',
-          price_ref: 'Basic (€150)',
+          price_ref: 'Starter (€297)',
           desc: 'A sleek, fast website that works perfectly on mobile. No WordPress chaos, but modern, stable code.',
           benefit: 'Your business card stands like a house. Always.'
         },
@@ -778,7 +793,7 @@ export const translations = {
         },
         {
           title: 'Analytics & Insights',
-          price_ref: 'Basic',
+          price_ref: 'Starter',
           desc: 'Privacy-friendly statistics. See how many people are looking, without Google\'s complicated dashboards.',
           benefit: 'Know what\'s happening, without hassle.'
         }
@@ -796,417 +811,433 @@ export const translations = {
       title: "Choose your model",
       subtitle: "Rent for flexibility or buy for ownership. Transparent and honest.",
       maintenance_note: "Optional maintenance with buyout: €49/mo.",
-      urgency_banner: "Last 3 spots available this month - Start online within 2 weeks",
-      start_badge: "Start online within 2 weeks",
-      basic: {
-        badge: "Most Chosen",
-        title: "Basic",
-        subtitle: "For the smart starter",
-        price: "€150",
+      urgency_banner: "Last 3 spots available this month - Start online within 7 days",
+      start_badge: "Start online within 7 days",
+      starter: {
+        badge: "",
+        title: "STARTER",
+        subtitle: "Your investment: €297/mo",
+        price: "€297",
         period: "/mo",
+        total_value: "€3,050",
         vat_note: "Excl. VAT",
-        guarantee: "30-day satisfaction guarantee",
+        guarantee: "30-day money-back guarantee",
         features: [
-          'Professional website (Homepage + sections)',
-          'Simple Admin Panel',
-          'Hosting & SSL Security included',
-          'Monthly technical updates',
-          'Small content adjustments incl.'
+          'Professional one-page website — value €1,500',
+          'Mobile responsive design — value €400',
+          'Basic SEO optimization — value €500',
+          'Hosting + SSL included — value €300/yr',
+          'Unlimited small edits — value €150/mo',
+          '24/7 support — value €200/mo'
         ],
-        cta: "Start Now - Choose Basic",
-        included_note: "✓ Free consultation included",
-        buyout: {
-          label: "Or buy directly",
-          price: "€1,500 one-time",
-          maintenance: "Optional maintenance: €49/mo"
-        }
+        cta: "Choose Starter",
+        included_note: "✓ Total value: €3,050"
+      },
+      business: {
+        badge: "MOST CHOSEN",
+        title: "BUSINESS",
+        subtitle: "Your investment: €497/mo",
+        price: "€497",
+        period: "/mo",
+        total_value: "€5,650+",
+        vat_note: "Excl. VAT",
+        guarantee: "30-day money-back guarantee",
+        features: [
+          'Everything in Starter',
+          'Multi-page website (up to 5 pages) — value €3,000',
+          'Contact & booking forms — value €400',
+          'Google Analytics + Search Console setup — value €300',
+          'Monthly performance updates — value €250/mo',
+          'Priority support — value €300/mo',
+          'Monthly strategy call (15 min) — value €200/mo'
+        ],
+        cta: "Choose Business",
+        included_note: "✓ Total value: €5,650+"
       },
       custom: {
-        title: "Custom",
-        subtitle: "Platforms & Complexity",
-        price: "Custom",
-        period: "",
-        price_note: "On quote basis",
+        title: "CUSTOM",
+        subtitle: "For companies that want more",
+        price: "Contact",
+        price_note: "",
         features: [
-          'Custom Web Applications',
-          'SaaS MVP development',
-          'Complex database structures',
-          'Specific API connections',
-          'Fully unique design',
-          'Scalable architecture'
+          'E-commerce / webshop',
+          'Reservation systems',
+          'Automations & integrations',
+          'Tailor-made solutions'
         ],
-        cta: "Schedule Free Call",
-        whatsapp: "Direct WhatsApp",
-        note: "✓ No obligations, just talk",
+        cta: "Contact us",
+        whatsapp: "WhatsApp",
+        note: "No price shown",
         description: "For entrepreneurs who want to launch a unique digital product."
       },
-      testimonials: {
-        title: "What clients say",
-        subtitle: "Real entrepreneurs, real results",
-        items: [
-          {
-            name: 'Sarah van der Berg',
-            company: 'LuxeEstate',
-            role: 'Owner',
-            text: 'Within 2 weeks I was online with a professional site. No hassle, just work. Hope handles everything.',
-            rating: 5
-          },
-          {
-            name: 'Carlos Mendoza',
-            company: 'El Churasco',
-            role: 'Owner',
-            text: 'Our online orders have doubled since the new website. The rental model fits perfectly with our restaurant.',
-            rating: 5
-          },
-          {
-            name: 'Thomas van der Berg',
-            company: 'Vitafer Gold',
-            role: 'Owner',
-            text: 'Professional appearance without large investment. The rental model is perfect for our supplement business.',
-            rating: 5
-          }
-        ]
-      },
-      why_rent: {
-        title: "Why renting is usually smarter",
-        points: [
-          {
-            title: "No large investment",
-            text: "Instead of thousands of euros at once, you spread the costs. This leaves money for marketing or other things."
-          },
-          {
-            title: "Always Up-to-Date",
-            text: "Technology ages quickly. In the rental model, I ensure your site stays technically current, without you getting extra invoices for 'major maintenance'."
-          },
-          {
-            title: "Flexibility",
-            text: "Start small with Basic. Is your business growing? Then scale effortlessly to Growth. Want to get rid of it? It's cancelable monthly (after 6 months)."
-          },
-          {
-            title: "Buyout always possible",
-            text: "Are you so satisfied that you want the site? Then you can decide at any time to buy out the site."
-          }
-        ]
-      },
-      final_cta: {
-        title: "Ready to start?",
-        subtitle: "Choose your package, we discuss your needs, and within 2 weeks you're online.",
-        cta: "Start Now Free Consultation",
-        whatsapp: "Direct WhatsApp",
-        guarantees: "✓ No hidden costs  ✓ No obligations  ✓ Free consultation"
-      }
+      guarantee: "Not satisfied in the first 30 days? Money back, no questions."
     },
-    contact: {
-      title: "Let's talk.",
-      subtitle: "No heavy sales calls. Just briefly tell me what you do and what you're looking for, then I'll think along.",
-      response_time: {
-        label: "Average response time: 2 hours",
-        note: "Free consultation within 24 hours"
-      },
-      what_happens: {
-        title: "What happens after sending?",
-        items: [
-          "✓ I receive your message immediately",
-          "✓ Within 24 hours you get a response",
-          "✓ We schedule a free consultation (15-30 min)",
-          "✓ No obligations, just talk"
-        ]
+    testimonials: {
+      title: "What clients say",
+      subtitle: "Real entrepreneurs, real results",
+      items: [
+        {
+          name: 'Sarah van der Berg',
+          company: 'LuxeEstate',
+          role: 'Owner',
+          text: 'Within 2 weeks I was online with a professional site. No hassle, just work. Hope handles everything.',
+          rating: 5
+        },
+        {
+          name: 'Carlos Mendoza',
+          company: 'El Churasco',
+          role: 'Owner',
+          text: 'Our online orders have doubled since the new website. The rental model fits perfectly with our restaurant.',
+          rating: 5
+        },
+        {
+          name: 'Thomas van der Berg',
+          company: 'Vitafer Gold',
+          role: 'Owner',
+          text: 'Professional appearance without large investment. The rental model is perfect for our supplement business.',
+          rating: 5
+        }
+      ]
+    },
+    why_rent: {
+      title: "Why renting is usually smarter",
+      points: [
+        {
+          title: "No large investment",
+          text: "Instead of thousands of euros at once, you spread the costs. This leaves money for marketing or other things."
+        },
+        {
+          title: "Always Up-to-Date",
+          text: "Technology ages quickly. In the rental model, I ensure your site stays technically current, without you getting extra invoices for 'major maintenance'."
+        },
+        {
+          title: "Flexibility",
+          text: "Start small with Basic. Is your business growing? Then scale effortlessly to Growth. Want to get rid of it? It's cancelable monthly (after 6 months)."
+        },
+        {
+          title: "Buyout always possible",
+          text: "Are you so satisfied that you want the site? Then you can decide at any time to buy out the site."
+        }
+      ]
+    },
+    final_cta: {
+      title: "Ready to start?",
+      subtitle: "Choose your package, we discuss your needs, and within 2 weeks you're online.",
+      cta: "Start Now Free Consultation",
+      whatsapp: "Direct WhatsApp",
+      guarantees: "✓ No hidden costs  ✓ No obligations  ✓ Free consultation"
+    }
+  },
+  contact: {
+    title: "Let's talk.",
+    subtitle: "No heavy sales calls. Just briefly tell me what you do and what you're looking for, then I'll think along.",
+    response_time: {
+      label: "Average response time: 2 hours",
+      note: "Free consultation within 24 hours"
+    },
+    what_happens: {
+      title: "What happens after sending?",
+      items: [
+        "✓ I receive your message immediately",
+        "✓ Within 24 hours you get a response",
+        "✓ We schedule a free consultation (15-30 min)",
+        "✓ No obligations, just talk"
+      ]
+    },
+    email: {
+      label: "Email",
+      address: "info@hope-connects.nl"
+    },
+    whatsapp: {
+      label: "WhatsApp",
+      number: "+31 6 45 99 89 32",
+      chat_label: "Direct chat"
+    },
+    quote: "The best investment is a system that works for you, not the other way around.",
+    form: {
+      name: {
+        label: "Name",
+        placeholder: "Your name"
       },
       email: {
         label: "Email",
-        address: "info@hope-connects.nl"
+        placeholder: "you@email.com"
       },
-      whatsapp: {
-        label: "WhatsApp",
-        number: "+31 6 45 99 89 32",
-        chat_label: "Direct chat"
+      message: {
+        label: "How can I help you?",
+        placeholder: "Tell me about your project, your goals, or what you're struggling with...",
+        hint: "The more details you give, the better I can help you."
       },
-      quote: "The best investment is a system that works for you, not the other way around.",
-      form: {
-        name: {
-          label: "Name",
-          placeholder: "Your name"
-        },
-        email: {
-          label: "Email",
-          placeholder: "you@email.com"
-        },
-        message: {
-          label: "How can I help you?",
-          placeholder: "Tell me about your project, your goals, or what you're struggling with...",
-          hint: "The more details you give, the better I can help you."
-        },
-        more_details: "More details (optional)",
-        company: {
-          label: "Company",
-          placeholder: "Your company name"
-        },
-        project_type: {
-          label: "Project Type",
-          placeholder: "Select project type",
-          options: {
-            "": "Select project type",
-            "basis-website": "Basic Website (€150/mo)",
-            "maatwerk": "Custom Project",
-            "webshop": "Webshop / E-commerce",
-            "web-app": "Web Application / SaaS",
-            "redesign": "Redesign Existing Site",
-            "anders": "Other / Question"
-          }
-        },
-        budget: {
-          label: "Budget Range",
-          placeholder: "Select budget",
-          options: {
-            "": "Select budget",
-            "150-500": "€150 - €500/month",
-            "500-1000": "€500 - €1,000/month",
-            "1000-5000": "€1,000 - €5,000 one-time",
-            "5000+": "€5,000+ one-time",
-            "bespreken": "Let's discuss"
-          }
-        },
-        timeline: {
-          label: "Timeline",
-          placeholder: "Select timeline",
-          options: {
-            "": "Select timeline",
-            "direct": "As soon as possible",
-            "2-weken": "Within 2 weeks",
-            "1-maand": "Within 1 month",
-            "2-3-maanden": "Within 2-3 months",
-            "later": "Later this year",
-            "verkennen": "Still exploring"
-          }
-        },
-        submit: "Send Message",
-        submitting: "Sending...",
-        error_config: "Email service is not configured. Please contact the administrator.",
-        error_send: "Could not send email: {error}",
-        error_unknown: "Unknown error sending the email",
-        error_generic: "An error occurred. Please try again later.",
-        not_provided: "Not provided"
+      more_details: "More details (optional)",
+      company: {
+        label: "Company",
+        placeholder: "Your company name"
       },
-      success: {
-        title: "Message Received",
-        message: "Thank you {name}. I have received your message. I'll get back to you as soon as possible.",
-        button: "Back to Home"
-      }
-    },
-    faq: {
-      title: "Frequently Asked Questions",
-      subtitle: "Clarity upfront. No surprises.",
-      items: [
-        {
-          question: "Why should I rent instead of buy?",
-          answer: "Renting lowers the threshold. You don't have to invest thousands of euros at once. In addition, the rental price includes technical maintenance, hosting and security. So you don't have to worry about it."
-        },
-        {
-          question: "Am I the owner of the website?",
-          answer: "In the rental model (€150/€500), Skye remains the owner of the technology and design, you are of course the owner of your own content (text/photos). Want to become the full owner of the code? Then you can use the buyout option."
-        },
-        {
-          question: "Can I buy it out later?",
-          answer: "Yes, absolutely. If you decide after a while that you want to take the site into your own management, you pay the buyout amount (from €1,500 for Basic) and the site is yours. You can then arrange hosting yourself or purchase a separate maintenance package."
-        },
-        {
-          question: "Am I tied to a long-term contract?",
-          answer: "No. We enter into a collaboration of at least 6 months to cover startup costs. After that, it's cancelable monthly. No stranglehold contracts."
-        },
-        {
-          question: "What if I want to grow to a larger system?",
-          answer: "That's the beauty of my approach. I build with code (Next.js), not with limited 'page builders'. We can later expand your basic site into a full web application without having to start over."
+      project_type: {
+        label: "Project Type",
+        placeholder: "Select project type",
+        options: {
+          "": "Select project type",
+          "basis-website": "Basic Website (€150/mo)",
+          "maatwerk": "Custom Project",
+          "webshop": "Webshop / E-commerce",
+          "web-app": "Web Application / SaaS",
+          "redesign": "Redesign Existing Site",
+          "anders": "Other / Question"
         }
-      ],
-      no_answer: "Your question not listed?",
-      cta_contact: "Send Hope a message",
+      },
+      budget: {
+        label: "Budget Range",
+        placeholder: "Select budget",
+        options: {
+          "": "Select budget",
+          "150-500": "€150 - €500/month",
+          "500-1000": "€500 - €1,000/month",
+          "1000-5000": "€1,000 - €5,000 one-time",
+          "5000+": "€5,000+ one-time",
+          "bespreken": "Let's discuss"
+        }
+      },
+      timeline: {
+        label: "Timeline",
+        placeholder: "Select timeline",
+        options: {
+          "": "Select timeline",
+          "direct": "As soon as possible",
+          "2-weken": "Within 2 weeks",
+          "1-maand": "Within 1 month",
+          "2-3-maanden": "Within 2-3 months",
+          "later": "Later this year",
+          "verkennen": "Still exploring"
+        }
+      },
+      submit: "Send Message",
+      submitting: "Sending...",
+      error_config: "Email service is not configured. Please contact the administrator.",
+      error_send: "Could not send email: {error}",
+      error_unknown: "Unknown error sending the email",
+      error_generic: "An error occurred. Please try again later.",
+      not_provided: "Not provided"
+    },
+    success: {
+      title: "Message Received",
+      message: "Thank you {name}. I have received your message. I'll get back to you as soon as possible.",
+      button: "Back to Home"
+    }
+  },
+  faq: {
+    title: "Frequently Asked Questions",
+    subtitle: "Clarity upfront. No surprises.",
+    items: [
+      {
+        question: "Why should I rent instead of buy?",
+        answer: "Renting lowers the threshold. You don't have to invest thousands of euros at once. In addition, the rental price includes technical maintenance, hosting and security. So you don't have to worry about it."
+      },
+      {
+        question: "Am I the owner of the website?",
+        answer: "In the rental model (€150/€500), Skye remains the owner of the technology and design, you are of course the owner of your own content (text/photos). Want to become the full owner of the code? Then you can use the buyout option."
+      },
+      {
+        question: "Can I buy it out later?",
+        answer: "Yes, absolutely. If you decide after a while that you want to take the site into your own management, you pay the buyout amount (from €1,500 for Basic) and the site is yours. You can then arrange hosting yourself or purchase a separate maintenance package."
+      },
+      {
+        question: "Am I tied to a long-term contract?",
+        answer: "No. We enter into a collaboration of at least 6 months to cover startup costs. After that, it's cancelable monthly. No stranglehold contracts."
+      },
+      {
+        question: "What if I want to grow to a larger system?",
+        answer: "That's the beauty of my approach. I build with code (Next.js), not with limited 'page builders'. We can later expand your basic site into a full web application without having to start over."
+      }
+    ],
+    no_answer: "Your question not listed?",
+    cta_contact: "Send Hope a message",
+    whatsapp: "WhatsApp"
+  },
+  about: {
+    hero: {
+      label: "About Hope",
+      title_line1: "No agency.",
+      title_line2: "But results.",
+      text1: "I'm Hope. When we work together, you speak directly with me: the person who builds your site. No account managers, no layers, no referrals.",
+      text2: "I don't like vague promises, hourly billing surprises, or blurry invoices. As an entrepreneur, you just want to know where you stand.",
+      text3: "That's why I work with fixed monthly amounts. Clarity upfront. If something isn't necessary, I say it honestly. If something can be better, I say that too.",
+      cta_pricing: "See what you get for €150",
+      cta_contact: "Let's talk",
       whatsapp: "WhatsApp"
     },
-    about: {
-      hero: {
-        label: "About Hope",
-        title_line1: "No agency.",
-        title_line2: "But results.",
-        text1: "I'm Hope. When we work together, you speak directly with me: the person who builds your site. No account managers, no layers, no referrals.",
-        text2: "I don't like vague promises, hourly billing surprises, or blurry invoices. As an entrepreneur, you just want to know where you stand.",
-        text3: "That's why I work with fixed monthly amounts. Clarity upfront. If something isn't necessary, I say it honestly. If something can be better, I say that too.",
-        cta_pricing: "See what you get for €150",
-        cta_contact: "Let's talk",
-        whatsapp: "WhatsApp"
+    values: {
+      title: "Why different",
+      subtitle: "Three principles that make everything different",
+      direct_contact: {
+        title: "Direct Contact",
+        desc: "No 'I'll pass it on'. You have a direct line to the tech. Questions? Direct answer. Problems? Directly solved.",
+        label: "Direct line"
       },
-      values: {
-        title: "Why different",
-        subtitle: "Three principles that make everything different",
-        direct_contact: {
-          title: "Direct Contact",
-          desc: "No 'I'll pass it on'. You have a direct line to the tech. Questions? Direct answer. Problems? Directly solved.",
-          label: "Direct line"
-        },
-        honest: {
-          title: "Honest & Transparent",
-          desc: "Renting is flexible. Buying is a choice. No fine print, no hidden costs. You know exactly where you stand.",
-          label: "No surprises"
-        },
-        no_bullshit: {
-          title: "No Bullshit",
-          desc: "I don't sell golden mountains. I build systems that work. Honest advice, realistic expectations, real results.",
-          label: "Real results"
-        }
+      honest: {
+        title: "Honest & Transparent",
+        desc: "Renting is flexible. Buying is a choice. No fine print, no hidden costs. You know exactly where you stand.",
+        label: "No surprises"
       },
-      philosophy: {
-        title: "The approach",
-        text1: "I don't believe in complex structures where you have to go through ten layers to get to the tech. I believe in direct communication, clear agreements, and systems that actually work.",
-        text2: "No hassle. But results. That's the promise.",
-        text3: "Whether you need a new website, want to improve your existing site, or want to build a complete system: we discuss it, we make it, and it works.",
-        cta: "Let's begin"
+      no_bullshit: {
+        title: "No Bullshit",
+        desc: "I don't sell golden mountains. I build systems that work. Honest advice, realistic expectations, real results.",
+        label: "Real results"
       }
     },
-    portfolio: {
-      title: "Real results",
-      subtitle: "No abstract art, but websites that work for entrepreneurs.",
-      categories: {
-        all: "All",
-        business: "Business",
-        ecommerce: "E-commerce",
-        service: "Service"
-      },
-      items: [
-        {
-          title: 'Hope Connects',
-          category: 'Business',
-          challenge: 'Renovation company needed leads but had no online presence.',
-          result: 'Lead generation website that encourages direct contact and showcases projects.',
-          tech: ['Lead Generation', 'Modern Design', 'Contact Optimization']
-        },
-        {
-          title: 'LuxeEstate',
-          category: 'Business',
-          challenge: 'Real estate presentation had to exude premium and professional.',
-          result: 'Elegant real estate website that perfectly displays luxury properties.',
-          tech: ['Real Estate', 'Premium Design', 'Property Showcase']
-        },
-        {
-          title: 'VSB Sint-Maarten',
-          category: 'Business',
-          challenge: 'School needed modern, clear online presentation.',
-          result: 'Professional school website with clear structure and information.',
-          tech: ['Education', 'Information Architecture', 'Modern UI']
-        },
-        {
-          title: 'El Churasco',
-          category: 'Service',
-          challenge: 'Restaurant wanted online ordering and attractive menu presentation.',
-          result: 'Atmospheric restaurant website that perfectly captures the authentic atmosphere and facilitates orders.',
-          tech: ['Online Ordering', 'Menu Showcase', 'Mobile First']
-        }
-      ],
-      labels: {
-        problem: "Problem",
-        result: "Result",
-        slide: "Slide {current} of {total}"
-      },
-      cta: {
-        title: "Interested in such a result?",
-        subtitle: "Let's talk about what I can do for you.",
-        contact: "Get in touch",
-        whatsapp: "WhatsApp"
-      }
-    },
-    approach: {
-      title: "The SKYE Approach",
-      subtitle_line1: "Predictable. Transparent. Efficient.",
-      subtitle_line2: "Turning chaos into a structured transformation process.",
-      steps: [
-        {
-          week: "Week 1",
-          title: "Strategy & Insight",
-          desc: "We dig deep into your business model, audience, and goals. We don't write a single line of code until we know exactly what success looks like.",
-          actions: ["Competitor Analysis", "Technical Audit", "User Persona Definition", "Conversion Goal Setting"],
-          output: "Strategic Roadmap & Tech Stack Selection"
-        },
-        {
-          week: "Week 2-3",
-          title: "Design & Architecture",
-          desc: "We design the user experience and map out the data architecture. This ensures the system is scalable and user-friendly.",
-          actions: ["Wireframing & UX Flow", "High-Fidelity UI Design", "Database Schema Design", "API Integration Planning"],
-          output: "Interactive Prototypes & System Architecture"
-        },
-        {
-          week: "Week 3-6",
-          title: "Build & Integration",
-          desc: "The heavy lifting. We build your custom solution using modern, clean code. Regular updates keep you in the loop.",
-          actions: ["Frontend Development (React/Next)", "Backend Development", "CMS Configuration", "Third-party API Integrations"],
-          output: "Fully Functional Staging Environment"
-        },
-        {
-          week: "Week 6+",
-          title: "Launch & Growth",
-          desc: "We deploy to production, ensure security compliance, and set up analytics. Then we monitor and iterate.",
-          actions: ["Quality Assurance Testing", "SEO Optimization Setup", "Deployment to Edge Network", "Analytics Configuration"],
-          output: "Live Product & Growth Dashboard"
-        }
-      ],
-      summary: {
-        title: "Not a 48-hour Template Job",
-        text: "This is a professional transformation designed to last. We don't cut corners. We build systems that become assets.",
-        cta: "Start the Process"
-      },
-      labels: {
-        key_actions: "Key Actions:",
-        deliverable: "Deliverable:"
-      }
-    },
-    common: {
-      whatsapp: "WhatsApp",
-      whatsapp_tooltip: "Direct contact via WhatsApp",
-      required: "*",
-      loading: "Loading...",
-      error: "An error occurred",
-      close: "Close",
-      back: "Back",
-      next: "Next",
-      previous: "Previous",
-      download: "Download",
-      send: "Send",
-      submit: "Submit",
-      cancel: "Cancel",
-      save: "Save",
-      delete: "Delete",
-      edit: "Edit",
-      view: "View",
-      more_info: "More info",
-      learn_more: "Learn more",
-      read_more: "Read more",
-      show_more: "Show more",
-      show_less: "Show less"
-    },
-    footer: {
-      rights: "All rights reserved.",
-      built: "Made by Hope.",
-      resources_title: "Resources",
-      direct_to_title: "Direct to",
-      available: "Available for new partners",
-      privacy: "Privacy",
-      terms: "Terms & Conditions"
-    },
-    leadmagnet: {
-      email_label: "Email address",
-      email_placeholder: "you@email.com",
-      download_button: "Download",
-      submitting: "Sending...",
-      success_title: "Download started!",
-      success_message: "Check your email for the link. We'll also send you valuable tips.",
-      privacy_note: "No spam. Only valuable tips and updates. You can always unsubscribe.",
-      error: "Something went wrong. Please try again."
-    },
-    exit_intent: {
-      title: "Wait! Get 10% Discount",
-      message: "Schedule your free consultation now and get 10% off your first month.",
-      download: "Download Free Guide: \"Website Rent vs Buy\"",
-      consultation: "Schedule Free Consultation",
-      whatsapp: "Direct WhatsApp",
-      privacy_note: "No spam. Only valuable tips and updates."
+    philosophy: {
+      title: "The approach",
+      text1: "I don't believe in complex structures where you have to go through ten layers to get to the tech. I believe in direct communication, clear agreements, and systems that actually work.",
+      text2: "No hassle. But results. That's the promise.",
+      text3: "Whether you need a new website, want to improve your existing site, or want to build a complete system: we discuss it, we make it, and it works.",
+      cta: "Let's begin"
     }
+  },
+  portfolio: {
+    title: "Real results",
+    subtitle: "No abstract art, but websites that work for entrepreneurs.",
+    categories: {
+      all: "All",
+      business: "Business",
+      ecommerce: "E-commerce",
+      service: "Service"
+    },
+    items: [
+      {
+        title: 'Hope Connects',
+        category: 'Business',
+        challenge: 'Renovation company needed leads but had no online presence.',
+        result: 'Lead generation website that encourages direct contact and showcases projects.',
+        tech: ['Lead Generation', 'Modern Design', 'Contact Optimization']
+      },
+      {
+        title: 'LuxeEstate',
+        category: 'Business',
+        challenge: 'Real estate presentation had to exude premium and professional.',
+        result: 'Elegant real estate website that perfectly displays luxury properties.',
+        tech: ['Real Estate', 'Premium Design', 'Property Showcase']
+      },
+      {
+        title: 'VSB Sint-Maarten',
+        category: 'Business',
+        challenge: 'School needed modern, clear online presentation.',
+        result: 'Professional school website with clear structure and information.',
+        tech: ['Education', 'Information Architecture', 'Modern UI']
+      },
+      {
+        title: 'El Churasco',
+        category: 'Service',
+        challenge: 'Restaurant wanted online ordering and attractive menu presentation.',
+        result: 'Atmospheric restaurant website that perfectly captures the authentic atmosphere and facilitates orders.',
+        tech: ['Online Ordering', 'Menu Showcase', 'Mobile First']
+      }
+    ],
+    labels: {
+      problem: "Problem",
+      result: "Result",
+      slide: "Slide {current} of {total}"
+    },
+    cta: {
+      title: "Interested in such a result?",
+      subtitle: "Let's talk about what I can do for you.",
+      contact: "Get in touch",
+      whatsapp: "WhatsApp"
+    }
+  },
+  approach: {
+    title: "The SKYE Approach",
+    subtitle_line1: "Predictable. Transparent. Efficient.",
+    subtitle_line2: "Turning chaos into a structured transformation process.",
+    steps: [
+      {
+        week: "Week 1",
+        title: "Strategy & Insight",
+        desc: "We dig deep into your business model, audience, and goals. We don't write a single line of code until we know exactly what success looks like.",
+        actions: ["Competitor Analysis", "Technical Audit", "User Persona Definition", "Conversion Goal Setting"],
+        output: "Strategic Roadmap & Tech Stack Selection"
+      },
+      {
+        week: "Week 2-3",
+        title: "Design & Architecture",
+        desc: "We design the user experience and map out the data architecture. This ensures the system is scalable and user-friendly.",
+        actions: ["Wireframing & UX Flow", "High-Fidelity UI Design", "Database Schema Design", "API Integration Planning"],
+        output: "Interactive Prototypes & System Architecture"
+      },
+      {
+        week: "Week 3-6",
+        title: "Build & Integration",
+        desc: "The heavy lifting. We build your custom solution using modern, clean code. Regular updates keep you in the loop.",
+        actions: ["Frontend Development (React/Next)", "Backend Development", "CMS Configuration", "Third-party API Integrations"],
+        output: "Fully Functional Staging Environment"
+      },
+      {
+        week: "Week 6+",
+        title: "Launch & Growth",
+        desc: "We deploy to production, ensure security compliance, and set up analytics. Then we monitor and iterate.",
+        actions: ["Quality Assurance Testing", "SEO Optimization Setup", "Deployment to Edge Network", "Analytics Configuration"],
+        output: "Live Product & Growth Dashboard"
+      }
+    ],
+    summary: {
+      title: "Not a 48-hour Template Job",
+      text: "This is a professional transformation designed to last. We don't cut corners. We build systems that become assets.",
+      cta: "Start the Process"
+    },
+    labels: {
+      key_actions: "Key Actions:",
+      deliverable: "Deliverable:"
+    }
+  },
+  common: {
+    whatsapp: "WhatsApp",
+    whatsapp_tooltip: "Direct contact via WhatsApp",
+    required: "*",
+    loading: "Loading...",
+    error: "An error occurred",
+    close: "Close",
+    back: "Back",
+    next: "Next",
+    previous: "Previous",
+    download: "Download",
+    send: "Send",
+    submit: "Submit",
+    cancel: "Cancel",
+    save: "Save",
+    delete: "Delete",
+    edit: "Edit",
+    view: "View",
+    more_info: "More info",
+    learn_more: "Learn more",
+    read_more: "Read more",
+    show_more: "Show more",
+    show_less: "Show less"
+  },
+  footer: {
+    rights: "All rights reserved.",
+    built: "Made by Hope.",
+    resources_title: "Resources",
+    direct_to_title: "Direct to",
+    available: "Available for new partners",
+    privacy: "Privacy",
+    terms: "Terms & Conditions"
+  },
+  leadmagnet: {
+    email_label: "Email address",
+    email_placeholder: "you@email.com",
+    download_button: "Download",
+    submitting: "Sending...",
+    success_title: "Download started!",
+    success_message: "Check your email for the link. We'll also send you valuable tips.",
+    privacy_note: "No spam. Only valuable tips and updates. You can always unsubscribe.",
+    error: "Something went wrong. Please try again."
+  },
+  exit_intent: {
+    title: "Wait! Get 10% Discount",
+    message: "Schedule your free consultation now and get 10% off your first month.",
+    download: "Download Free Guide: \"Website Rent vs Buy\"",
+    consultation: "Schedule Free Consultation",
+    whatsapp: "Direct WhatsApp",
+    privacy_note: "No spam. Only valuable tips and updates."
   }
 };
 
