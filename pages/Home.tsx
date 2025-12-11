@@ -44,7 +44,7 @@ const Home: React.FC = () => {
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 relative z-10">
 
           {/* Experience Controller - Linksboven op desktop, boven content op mobiel */}
-          <div className="mb-6 md:mb-0 md:absolute md:top-8 md:left-8 animate-in fade-in slide-in-from-left-8 duration-1000 delay-100 relative z-20">
+          <div className="mb-8 xl:mb-0 xl:absolute xl:top-12 xl:left-12 animate-in fade-in slide-in-from-left-8 duration-1000 delay-100 relative z-30">
             <div className="inline-flex flex-col items-start gap-3 p-3 rounded-2xl bg-white/40 dark:bg-black/40 backdrop-blur-md border border-white/20 shadow-xl">
               <span className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Kies je vibe</span>
               <div className="flex flex-wrap gap-2">
@@ -74,8 +74,8 @@ const Home: React.FC = () => {
           </div>
 
           {/* Hero content - Links uitgelijnd op desktop */}
-          <div className="max-w-4xl md:pl-4 lg:pl-0">
-            <h1 className="font-display font-black text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tighter text-navy dark:text-white mb-6 leading-[1.1] animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 drop-shadow-2xl text-left">
+          <div className="max-w-4xl xl:pl-0 relative z-20">
+            <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tight text-navy dark:text-white mb-6 leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 drop-shadow-2xl text-left">
               {t.home.hero.title.split(' - ')[0]}<span className="hidden sm:inline"> - </span><br className="sm:hidden" />
               <span className={`text-transparent bg-clip-text bg-gradient-to-r transition-all duration-700 ${activeTheme === 'playful' ? 'from-orange-400 via-purple-500 to-indigo-500' :
                 activeTheme === 'cyber' ? 'from-green-400 via-teal-400 to-blue-500' :
@@ -91,7 +91,7 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start mb-8 md:mb-12 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-400">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start mb-12 xl:mb-0 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-400 relative z-20">
             <Button
               to="/pricing"
               variant="primary"
@@ -111,7 +111,7 @@ const Home: React.FC = () => {
           </div>
 
           {/* Testimonials - Rechts op desktop, onder op mobiel */}
-          <div className="w-full md:absolute md:bottom-8 md:right-8 md:w-auto md:max-w-md lg:max-w-lg animate-in fade-in slide-in-from-right-8 duration-1000 delay-500 mt-8 md:mt-0">
+          <div className="w-full xl:absolute xl:bottom-12 xl:right-12 xl:w-auto xl:max-w-md animate-in fade-in slide-in-from-right-8 duration-1000 delay-500 mt-8 xl:mt-0 relative z-20">
             <Testimonials testimonials={heroTestimonials} variant="carousel" maxItems={3} />
           </div>
         </div>
