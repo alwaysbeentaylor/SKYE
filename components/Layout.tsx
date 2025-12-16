@@ -158,8 +158,8 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu (Animated) */}
       <div
         className={`lg:hidden fixed inset-0 w-full h-[100dvh] bg-slate-50 dark:bg-black/95 backdrop-blur-xl z-[60] flex flex-col p-8 overflow-y-auto overscroll-contain transition-all duration-500 ease-in-out ${isOpen
-            ? 'opacity-100 translate-y-0 visible'
-            : 'opacity-0 -translate-y-full invisible pointer-events-none'
+          ? 'opacity-100 translate-y-0 visible'
+          : 'opacity-0 -translate-y-full invisible pointer-events-none'
           }`}
       >
         <div className="flex justify-between items-center mb-12 shrink-0">
@@ -292,7 +292,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-slate-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-600 dark:text-slate-500">
           <p>&copy; 2025 SKYE. {t.footer.rights} {t.footer.built}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-primary transition-colors">{t.footer.privacy}</a>
+            <Link to="/privacy" className="hover:text-primary transition-colors">{t.footer.privacy}</Link>
             <a href="#" className="hover:text-primary transition-colors">{t.footer.terms}</a>
           </div>
         </div>
