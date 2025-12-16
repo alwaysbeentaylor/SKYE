@@ -24,8 +24,8 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col relative">
       <SEOHead
-        title="SKYE | Design & Automation - Websites vanaf €150/maand"
-        description="Design & Automation. SKYE bouwt digitale systemen voor ondernemers vanaf €150/maand. Geen €5k vooraf. Direct online."
+        title="SKYE | Design & Automation - Websites & Systemen"
+        description="Design & Automation. SKYE bouwt digitale systemen voor ondernemers. Direct online."
         keywords="design automation, website laten maken, systeem bouw, professionele website ondernemer, webdesign voor bedrijven"
       />
       <StructuredData type="WebSite" />

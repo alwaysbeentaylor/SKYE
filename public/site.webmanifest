@@ -1,7 +1,7 @@
 {
   "name": "SKYE - Professioneel Webdesign Brugge",
   "short_name": "SKYE",
-  "description": "Professionele website laten maken in Brugge? SKYE biedt webdesign voor ondernemers vanaf €150/maand.",
+  "description": "Professionele website laten maken in Brugge? SKYE biedt webdesign voor ondernemers.",
   "icons": [
     {
       "src": "/favicon-192x192.png",
@@ -19,9 +19,3 @@
   "display": "standalone",
   "start_url": "/"
 }
-
-
-
-
-
-

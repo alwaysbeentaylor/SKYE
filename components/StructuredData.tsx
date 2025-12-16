@@ -8,7 +8,7 @@ interface StructuredDataProps {
 // Base business information
 const BUSINESS_INFO = {
   name: 'SKYE',
-  description: 'Professioneel webdesign en website ontwikkeling in Brugge. Websites voor ondernemers vanaf €150 per maand.',
+  description: 'Professioneel webdesign en website ontwikkeling in Brugge. Websites voor ondernemers.',
   url: 'https://skye.be',
   logo: 'https://skye.be/logo.png', // Update met jouw logo URL
   image: 'https://skye.be/og-image.jpg', // Update met jouw OG image URL
@@ -162,11 +162,11 @@ const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) => {
   // This ensures Google's crawler can see it even if JavaScript execution is delayed
   if (typeof window !== 'undefined') {
     const scriptId = `structured-data-${type.toLowerCase()}`;
-    
+
     // Only inject if it doesn't already exist (prevent duplicates)
     if (!document.getElementById(scriptId)) {
       const jsonLd = generateJsonLd(type, data);
-      
+
       // Create and append script tag IMMEDIATELY
       const script = document.createElement('script');
       script.id = scriptId;
@@ -179,17 +179,17 @@ const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) => {
   // useEffect as fallback for dynamic updates (if data changes)
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
+
     const scriptId = `structured-data-${type.toLowerCase()}`;
     let script = document.getElementById(scriptId) as HTMLScriptElement;
-    
+
     if (!script) {
       script = document.createElement('script');
       script.id = scriptId;
       script.type = 'application/ld+json';
       document.head.appendChild(script);
     }
-    
+
     const jsonLd = generateJsonLd(type, data);
     script.textContent = JSON.stringify(jsonLd, null, 2);
   }, [type, data]);

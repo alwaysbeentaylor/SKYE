@@ -626,6 +626,16 @@ export const translations = {
       consultation: "Plan Gratis Consultatie",
       whatsapp: "Direct WhatsApp",
       privacy_note: "Geen spam. Alleen waardevolle tips en updates."
+    },
+    unsubscribe: {
+      title: "WACHT EIGENLIJK EVEN.",
+      subtitle: "Weet je zeker dat je geen waardevolle tips meer wilt?",
+      button_stay: "NEE! IK WIL BLIJVEN GROEIEN",
+      button_leave: "JA, SCHRIJF ME UIT",
+      success_title: "JAMMER.",
+      success_message: "Je bent uitgeschreven. Je mist nu wel waardevolle tips.",
+      stay_title: "TOP KEUZE.",
+      stay_message: "Je blijft op de hoogte van de beste tips voor je business."
     }
   },
   // English fallback (simplified to keep structure valid, though prompt requested Dutch focus)

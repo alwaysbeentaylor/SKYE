@@ -16,8 +16,8 @@ const BASE_URL = 'https://skye.be'; // VERVANG DIT MET JE ECHTE DOMAIN
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`; // Voeg later OG image toe
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = 'SKYE | Professioneel Webdesign Brugge - Websites vanaf €150/maand',
-  description = 'Professionele website laten maken in Brugge? SKYE biedt webdesign voor ondernemers vanaf €150/maand. Geen €5k vooraf. Direct online. Webdesigner België.',
+  title = 'SKYE | Professioneel Webdesign Brugge - Websites & Systemen',
+  description = 'Professionele website laten maken in Brugge? SKYE biedt webdesign voor ondernemers. Direct online. Webdesigner België.',
   keywords = 'webdesign Brugge, website laten maken Brugge, webdesigner België, professionele website ondernemer, webdesign België, website Brugge',
   ogImage = DEFAULT_OG_IMAGE,
   canonical,
@@ -25,7 +25,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   noindex = false,
 }) => {
   const location = useLocation();
-  
+
   // Generate canonical URL
   const path = location.pathname === '/' ? '' : location.pathname;
   const canonicalUrl = canonical || `${BASE_URL}${path}`;

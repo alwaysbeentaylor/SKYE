@@ -13,6 +13,7 @@ import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import MediaKit from './pages/MediaKit';
 import Admin from './pages/Admin';
+import Unsubscribe from './pages/Unsubscribe';
 
 // Scroll to top component to handle navigation updates
 const ScrollToTop = () => {
@@ -38,11 +39,12 @@ const App: React.FC = () => {
               <Route path="/approach" element={<Approach />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/media-kit" element={<MediaKit />} />
-            <Route path="/admin" element={<Admin />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/media-kit" element={<MediaKit />} />
+              <Route path="/unsubscribe" element={<Unsubscribe />} />
+              <Route path="/admin" element={<Admin />} />
             </Routes>
           </Layout>
         </Router>
