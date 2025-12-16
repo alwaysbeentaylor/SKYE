@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { 
-  Users, Globe, TrendingUp, Clock, MapPin, Eye, 
-  RefreshCw, LogOut, Shield, BarChart3, Calendar 
+import {
+  Users, Globe, TrendingUp, Clock, MapPin, Eye,
+  RefreshCw, LogOut, Shield, BarChart3, Calendar
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { adminLogin } from '../utils/adminApi';
@@ -108,9 +108,27 @@ const Admin: React.FC = () => {
   // Get top countries
   const topCountries = stats
     ? Object.entries(stats.countryStats)
-        .sort(([, a], [, b]) => b - a)
-        .slice(0, 10)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 10)
     : [];
+
+  // Click tracking stats from local storage for demo purposes
+  // In a real app, this would come from the API
+  const [clickStats, setClickStats] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      // Load click events if available (mock/local implementation)
+      const storedClicks = localStorage.getItem('skye_click_events');
+      if (storedClicks) {
+        try {
+          setClickStats(JSON.parse(storedClicks));
+        } catch (e) {
+          console.error("Failed to load clicks", e);
+        }
+      }
+    }
+  }, [isAuthenticated]);
 
   if (!isAuthenticated) {
     return (
@@ -125,7 +143,7 @@ const Admin: React.FC = () => {
           <p className="text-center text-slate-600 dark:text-slate-400 mb-6">
             Voer het wachtwoord in om toegang te krijgen
           </p>
-          
+
           <form onSubmit={handleLogin}>
             <div className="mb-4">
               <input
@@ -232,7 +250,7 @@ const Admin: React.FC = () => {
               <div className="flex items-center justify-between mb-2">
                 <TrendingUp className="text-blue-500" size={24} />
                 <span className="text-2xl font-bold text-navy dark:text-white">
-                  {stats.totalVisits > 0 
+                  {stats.totalVisits > 0
                     ? (stats.totalVisits / stats.totalVisitors).toFixed(1)
                     : '0'}
                 </span>
@@ -244,90 +262,114 @@ const Admin: React.FC = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Top Countries */}
-          <div className="lg:col-span-1 bg-white dark:bg-darkCard rounded-xl shadow-lg p-6 border border-slate-200 dark:border-white/10">
-            <h2 className="text-xl font-bold text-navy dark:text-white mb-4 flex items-center gap-2">
-              <MapPin size={20} />
-              Top Landen
-            </h2>
-            <div className="space-y-3">
-              {topCountries.length > 0 ? (
-                topCountries.map(([country, count]) => (
-                  <div key={country} className="flex items-center justify-between">
-                    <span className="text-slate-700 dark:text-slate-300">{country}</span>
-                    <span className="font-bold text-primary">{count}</span>
-                  </div>
-                ))
-              ) : (
-                <p className="text-slate-500 dark:text-slate-400 text-sm">
-                  Nog geen data beschikbaar
-                </p>
-              )}
-            </div>
-          </div>
+      </div>
 
-          {/* Visitors List */}
-          <div className="lg:col-span-2 bg-white dark:bg-darkCard rounded-xl shadow-lg p-6 border border-slate-200 dark:border-white/10">
-            <h2 className="text-xl font-bold text-navy dark:text-white mb-4 flex items-center gap-2">
-              <Users size={20} />
-              Recente Bezoekers
-            </h2>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-slate-200 dark:border-white/10">
-                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">
-                      Land
-                    </th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">
-                      Bezoeken
-                    </th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">
-                      Laatste Bezoek
-                    </th>
-                    <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">
-                      Pagina
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {visitors.length > 0 ? (
-                    visitors.slice(0, 20).map((visitor) => (
-                      <tr
-                        key={visitor.id}
-                        className="border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-slate-800/50"
-                      >
-                        <td className="py-3 px-4 text-sm text-slate-700 dark:text-slate-300">
-                          {visitor.country || 'Unknown'}
-                        </td>
-                        <td className="py-3 px-4 text-sm text-slate-700 dark:text-slate-300">
-                          <span className="font-medium">{visitor.visitCount}</span>
-                        </td>
-                        <td className="py-3 px-4 text-sm text-slate-700 dark:text-slate-300">
-                          {formatDate(visitor.lastVisit)}
-                        </td>
-                        <td className="py-3 px-4 text-sm text-slate-700 dark:text-slate-300">
-                          <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
-                            {visitor.path}
-                          </span>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan={4} className="py-8 text-center text-slate-500 dark:text-slate-400">
-                        Nog geen bezoekers geregistreerd
+      {/* Click Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div className="bg-white dark:bg-darkCard rounded-xl shadow-lg p-6 border border-slate-200 dark:border-white/10">
+          <h3 className="text-lg font-bold text-navy dark:text-white mb-2 flex items-center gap-2">
+            <BarChart3 size={20} className="text-primary" /> CTA Kliks
+          </h3>
+          <span className="text-3xl font-black text-primary block">
+            {clickStats.filter((c: any) => c.type === 'cta').length || 0}
+          </span>
+          <span className="text-xs text-slate-400">Totaal website kliks</span>
+        </div>
+        <div className="bg-white dark:bg-darkCard rounded-xl shadow-lg p-6 border border-slate-200 dark:border-white/10">
+          <h3 className="text-lg font-bold text-navy dark:text-white mb-2 flex items-center gap-2">
+            <BarChart3 size={20} className="text-green-500" /> WhatsApp
+          </h3>
+          <span className="text-3xl font-black text-green-500 block">
+            {clickStats.filter((c: any) => c.type === 'whatsapp').length || 0}
+          </span>
+          <span className="text-xs text-slate-400">Totaal WhatsApp kliks</span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Top Countries */}
+        <div className="lg:col-span-1 bg-white dark:bg-darkCard rounded-xl shadow-lg p-6 border border-slate-200 dark:border-white/10">
+          <h2 className="text-xl font-bold text-navy dark:text-white mb-4 flex items-center gap-2">
+            <MapPin size={20} />
+            Top Landen
+          </h2>
+          <div className="space-y-3">
+            {topCountries.length > 0 ? (
+              topCountries.map(([country, count]) => (
+                <div key={country} className="flex items-center justify-between">
+                  <span className="text-slate-700 dark:text-slate-300">{country}</span>
+                  <span className="font-bold text-primary">{count}</span>
+                </div>
+              ))
+            ) : (
+              <p className="text-slate-500 dark:text-slate-400 text-sm">
+                Nog geen data beschikbaar
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Visitors List */}
+        <div className="lg:col-span-2 bg-white dark:bg-darkCard rounded-xl shadow-lg p-6 border border-slate-200 dark:border-white/10">
+          <h2 className="text-xl font-bold text-navy dark:text-white mb-4 flex items-center gap-2">
+            <Users size={20} />
+            Recente Bezoekers
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-slate-200 dark:border-white/10">
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">
+                    Land
+                  </th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">
+                    Bezoeken
+                  </th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">
+                    Laatste Bezoek
+                  </th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-slate-600 dark:text-slate-400">
+                    Pagina
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {visitors.length > 0 ? (
+                  visitors.slice(0, 20).map((visitor) => (
+                    <tr
+                      key={visitor.id}
+                      className="border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                    >
+                      <td className="py-3 px-4 text-sm text-slate-700 dark:text-slate-300">
+                        {visitor.country || 'Unknown'}
+                      </td>
+                      <td className="py-3 px-4 text-sm text-slate-700 dark:text-slate-300">
+                        <span className="font-medium">{visitor.visitCount}</span>
+                      </td>
+                      <td className="py-3 px-4 text-sm text-slate-700 dark:text-slate-300">
+                        {formatDate(visitor.lastVisit)}
+                      </td>
+                      <td className="py-3 px-4 text-sm text-slate-700 dark:text-slate-300">
+                        <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
+                          {visitor.path}
+                        </span>
                       </td>
                     </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={4} className="py-8 text-center text-slate-500 dark:text-slate-400">
+                      Nog geen bezoekers geregistreerd
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
+    </div >
   );
 };
 

@@ -94,7 +94,7 @@ export const trackFormSubmit = (formName: string, success: boolean = true): void
     category: 'form',
     label: formName,
   });
-  
+
   if (success) {
     trackConversion('form_submission', 1);
   }
@@ -116,6 +116,13 @@ export const trackCTAClick = (ctaText: string, location: string): void => {
     category: 'engagement',
     label: `${ctaText} - ${location}`,
   });
+
+  // Store event locally for admin panel (demo purposes)
+  try {
+    const existing = JSON.parse(localStorage.getItem('skye_click_events') || '[]');
+    existing.push({ type: 'cta', text: ctaText, location, date: new Date().toISOString() });
+    localStorage.setItem('skye_click_events', JSON.stringify(existing));
+  } catch (e) { }
 };
 
 // Track WhatsApp clicks
@@ -125,8 +132,15 @@ export const trackWhatsAppClick = (location: string): void => {
     category: 'engagement',
     label: location,
   });
-  
+
   trackConversion('whatsapp_contact', 1);
+
+  // Store event locally for admin panel
+  try {
+    const existing = JSON.parse(localStorage.getItem('skye_click_events') || '[]');
+    existing.push({ type: 'whatsapp', location, date: new Date().toISOString() });
+    localStorage.setItem('skye_click_events', JSON.stringify(existing));
+  } catch (e) { }
 };
 
 // Track leadmagnet downloads
@@ -136,7 +150,7 @@ export const trackLeadMagnetDownload = (magnetName: string): void => {
     category: 'lead_generation',
     label: magnetName,
   });
-  
+
   trackConversion('leadmagnet', 1);
 };
 
