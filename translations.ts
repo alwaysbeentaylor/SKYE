@@ -366,7 +366,7 @@ export const translations = {
           placeholder: "Selecteer type project",
           options: {
             "": "Selecteer type project",
-            "basis-website": "Basis Website (€150/mnd)",
+            "basis-website": "Basis Website (€297/mnd)",
             "maatwerk": "Maatwerk Project",
             "webshop": "Webshop / E-commerce",
             "web-app": "Web Applicatie / SaaS",
@@ -379,7 +379,7 @@ export const translations = {
           placeholder: "Selecteer budget",
           options: {
             "": "Selecteer budget",
-            "150-500": "€150 - €500/maand",
+            "150-500": "€297 - €500/maand",
             "500-1000": "€500 - €1.000/maand",
             "1000-5000": "€1.000 - €5.000 eenmalig",
             "5000+": "€5.000+ eenmalig",
@@ -423,7 +423,7 @@ export const translations = {
         },
         {
           question: "Ben ik eigenaar van de website?",
-          answer: "Bij het huurmodel (€150/€500) blijft Skye eigenaar van de techniek en het ontwerp, jij bent natuurlijk eigenaar van je eigen content (tekst/foto's). Wil je volledig eigenaar worden van de code? Dan kun je gebruikmaken van de afkoopoptie."
+          answer: "Bij het huurmodel (€297/€497) blijft Skye eigenaar van de techniek en het ontwerp, jij bent natuurlijk eigenaar van je eigen content (tekst/foto's). Wil je volledig eigenaar worden van de code? Dan kun je gebruikmaken van de afkoopoptie."
         },
         {
           question: "Kan ik later alsnog afkopen?",
@@ -450,7 +450,7 @@ export const translations = {
         text1: "Ik ben Hope. Als we samenwerken, spreek je direct met mij: degene die jouw site bouwt. Geen accountmanagers, geen lagen, geen doorverwijzingen.",
         text2: "Ik hou niet van vage beloftes, uurtje-factuurtje verrassingen of wazige facturen. Jij wilt als ondernemer gewoon weten waar je aan toe bent.",
         text3: "Daarom werk ik met vaste maandbedragen. Duidelijkheid vooraf. Als iets niet nodig is, zeg ik het eerlijk. Als iets beter kan, zeg ik het ook.",
-        cta_pricing: "Bekijk wat je krijgt voor €150",
+        cta_pricing: "Bekijk wat je krijgt",
         cta_contact: "Laten we praten",
         whatsapp: "WhatsApp"
       },
@@ -654,7 +654,7 @@ export const translations = {
     hero: {
       title_prefix: "SKYE is",
       title_suffix: "Unlimited",
-      subtitle: "Professional design & automation systems starting at €150/month. No huge upfront costs, just professional results.",
+      subtitle: "Professional design & automation systems starting at €297/month. No huge upfront costs, just professional results.",
       cta_primary: "View Packages",
       cta_secondary: "Schedule Call",
       bullets: ["Fixed Monthly Fee", "No Hassle", "Always Up-to-date"]
@@ -687,7 +687,7 @@ export const translations = {
         subtitle_line2: "Directly online.",
         subtitle_line3: "Everything handled. You focus on your business.",
         urgency_badge: "Last 3 spots available this month",
-        cta_start: "Start Now - €150/month",
+        cta_start: "Start Now - €297/month",
         cta_consultation: "Schedule Free Consultation",
         whatsapp: "WhatsApp"
       },

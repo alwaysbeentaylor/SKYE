@@ -11,7 +11,7 @@ const MobileCTABar: React.FC = () => {
   if (isContactPage) return null;
 
   const handleCTAClick = () => {
-    trackCTAClick('Start Nu - €150/maand', 'mobile-bar');
+    trackCTAClick('Start Nu - €297/maand', 'mobile-bar');
     window.location.href = '/#/pricing';
   };
 
@@ -27,7 +27,7 @@ const MobileCTABar: React.FC = () => {
           onClick={handleCTAClick}
           className="flex-1 bg-primary hover:bg-primaryDark text-white px-4 py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-colors shadow-lg shadow-primary/30"
         >
-          Start Nu - €150/mnd
+          Start Nu - €297/mnd
           <ArrowRight size={18} />
         </button>
         <a

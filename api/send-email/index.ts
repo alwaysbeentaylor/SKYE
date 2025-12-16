@@ -34,7 +34,7 @@ export default async function handler(req: Request): Promise<Response> {
   // Validate environment variables
   if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         error: 'Server configuration error',
         details: 'Missing Gmail credentials. Check Vercel environment variables.'
       }),
@@ -83,7 +83,7 @@ export default async function handler(req: Request): Promise<Response> {
 
     // Format project type labels
     const projectTypeLabels: Record<string, string> = {
-      'basis-website': 'Basis Website (€150/mnd)',
+      'basis-website': 'Basis Website (€297/mnd)',
       'maatwerk': 'Maatwerk Project',
       'webshop': 'Webshop / E-commerce',
       'web-app': 'Web Applicatie / SaaS',
@@ -92,7 +92,7 @@ export default async function handler(req: Request): Promise<Response> {
     };
 
     const budgetLabels: Record<string, string> = {
-      '150-500': '€150 - €500/maand',
+      '150-500': '€297 - €500/maand',
       '500-1000': '€500 - €1.000/maand',
       '1000-5000': '€1.000 - €5.000 eenmalig',
       '5000+': '€5.000+ eenmalig',
@@ -220,9 +220,9 @@ Antwoord direct op deze email om te reageren naar: ${email}
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error('Error sending email:', error);
-    
+
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         error: 'Failed to send email',
         details: errorMessage
       }),
