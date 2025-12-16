@@ -60,8 +60,8 @@ export async function adminLogin(password: string): Promise<AdminResponse> {
 
   // Try to fetch from API
   try {
-    const apiUrl = import.meta.env.DEV 
-      ? 'http://localhost:3000/api/get-visitors'
+    const apiUrl = import.meta.env.DEV
+      ? '/api/get-visitors' // Using relative path for local dev too, Vite proxies it
       : '/api/get-visitors';
 
     const response = await fetch(apiUrl, {
@@ -87,19 +87,19 @@ export async function adminLogin(password: string): Promise<AdminResponse> {
     if (import.meta.env.DEV) {
       console.warn('API call failed, using localStorage fallback');
       const visitors = getLocalVisitors();
-      
+
       const totalVisitors = visitors.length;
       const totalVisits = visitors.reduce((sum, v) => sum + v.visitCount, 0);
       const uniqueCountries = new Set(visitors.map(v => v.country).filter(Boolean));
       const countryStats: Record<string, number> = {};
-      
+
       visitors.forEach(visitor => {
         if (visitor.country) {
           countryStats[visitor.country] = (countryStats[visitor.country] || 0) + visitor.visitCount;
         }
       });
 
-      const sortedVisitors = visitors.sort((a, b) => 
+      const sortedVisitors = visitors.sort((a, b) =>
         new Date(b.lastVisit).getTime() - new Date(a.lastVisit).getTime()
       );
 
@@ -126,7 +126,7 @@ export async function adminLogin(password: string): Promise<AdminResponse> {
     if (import.meta.env.DEV) {
       console.warn('API error, using localStorage fallback:', error);
       const visitors = getLocalVisitors();
-      
+
       if (visitors.length === 0) {
         return {
           success: true,
@@ -146,14 +146,14 @@ export async function adminLogin(password: string): Promise<AdminResponse> {
       const totalVisits = visitors.reduce((sum, v) => sum + v.visitCount, 0);
       const uniqueCountries = new Set(visitors.map(v => v.country).filter(Boolean));
       const countryStats: Record<string, number> = {};
-      
+
       visitors.forEach(visitor => {
         if (visitor.country) {
           countryStats[visitor.country] = (countryStats[visitor.country] || 0) + visitor.visitCount;
         }
       });
 
-      const sortedVisitors = visitors.sort((a, b) => 
+      const sortedVisitors = visitors.sort((a, b) =>
         new Date(b.lastVisit).getTime() - new Date(a.lastVisit).getTime()
       );
 
