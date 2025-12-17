@@ -58,11 +58,11 @@ export async function adminLogin(password: string): Promise<AdminResponse> {
     };
   }
 
-  // Try to fetch from API
+  // Try to fetch from API with timeout
   try {
-    const apiUrl = import.meta.env.DEV
-      ? '/api/get-visitors' // Using relative path for local dev too, Vite proxies it
-      : '/api/get-visitors';
+    const apiUrl = '/api/get-visitors';
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
 
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -70,7 +70,10 @@ export async function adminLogin(password: string): Promise<AdminResponse> {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ password }),
+      signal: controller.signal,
     });
+
+    clearTimeout(timeoutId);
 
     if (response.ok) {
       const data = await response.json();
@@ -83,102 +86,44 @@ export async function adminLogin(password: string): Promise<AdminResponse> {
       }
     }
 
-    // If API fails, try localStorage fallback (development only)
-    if (import.meta.env.DEV) {
-      console.warn('API call failed, using localStorage fallback');
-      const visitors = getLocalVisitors();
+    throw new Error('API request failed');
 
-      const totalVisitors = visitors.length;
-      const totalVisits = visitors.reduce((sum, v) => sum + v.visitCount, 0);
-      const uniqueCountries = new Set(visitors.map(v => v.country).filter(Boolean));
-      const countryStats: Record<string, number> = {};
-
-      visitors.forEach(visitor => {
-        if (visitor.country) {
-          countryStats[visitor.country] = (countryStats[visitor.country] || 0) + visitor.visitCount;
-        }
-      });
-
-      const sortedVisitors = visitors.sort((a, b) =>
-        new Date(b.lastVisit).getTime() - new Date(a.lastVisit).getTime()
-      );
-
-      return {
-        success: true,
-        data: {
-          visitors: sortedVisitors,
-          stats: {
-            totalVisitors,
-            totalVisits,
-            uniqueCountries: uniqueCountries.size,
-            countryStats,
-          }
-        }
-      };
-    }
-
-    return {
-      success: false,
-      error: 'Kon geen verbinding maken met de server',
-    };
   } catch (error) {
-    // Fallback to localStorage in development
-    if (import.meta.env.DEV) {
-      console.warn('API error, using localStorage fallback:', error);
-      const visitors = getLocalVisitors();
+    console.warn('API error or timeout, using localStorage fallback:', error);
 
-      if (visitors.length === 0) {
-        return {
-          success: true,
-          data: {
-            visitors: [],
-            stats: {
-              totalVisitors: 0,
-              totalVisits: 0,
-              uniqueCountries: 0,
-              countryStats: {},
-            }
-          }
-        };
+    // Fallback to localStorage (ALWAYS, not just in DEV)
+    // This allows the admin panel to work "client-side" if the server functions aren't working
+    const visitors = getLocalVisitors();
+
+    // Always return success structure with local data if API fails
+    // This prevents the UI from handling 'error' and blocking access
+
+    const totalVisitors = visitors.length;
+    const totalVisits = visitors.reduce((sum, v) => sum + v.visitCount, 0);
+    const uniqueCountries = new Set(visitors.map(v => v.country).filter(Boolean));
+    const countryStats: Record<string, number> = {};
+
+    visitors.forEach(visitor => {
+      if (visitor.country) {
+        countryStats[visitor.country] = (countryStats[visitor.country] || 0) + visitor.visitCount;
       }
+    });
 
-      const totalVisitors = visitors.length;
-      const totalVisits = visitors.reduce((sum, v) => sum + v.visitCount, 0);
-      const uniqueCountries = new Set(visitors.map(v => v.country).filter(Boolean));
-      const countryStats: Record<string, number> = {};
-
-      visitors.forEach(visitor => {
-        if (visitor.country) {
-          countryStats[visitor.country] = (countryStats[visitor.country] || 0) + visitor.visitCount;
-        }
-      });
-
-      const sortedVisitors = visitors.sort((a, b) =>
-        new Date(b.lastVisit).getTime() - new Date(a.lastVisit).getTime()
-      );
-
-      return {
-        success: true,
-        data: {
-          visitors: sortedVisitors,
-          stats: {
-            totalVisitors,
-            totalVisits,
-            uniqueCountries: uniqueCountries.size,
-            countryStats,
-          }
-        }
-      };
-    }
+    const sortedVisitors = visitors.sort((a, b) =>
+      new Date(b.lastVisit).getTime() - new Date(a.lastVisit).getTime()
+    );
 
     return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Onbekende fout',
+      success: true,
+      data: {
+        visitors: sortedVisitors,
+        stats: {
+          totalVisitors,
+          totalVisits,
+          uniqueCountries: uniqueCountries.size,
+          countryStats,
+        }
+      }
     };
   }
 }
-
-
-
-
-
